@@ -1,0 +1,79 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit, printf, scanf               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  import printf msvcrt.dll
+    11                                  import scanf msvcrt.dll
+    12                                  
+    13                                  ; our data is declared here (the variables needed by our program)
+    14                                  segment data use32 class=data
+    15 00000000 00000000                    a dd 0
+    16 00000004 00000000                    b dd 0
+    17 00000008 256400                      format1 db "%d", 0
+    18 0000000B 612028646563696D61-         message1 db "a (decimal) = ", 0
+    18 00000014 6C29203D2000       
+    19 0000001A 257800                      format2 db "%x", 0
+    20 0000001D 622028686578616465-         message2 db "b (hexadecimal) = ", 0
+    20 00000026 63696D616C29203D20-
+    20 0000002F 00                 
+    21 00000030 546865206E756D6265-         message3 db "The number of 1's is: %d", 0
+    21 00000039 72206F662031277320-
+    21 00000042 69733A20256400     
+    22                                  
+    23                                  ; our code starts here
+    24                                  segment code use32 class=code
+    25                                      start:
+    26                                      
+    27 00000000 68[0B000000]                    push dword message1
+    28 00000005 FF15[00000000]                  call [printf]
+    29 0000000B 83C404                          add esp, 4
+    30                                          
+    31 0000000E 68[00000000]                    push dword a
+    32 00000013 68[08000000]                    push dword format1
+    33 00000018 FF15[00000000]                  call [scanf]
+    34 0000001E 83C408                          add esp, 4 * 2
+    35                                  
+    36 00000021 68[1D000000]                    push dword message2
+    37 00000026 FF15[00000000]                  call [printf]
+    38 0000002C 83C404                          add esp, 4
+    39                                          
+    40 0000002F 68[04000000]                    push dword b
+    41 00000034 68[1A000000]                    push dword format2
+    42 00000039 FF15[00000000]                  call [scanf]
+    43 0000003F 83C408                          add esp, 4 * 2
+    44                                          
+    45 00000042 B920000000                      mov ecx, 32
+    46 00000047 31D2                            xor edx, edx
+    47 00000049 A1[00000000]                    mov eax, [a]
+    48 0000004E 8B1D[04000000]                  mov ebx, [b]
+    49 00000054 01D8                            add eax, ebx
+    50                                          
+    51                                          count_ones:
+    52 00000056 A901000000                          test eax, 1
+    53 0000005B 7508                                jnz add_one
+    54 0000005D D1E8                                shr eax, 1
+    55 0000005F 85C0                                test eax, eax
+    56 00000061 740B                                jz ending
+    57 00000063 E2F1                            loop count_ones
+    58                                          
+    59                                          add_one:
+    60 00000065 42                                  inc edx
+    61 00000066 D1E8                                shr eax, 1
+    62 00000068 85C0                                test eax, eax
+    63 0000006A 7402                                jz ending
+    64 0000006C E2E8                                loop count_ones
+    65                                          
+    66                                          ending:
+    67 0000006E 52                              push edx
+    68 0000006F 68[30000000]                    push message3
+    69 00000074 FF15[00000000]                  call [printf]
+    70 0000007A 83C408                          add esp, 4 * 2
+    71                                      
+    72                                          ; exit(0)
+    73 0000007D 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    74 0000007F FF15[00000000]                  call    [exit]       ; call exit to terminate the program

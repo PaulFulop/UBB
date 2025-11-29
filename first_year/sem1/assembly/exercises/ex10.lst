@@ -1,0 +1,62 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit, printf, scanf               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  import printf msvcrt.dll 
+    11                                  import scanf msvcrt.dll
+    12                                   
+    13                                  ; our data is declared here (the variables needed by our program)
+    14                                  segment data use32 class=data
+    15 00000000 00000000                    a dd 0
+    16 00000004 00000000                    b dd 0
+    17 00000008 00000000                    c dd 0
+    18 0000000C 526561642074686520-         text db "Read the numbers here: ", 0
+    18 00000015 6E756D626572732068-
+    18 0000001E 6572653A2000       
+    19 00000024 256420256420256400          format db "%d %d %d", 0
+    20 0000002D 54686520726573756C-         out_msg db "The result of the expression is: %d", 0
+    20 00000036 74206F662074686520-
+    20 0000003F 65787072657373696F-
+    20 00000048 6E2069733A20256400 
+    21                                  
+    22                                  ; our code starts here
+    23                                  segment code use32 class=code
+    24                                      compute_sum:
+    25 00000000 8B442404                        mov eax, [esp + 4]
+    26 00000004 8B5C2408                        mov ebx, [esp + 8]
+    27 00000008 8B4C240C                        mov ecx, [esp + 12]
+    28 0000000C 01D8                            add eax, ebx
+    29 0000000E 29C8                            sub eax, ecx
+    30 00000010 C3                              ret
+    31                                          
+    32                                      start:
+    33 00000011 68[0C000000]                    push dword text
+    34 00000016 FF15[00000000]                  call [printf]
+    35 0000001C 83C404                          add esp, 4
+    36                                          
+    37 0000001F 68[08000000]                    push dword c
+    38 00000024 68[04000000]                    push dword b
+    39 00000029 68[00000000]                    push dword a
+    40 0000002E 68[24000000]                    push dword format
+    41 00000033 FF15[00000000]                  call [scanf]
+    42 00000039 83C410                          add esp, 4 * 4
+    43                                          
+    44 0000003C FF35[08000000]                  push dword [c]
+    45 00000042 FF35[04000000]                  push dword [b]
+    46 00000048 FF35[00000000]                  push dword [a]
+    47 0000004E E8ADFFFFFF                      call compute_sum
+    48 00000053 83C40C                          add esp, 4 * 3
+    49                                          
+    50 00000056 50                              push eax
+    51 00000057 68[2D000000]                    push dword out_msg
+    52 0000005C FF15[00000000]                  call [printf]
+    53 00000062 83C408                          add esp, 4 * 2
+    54                                      
+    55                                          ; exit(0)
+    56 00000065 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    57 00000067 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

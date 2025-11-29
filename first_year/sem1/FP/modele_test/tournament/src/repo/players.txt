@@ -1,0 +1,10 @@
+1, Alice, 45
+2, Bob, 24
+3, Carla, 25
+4, Paul, 70
+5, Sergiu, 78
+6, Ioana, 31
+7, Alex, 51
+8, Eve, 16
+9, Dave, 58
+10, Marius, 81

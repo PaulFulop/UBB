@@ -1,0 +1,11 @@
+1, Fulop Paul, 12, 4
+2, Fulop Sergiu, 11, 6
+3, Avram Dorel, 13, 7
+4, Gabor Gabriel, 10, 9
+5, Ion Pop, 12, 8
+6, Ionescu Popescu, 12, 5
+7, Babutan Andrei, 6, 9
+8, Ionescu Mihai, 7, 9
+9, Pop Alex, 8, 10
+10, Popescu Ioana, 13, 10
+11, sjafsafnj askfkasf, 5, 3

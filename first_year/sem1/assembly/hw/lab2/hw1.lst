@@ -1,0 +1,19 @@
+     1                                  bits 32
+     2                                  global start
+     3                                  
+     4                                  extern exit ; we inform the assembler that the exit symbol is foreign; it exists even if we won't be defining it
+     5                                  import exit msvcrt.dll  ; we specify the external library that defines the symbol
+     6                                  
+     7                                  ; our variables are declared here (the segment is called data) 
+     8                                  segment data use32 class=data
+     9                                  
+    10                                  ; the program code will be part of a segment called code
+    11                                  segment code use32 class=code
+    12                                  start:
+    13 00000000 B005                    mov AL, 5
+    14 00000002 2C06                    sub AL, 6
+    15                                  
+    16                                  
+    17                                      ; call exit(0) ), 0 represents status code: SUCCESS
+    18 00000004 6A00                        push dword 0 ; saves on stack the parameter of the function exit
+    19 00000006 FF15[00000000]              call [exit] ; function exit is called in order to end the execution of the program

@@ -1,0 +1,3 @@
+Paul,20,25,true
+Sergiu,70,90,false
+Emi,5,50,false

@@ -1,0 +1,98 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit, fopen, fread, printf, fclose              ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                                            
+    11                                  import fopen msvcrt.dll
+    12                                  import fread msvcrt.dll
+    13                                  import printf msvcrt.dll
+    14                                  import fclose msvcrt.dll
+    15                                  
+    16                                  ; our data is declared here (the variables needed by our program)
+    17                                  segment data use32 class=data
+    18 00000000 6578355F66696C652E-         file_name db "ex5_file.txt", 0
+    18 00000009 74787400           
+    19 0000000D 7200                        access_mode db "r", 0
+    20 0000000F 546865206E756D6265-         format db "The number of vowels is: %d", 0
+    20 00000018 72206F6620766F7765-
+    20 00000021 6C732069733A202564-
+    20 0000002A 00                 
+    21 0000002B FFFFFFFF                    file_descriptor dd -1
+    22                                      len equ 100
+    23 0000002F 00<rept>                    text times len db 0
+    24                                  
+    25                                  ; our code starts here
+    26                                  segment code use32 class=code
+    27                                      start:
+    28 00000000 68[0D000000]                    push dword access_mode
+    29 00000005 68[00000000]                    push dword file_name
+    30 0000000A FF15[00000000]                  call [fopen]
+    31 00000010 83C408                          add esp, 4 * 2
+    32                                          
+    33 00000013 A3[2B000000]                    mov [file_descriptor], eax
+    34 00000018 83F800                          cmp eax, 0
+    35 0000001B 7471                            je final
+    36                                          
+    37 0000001D FF35[2B000000]                  push dword [file_descriptor]
+    38 00000023 6A64                            push dword len
+    39 00000025 6A01                            push dword 1
+    40 00000027 68[2F000000]                    push dword text
+    41 0000002C FF15[00000000]                  call [fread]
+    42 00000032 83C410                          add esp, 4 * 4
+    43                                          
+    44 00000035 BE[2F000000]                    mov esi, text
+    45 0000003A 89C1                            mov ecx, eax
+    46 0000003C 31D2                            xor edx, edx
+    47                                          
+    48                                          count_vowels:
+    49 0000003E AC                                  lodsb
+    50 0000003F 3C00                                cmp al, 0
+    51 00000041 742D                                je finish
+    52                                              
+    53 00000043 3C61                                cmp al, 'a'
+    54 00000045 7426                                je increment
+    55 00000047 3C65                                cmp al, 'e'
+    56 00000049 7422                                je increment
+    57 0000004B 3C69                                cmp al, 'i'
+    58 0000004D 741E                                je increment 
+    59 0000004F 3C6F                                cmp al, 'o'
+    60 00000051 741A                                je increment
+    61 00000053 3C75                                cmp al, 'u'
+    62 00000055 7416                                je increment
+    63                                              
+    64 00000057 3C41                                cmp al, 'A'
+    65 00000059 7412                                je increment
+    66 0000005B 3C45                                cmp al, 'E'
+    67 0000005D 740E                                je increment
+    68 0000005F 3C49                                cmp al, 'I'
+    69 00000061 740A                                je increment 
+    70 00000063 3C4F                                cmp al, 'O'
+    71 00000065 7406                                je increment
+    72 00000067 3C55                                cmp al, 'U'
+    73 00000069 7402                                je increment
+    74 0000006B EBD1                            jmp count_vowels 
+    75                                          
+    76                                          increment:
+    77 0000006D 42                                  inc edx
+    78 0000006E EBCE                                jmp count_vowels
+    79                                                  
+    80                                          finish:
+    81                                          
+    82 00000070 52                              push edx
+    83 00000071 68[0F000000]                    push dword format
+    84 00000076 FF15[00000000]                  call [printf]
+    85 0000007C 83C408                          add esp, 4 * 2
+    86                                          
+    87 0000007F FF35[2B000000]                  push dword [file_descriptor]
+    88 00000085 FF15[00000000]                  call [fclose]
+    89 0000008B 83C404                          add esp, 4
+    90                                          
+    91                                          final:
+    92                                          ; exit(0)
+    93 0000008E 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    94 00000090 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

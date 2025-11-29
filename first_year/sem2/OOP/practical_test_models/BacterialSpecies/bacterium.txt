@@ -1,0 +1,12 @@
+b1;sp1;1;ds1,ds3,ds5,adhd
+b2;sp2;2;ds2,ds4,ds7,adhd
+b3;sp5;3;ds3,ds2,ds5,adhd,scoliosis
+b4;sp4;4;ds4,ds3,ds9
+b5;sp1;5;ds2,ds1,ds11
+b6;sp6;6;ds3,ds4,ds8
+b7;sp10;3;ds1,ds2,ds3
+b8;sp11;2;ds1
+b9;sp11;5;disease whatever,disease2
+random_bacteria;sp11;10;ds_idk,idk
+tbacterium;sp10;12;sp123,sp1
+abacterium;sp4;2;whatever

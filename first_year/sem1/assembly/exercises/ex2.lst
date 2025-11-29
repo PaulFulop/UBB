@@ -1,0 +1,46 @@
+     1                                  ; The following program should read a number and print the message together with the number on the screen.
+     2                                  bits 32
+     3                                  global start        
+     4                                  
+     5                                  ; declaring extern functions used in the program
+     6                                  extern exit, printf, scanf            
+     7                                  import exit msvcrt.dll     
+     8                                  import printf msvcrt.dll     ; indicating to the assembler that the printf fct can be found in the msvcrt.dll library
+     9                                  import scanf msvcrt.dll      ; similar for scanf
+    10                                                            
+    11                                  segment  data use32 class=data
+    12 00000000 00000000                    a dd 0
+    13 00000004 00000000                    b dd 0
+    14 00000008 00000000                    result dd 0
+    15 0000000C 256420256400                format db "%d %d", 0
+    16 00000012 52656164206120616E-         message1 db "Read a and b: ", 0
+    16 0000001B 6420623A2000       
+    17 00000021 61202F2062203D2025-         message2 db "a / b = %d", 0
+    17 0000002A 6400               
+    18                                          
+    19                                  segment  code use32 class=code
+    20                                      start:
+    21 00000000 68[12000000]                    push dword message1
+    22 00000005 FF15[00000000]                  call [printf]
+    23 0000000B 83C404                          add esp, 4
+    24                                          
+    25 0000000E 68[04000000]                    push dword b
+    26 00000013 68[00000000]                    push dword a
+    27 00000018 68[0C000000]                    push dword format
+    28 0000001D FF15[00000000]                  call [scanf]
+    29 00000023 83C40C                          add esp, 4 * 3
+    30                                          
+    31 00000026 A1[00000000]                    mov eax, [a]
+    32 0000002B 8B1D[04000000]                  mov ebx, [b]
+    33 00000031 99                              cdq
+    34 00000032 F7FB                            idiv ebx
+    35 00000034 A3[08000000]                    mov dword [result], eax
+    36                                          
+    37 00000039 50                              push eax
+    38 0000003A 68[21000000]                    push dword message2
+    39 0000003F FF15[00000000]                  call [printf]
+    40 00000045 83C408                          add esp, 4 * 2
+    41                                          
+    42                                          ; exit(0)
+    43 00000048 6A00                            push  dword 0     ; push the parameter for exit on the stack
+    44 0000004A FF15[00000000]                  call  [exit]       ; call exit

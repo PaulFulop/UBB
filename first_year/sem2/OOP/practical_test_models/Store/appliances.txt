@@ -1,0 +1,5 @@
+Refrigerator: id1, A++, has freezer.
+Refrigerator: id2, A, does not have freezer.
+Dish Washer: id3, quantity consumed per hour: 0.400000.
+Dish Washer: id3, quantity consumed per hour: 1.200000.
+Refrigerator: id5, A++, does not have freezer.

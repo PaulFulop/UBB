@@ -1,0 +1,3 @@
+Paul,5,0
+Sergiu,5,3
+Emi,4,1

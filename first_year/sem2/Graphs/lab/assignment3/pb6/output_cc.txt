@@ -1,0 +1,24 @@
+Connected component 1:
+Nodes: [0, 1, 2]
+Edges:
+0 1
+0 2
+1 2
+
+Connected component 2:
+Nodes: [3, 4, 5]
+Edges:
+3 4
+3 5
+4 5
+
+Connected component 3:
+Nodes: [6, 7, 8]
+Edges:
+6 7
+7 8
+
+Connected component 4:
+Nodes: [9]
+Edges:
+No edges.

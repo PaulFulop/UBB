@@ -1,0 +1,35 @@
+     1                                  bits 32                         
+     2                                  segment code use32 public code
+     3                                  global _convert_base2
+     4                                  
+     5                                  segment data use32 class=data
+     6 00000000 00<rept>                    bits_arr times 33 db 0
+     7                                      
+     8                                  _convert_base2:
+     9                                      ;build the stack frame
+    10 00000021 55                          push ebp
+    11 00000022 89E5                        mov ebp, esp   
+    12 00000024 60                          pushad 
+    13                                      
+    14 00000025 8B5508                      mov edx, dword [ebp + 8]
+    15 00000028 B920000000                  mov ecx, 32
+    16 0000002D 8D1D[1F000000]              lea ebx, [bits_arr + 31]
+    17                                      
+    18                                      convert_loop:
+    19 00000033 89D0                            mov eax, edx
+    20 00000035 83E001                          and eax, 1
+    21 00000038 0430                            add al, '0'
+    22 0000003A 8803                            mov [ebx], al
+    23 0000003C 4B                              dec ebx
+    24 0000003D D1EA                            shr edx, 1
+    25 0000003F E2F2                        loop convert_loop
+    26                                      
+    27 00000041 C605[20000000]00            mov byte [bits_arr + 32], 0
+    28                                      
+    29 00000048 61                          popad
+    30 00000049 B8[00000000]                mov eax, bits_arr
+    31                                      
+    32 0000004E 89EC                        mov esp, ebp
+    33 00000050 5D                          pop ebp 
+    34                                  
+    35 00000051 C3                          ret

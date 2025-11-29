@@ -1,0 +1,61 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit, printf, scanf               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  import printf msvcrt.dll
+    11                                  import scanf msvcrt.dll
+    12                                  
+    13                                  ; our data is declared here (the variables needed by our program)
+    14                                  segment data use32 class=data
+    15 00000000 00000000                    a dd 0
+    16 00000004 00000000                    m dd 0
+    17 00000008 00000000                    n dd 0
+    18 0000000C 526561642074686520-         text1 db "Read the numbers here: ", 0
+    18 00000015 6E756D626572732068-
+    18 0000001E 6572653A2000       
+    19 00000024 5468652066696E616C-         text2 db "The final number is: %d", 0
+    19 0000002D 206E756D6265722069-
+    19 00000036 733A20256400       
+    20 0000003C 256420256420256400          format db "%d %d %d", 0
+    21                                  
+    22                                  ; our code starts here
+    23                                  segment code use32 class=code
+    24                                      start:
+    25 00000000 68[0C000000]                    push dword text1
+    26 00000005 FF15[00000000]                  call [printf]
+    27 0000000B 83C404                          add esp, 4
+    28                                          
+    29 0000000E 68[08000000]                    push dword n
+    30 00000013 68[04000000]                    push dword m
+    31 00000018 68[00000000]                    push dword a
+    32 0000001D 68[3C000000]                    push dword format
+    33 00000022 FF15[00000000]                  call [scanf]
+    34 00000028 83C410                          add esp, 4 * 4
+    35                                          
+    36 0000002B A1[00000000]                    mov eax, [a]
+    37 00000030 8A0D[08000000]                  mov cl, [n]
+    38 00000036 D3E8                            shr eax, cl
+    39                                          
+    40 00000038 31D2                            xor edx, edx
+    41 0000003A 83EA01                          sub edx, 1
+    42                                          
+    43 0000003D B120                            mov cl, 32
+    44 0000003F 2A0D[04000000]                  sub cl, [m]
+    45 00000045 020D[08000000]                  add cl, [n]
+    46                                          
+    47 0000004B D3EA                            shr edx, cl
+    48 0000004D 21D0                            and eax, edx
+    49                                          
+    50 0000004F 50                              push eax
+    51 00000050 68[24000000]                    push dword text2
+    52 00000055 FF15[00000000]                  call [printf]
+    53 0000005B 83C408                          add esp, 4 * 2
+    54                                      
+    55                                          ; exit(0)
+    56 0000005E 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    57 00000060 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

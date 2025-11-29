@@ -1,0 +1,102 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit, scanf, printf               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  import scanf msvcrt.dll
+    11                                  import printf msvcrt.dll
+    12                                  
+    13                                  ; our data is declared here (the variables needed by our program)
+    14                                  segment data use32 class=data
+    15                                      ; ...
+    16 00000000 257320256400                format db "%s %d", 0
+    17 00000006 526561642074686520-         text db "Read the word and the number here: ", 0
+    17 0000000F 776F726420616E6420-
+    17 00000018 746865206E756D6265-
+    17 00000021 7220686572653A2000 
+    18 0000002A 00<rept>                    wrd times 50 db 0
+    19 0000005C 00<rept>                    new_wrd times 100 db 0
+    20 000000C0 00000000                    n dd 0
+    21                                      
+    22                                  
+    23                                  ; our code starts here
+    24                                  segment code use32 class=code
+    25                                      start:
+    26 00000000 FC                              cld
+    27 00000001 68[06000000]                    push dword text
+    28 00000006 FF15[00000000]                  call [printf]
+    29 0000000C 83C404                          add esp, 4
+    30                                          
+    31 0000000F 68[C0000000]                    push dword n
+    32 00000014 68[2A000000]                    push dword wrd
+    33 00000019 68[00000000]                    push dword format
+    34 0000001E FF15[00000000]                  call [scanf]
+    35 00000024 83C40C                          add esp, 4 * 3
+    36                                          
+    37 00000027 BE[2A000000]                    mov esi, wrd
+    38 0000002C BF[5C000000]                    mov edi, new_wrd
+    39                                          
+    40 00000031 A1[C0000000]                    mov eax, [n]
+    41 00000036 A901000000                      test eax, 1
+    42 0000003B 743A                            jz even_number
+    43                                          
+    44                                          odd_number:
+    45 0000003D AC                                  lodsb
+    46 0000003E 3C00                                cmp al, 0
+    47 00000040 743F                                je final
+    48 00000042 AA                                  stosb
+    49                                              
+    50 00000043 3C61                                cmp al, "a"
+    51 00000045 7426                                je add_suffix
+    52 00000047 3C65                                cmp al, "e"
+    53 00000049 7422                                je add_suffix
+    54 0000004B 3C69                                cmp al, "i"
+    55 0000004D 741E                                je add_suffix
+    56 0000004F 3C6F                                cmp al, "o"
+    57 00000051 741A                                je add_suffix
+    58 00000053 3C75                                cmp al, "u"
+    59 00000055 7416                                je add_suffix
+    60                                  
+    61 00000057 3C41                                cmp al, "A"
+    62 00000059 7412                                je add_suffix
+    63 0000005B 3C45                                cmp al, "E"
+    64 0000005D 740E                                je add_suffix
+    65 0000005F 3C49                                cmp al, "I"
+    66 00000061 740A                                je add_suffix
+    67 00000063 3C4F                                cmp al, "O"
+    68 00000065 7406                                je add_suffix
+    69 00000067 3C55                                cmp al, "U"
+    70 00000069 7402                                je add_suffix
+    71                                              
+    72 0000006B EBD0                                jmp odd_number
+    73                                          
+    74                                          add_suffix:
+    75 0000006D 88C3                                mov bl, al
+    76 0000006F B070                                mov al, "p"
+    77 00000071 AA                                  stosb
+    78 00000072 88D8                                mov al, bl
+    79 00000074 AA                                  stosb
+    80 00000075 EBC6                                jmp odd_number
+    81                                              
+    82                                          
+    83                                          even_number:
+    84 00000077 AC                                  lodsb
+    85 00000078 3C00                                cmp al, 0
+    86 0000007A 7405                                je final
+    87 0000007C 0414                                add al, 20
+    88 0000007E AA                                  stosb
+    89 0000007F EBF6                            jmp even_number
+    90                                          
+    91                                          final:
+    92                                          
+    93 00000081 68[5C000000]                    push dword new_wrd
+    94 00000086 FF15[00000000]                  call [printf]
+    95 0000008C 83C404                          add esp, 4
+    96                                          
+    97                                          ; exit(0)
+    98 0000008F 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    99 00000091 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

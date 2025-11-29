@@ -1,0 +1,3 @@
+Paul;1;collector
+Sergiu;1;administrator
+Emi;1;collector

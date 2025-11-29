@@ -1,0 +1,119 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit, printf, scanf, fopen, fclose, fprintf             ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  import printf msvcrt.dll
+    11                                  import scanf msvcrt.dll
+    12                                  import fopen msvcrt.dll
+    13                                  import fclose msvcrt.dll
+    14                                  import fprintf msvcrt.dll
+    15                                  
+    16                                  ; our data is declared here (the variables needed by our program)
+    17                                  segment data use32 class=data
+    18 00000000 496E73657274207468-         text1 db "Insert the number n here: ", 0
+    18 00000009 65206E756D62657220-
+    18 00000012 6E20686572653A2000 
+    19 0000001B 496E7365727420776F-         text2 db "Insert words below: ", 10, 13, 0 ;10 means newline, 13 means carriage return
+    19 00000024 7264732062656C6F77-
+    19 0000002D 3A200A0D00         
+    20 00000032 256400                      format1 db "%d", 0
+    21 00000035 257300                      format2 db "%s", 0
+    22 00000038 6100                        access_mode db "a", 0
+    23 0000003A 70726163746963616C-         file_name db "practical1.txt", 0
+    23 00000043 312E74787400       
+    24 00000049 FFFFFFFF                    file_descriptor dd -1
+    25 0000004D 00<rept>                    wrd times 100 db 0
+    26 000000B1 00000000                    n dd 0
+    27                                  
+    28                                  ; our code starts here
+    29                                  segment code use32 class=code
+    30                                      start:
+    31 00000000 68[00000000]                    push dword text1
+    32 00000005 FF15[00000000]                  call [printf]
+    33 0000000B 83C404                          add esp, 4
+    34                                          
+    35 0000000E 68[B1000000]                    push dword n
+    36 00000013 68[32000000]                    push dword format1
+    37 00000018 FF15[00000000]                  call [scanf]
+    38 0000001E 83C408                          add esp, 4 * 2
+    39                                          
+    40 00000021 68[1B000000]                    push dword text2
+    41 00000026 FF15[00000000]                  call [printf]
+    42 0000002C 83C404                          add esp, 4
+    43                                          
+    44                                          read_words:
+    45 0000002F 30C0                                xor al, al
+    46 00000031 B964000000                          mov ecx, 100
+    47 00000036 BF[4D000000]                        mov edi, wrd
+    48 0000003B EB33                                jmp clear_word
+    49                                              continue1:
+    50 0000003D 68[4D000000]                        push dword wrd
+    51 00000042 68[35000000]                        push dword format2
+    52 00000047 FF15[00000000]                      call [scanf]
+    53 0000004D 83C408                              add esp, 4 * 2 
+    54                                              
+    55 00000050 BE[4D000000]                        mov esi, wrd
+    56 00000055 31C9                                xor ecx, ecx
+    57 00000057 EB20                                jmp count_word_len
+    58                                              continue:
+    59 00000059 8A1D[4D000000]                      mov bl, [wrd]
+    60 0000005F 80FB23                              cmp bl, "#"
+    61 00000062 7475                                je final
+    62                                              
+    63 00000064 8A91[4C000000]                      mov dl, [wrd + ecx - 1]
+    64 0000006A 38D3                                cmp bl, dl
+    65 0000006C 7413                                je verify_valid_word
+    66 0000006E EBBF                             jmp read_words
+    67                                           
+    68                                           clear_word:
+    69 00000070 AA                                  stosb
+    70 00000071 49                                  dec ecx
+    71 00000072 83F900                              cmp ecx, 0
+    72 00000075 74C6                                je continue1
+    73 00000077 EBF7                                jmp clear_word
+    74                                              
+    75                                           
+    76                                           count_word_len:
+    77 00000079 AC                                  lodsb
+    78 0000007A 3C00                                cmp al, 0
+    79 0000007C 74DB                                je continue
+    80 0000007E 41                                  inc ecx
+    81 0000007F EBF8                                jmp count_word_len
+    82                                           
+    83                                           verify_valid_word:
+    84 00000081 8B15[B1000000]                      mov edx, [n]
+    85 00000087 39D1                                cmp ecx, edx
+    86 00000089 7302                                jae add_word
+    87 0000008B EBA2                                jmp read_words
+    88                                          
+    89                                           add_word:
+    90 0000008D C681[4D000000]0A                    mov byte [wrd + ecx], 10
+    91 00000094 68[38000000]                        push dword access_mode
+    92 00000099 68[3A000000]                        push dword file_name
+    93 0000009E FF15[00000000]                      call [fopen]
+    94 000000A4 83C408                              add esp, 4 * 2
+    95                                              
+    96 000000A7 A3[49000000]                        mov [file_descriptor], eax
+    97 000000AC 83F800                              cmp eax, 0
+    98 000000AF 7428                                je final
+    99                                              
+   100 000000B1 68[4D000000]                        push dword wrd
+   101 000000B6 FF35[49000000]                      push dword [file_descriptor]
+   102 000000BC FF15[00000000]                      call [fprintf]
+   103 000000C2 83C408                              add esp, 4 * 2
+   104                                              
+   105 000000C5 FF35[49000000]                      push dword [file_descriptor]
+   106 000000CB FF15[00000000]                      call [fclose]
+   107 000000D1 83C404                              add esp, 4
+   108                                              
+   109 000000D4 E956FFFFFF                          jmp read_words
+   110                                              
+   111                                          final:
+   112                                          ; exit(0)
+   113 000000D9 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+   114 000000DB FF15[00000000]                  call    [exit]       ; call exit to terminate the program

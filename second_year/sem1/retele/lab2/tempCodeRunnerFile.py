@@ -1,0 +1,1 @@
+C:\Users\Gaboruu\Informatica\Retele\test.txt

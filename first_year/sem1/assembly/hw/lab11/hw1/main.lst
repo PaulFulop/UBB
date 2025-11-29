@@ -1,0 +1,70 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  extern printf
+    12                                  import printf msvcrt.dll
+    13                                  
+    14                                  extern convert_base2
+    15                                  
+    16                                  ; our data is declared here (the variables needed by our program)
+    17                                  segment data use32 class=data
+    18 00000000 0F000000D204000027-         nums dd 15, 1234, 39, 13
+    18 00000009 0000000D000000     
+    19                                      len equ ($ - nums) / 4
+    20 00000010 25782C2000                  format1 db "%x, ", 0
+    21 00000015 426173652031363A20-         base16_str db "Base 16: ", 0
+    21 0000001E 00                 
+    22 0000001F 4261736520323A2000          base2_str db "Base 2: ", 0
+    23 00000028 0A0D00                      newline db 10, 13, 0
+    24 0000002B <res 00000004>              copy resd 1
+    25                                  
+    26                                  ; our code starts here
+    27                                  segment code use32 class=code    
+    28                                      start:
+    29 00000000 68[15000000]                    push dword base16_str
+    30 00000005 FF15[00000000]                  call [printf]
+    31 0000000B 83C404                          add esp, 4
+    32                                          
+    33 0000000E FC                              cld
+    34 0000000F B904000000                      mov ecx, len
+    35 00000014 BE[00000000]                    mov esi, nums
+    36                                          print_hexa_values:
+    37 00000019 AD                                  lodsd
+    38 0000001A 50                                  push dword eax
+    39 0000001B 68[10000000]                        push dword format1
+    40 00000020 890D[2B000000]                      mov [copy], ecx
+    41 00000026 FF15[00000000]                      call [printf]
+    42 0000002C 8B0D[2B000000]                      mov ecx, [copy]
+    43 00000032 83C408                              add esp, 8
+    44 00000035 E2E2                            loop print_hexa_values
+    45                                  
+    46 00000037 68[28000000]                    push dword newline
+    47 0000003C FF15[00000000]                  call [printf]
+    48 00000042 83C404                          add esp, 4
+    49                                          
+    50 00000045 68[1F000000]                    push dword base2_str
+    51 0000004A FF15[00000000]                  call [printf]
+    52 00000050 83C404                          add esp, 4
+    53                                          
+    54 00000053 B904000000                      mov ecx, len
+    55 00000058 BE[00000000]                    mov esi, nums
+    56                                          print_bin_values:
+    57 0000005D AD                                  lodsd
+    58 0000005E 50                                  push dword eax
+    59 0000005F 890D[2B000000]                      mov [copy], ecx
+    60                                              
+    61 00000065 E8(00000000)                        call convert_base2
+    62                                            
+    63 0000006A 8B0D[2B000000]                      mov ecx, [copy]
+    64 00000070 E2EB                            loop print_bin_values
+    65                                  
+    66                                          ; exit(0)
+    67 00000072 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    68 00000074 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

@@ -1,0 +1,79 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13 00000000 B96A                        A dw 0110101010111001b
+    14 00000002 00000000                    B dd 0
+    15                                  
+    16                                  ; our code starts here
+    17                                  segment code use32 class=code
+    18                                      start:
+    19                                          ;the bits 28-31 of B have the value 1
+    20 00000000 A1[02000000]                    mov eax, [B]
+    21 00000005 0D000000F0                      or eax, 0xF0000000
+    22 0000000A A3[02000000]                    mov [B], eax
+    23                                          
+    24                                          ;the bits 24- 25 and 26-27 of B are the same as the bits 8-9 of A
+    25 0000000F A1[02000000]                    mov eax, [B]
+    26 00000014 25FFFFFFF0                      and eax, 0xF0FFFFFF ;clear the bits 24-27
+    27 00000019 A3[02000000]                    mov [B], eax
+    28                                          
+    29 0000001E 66A1[00000000]                  mov ax, [A]
+    30 00000024 662500AB                        and ax, 0000_0011_0000_0000 
+    30          ******************       warning: word data exceeds bounds [-w+number-overflow]
+    31 00000028 B108                            mov cl, 8
+    32 0000002A 66D3E8                          shr ax, cl 
+    33                                          
+    34 0000002D 31DB                            xor ebx, ebx 
+    35 0000002F 88C3                            mov bl, al 
+    36 00000031 A1[02000000]                    mov eax, [B]
+    37 00000036 B118                            mov cl, 18h ;  00011000 = 24
+    38 00000038 D3E3                            shl ebx, cl 
+    39 0000003A 09D8                            or eax, ebx 
+    40                                          
+    41 0000003C B102                            mov cl, 2
+    42 0000003E D3E3                            shl ebx, cl 
+    43 00000040 09D8                            or eax, ebx 
+    44 00000042 A3[02000000]                    mov [B], eax
+    45                                          
+    46                                          ;the bits 20-23 of B are the invert of the bits 0-3 of A 
+    47 00000047 A1[02000000]                    mov eax, [B]
+    48 0000004C 25FFFF0FFF                      and eax, 0xFF0FFFFF ;clear the bits 20-23
+    49 00000051 31DB                            xor ebx, ebx 
+    50 00000053 668B1D[00000000]                mov bx, [A]
+    51 0000005A 66F7D3                          not bx
+    52 0000005D 6683E30F                        and bx, 0x000F 
+    53 00000061 B114                            mov cl, 14h
+    54 00000063 D3E3                            shl ebx, cl 
+    55 00000065 09D8                            or eax, ebx
+    56 00000067 A3[02000000]                    mov [B], eax
+    57                                          
+    58                                          ;the bits 16-19 of B have the value 0
+    59 0000006C A1[02000000]                    mov eax, [B]
+    60 00000071 25FFFFF0FF                      and eax, 0xFFF0FFFF ;clear the bits 16-19
+    61 00000076 A3[02000000]                    mov [B], eax
+    62                                          
+    63                                          ;the bits 0-15 of B are the same as the bits 16-31 of B.
+    64 0000007B A1[02000000]                    mov eax, [B]
+    65 00000080 250000FFFF                      and eax, 0xFFFF0000
+    66 00000085 B110                            mov cl, 10h
+    67 00000087 D3E8                            shr eax, cl
+    68                                          
+    69 00000089 31DB                            xor ebx, ebx 
+    70 0000008B 6689C3                          mov bx, ax 
+    71 0000008E A1[02000000]                    mov eax, [B]
+    72 00000093 6631C0                          xor ax, ax
+    73 00000096 09D8                            or eax, ebx
+    74 00000098 A3[02000000]                    mov [B], eax 
+    75                                      
+    76                                          ; exit(0)
+    77 0000009D 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    78 0000009F FF15[00000000]                  call    [exit]       ; call exit to terminate the program

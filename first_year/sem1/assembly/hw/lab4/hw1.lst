@@ -1,0 +1,69 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13 00000000 5D                          A db 01011101b
+    14 00000001 00                          B db 0
+    15 00000002 00000000                    C dd 0
+    16 00000006 00                          n db 0
+    17                                  
+    18                                  ; our code starts here
+    19                                  segment code use32 class=code
+    20                                      start:
+    21                                         ;obtain the integer number n represented on the bits 2-4 of A
+    22 00000000 A0[00000000]                   mov al, [A]
+    23 00000005 245C                           and al, 00011100
+    23          ******************       warning: byte data exceeds bounds [-w+number-overflow]
+    24 00000007 C0E802                         shr al, 2
+    25 0000000A A2[06000000]                   mov [n], al 
+    26                                         
+    27                                         ;obtain the byte B by rotating A n positions to the right
+    28 0000000F A0[00000000]                   mov al, [A]
+    29 00000014 8A0D[06000000]                 mov cl, [n]
+    30 0000001A D2C8                           ror al, cl 
+    31 0000001C A2[01000000]                   mov [B], al
+    32                                         
+    33                                         ;mov dl, [A]
+    34                                         ;mov dh, [B]
+    35                                         
+    36                                         ;the bits 8-15 of C have the value 0
+    37 00000021 A1[02000000]                   mov eax, [C]
+    38 00000026 25FF00FFFF                     and eax, 0xFFFF00FF ;clear the bits 8-15
+    39 0000002B A3[02000000]                   mov [C], eax 
+    40                                         
+    41                                         ;the bits 16-23 of C are the same as the bits of B
+    42 00000030 8B1D[02000000]                 mov ebx, [C]
+    43 00000036 31C0                           xor eax, eax
+    44 00000038 A0[01000000]                   mov al, [B]
+    45 0000003D B110                           mov cl, 10h ;16
+    46 0000003F D3E0                           shl eax, cl 
+    47 00000041 81E3FFFF00FF                   and ebx, 0xFF00FFFF ;clear the bits 16-23
+    48 00000047 09C3                           or ebx, eax
+    49 00000049 891D[02000000]                 mov [C], ebx 
+    50                                         
+    51                                         ;the bits 24-31 of C are the same as the bits of A
+    52 0000004F 8B1D[02000000]                 mov ebx, [C]
+    53 00000055 31C0                           xor eax, eax
+    54 00000057 A0[00000000]                   mov al, [A]
+    55 0000005C B118                           mov cl, 18h
+    56 0000005E D3E0                           shl eax, cl 
+    57 00000060 81E3FFFFFF00                   and ebx, 0x00FFFFFF ;clear the bits 24-31
+    58 00000066 09C3                           or ebx, eax
+    59 00000068 891D[02000000]                 mov [C], ebx 
+    60                                         
+    61                                         ;the bits 0-7 of C have the value 1
+    62 0000006E A1[02000000]                   mov eax, [C]
+    63 00000073 0DFF000000                     or eax, 0x000000FF
+    64 00000078 A3[02000000]                   mov [C], eax
+    65                                      
+    66                                          ; exit(0)
+    67 0000007D 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    68 0000007F FF15[00000000]                  call    [exit]       ; call exit to terminate the program

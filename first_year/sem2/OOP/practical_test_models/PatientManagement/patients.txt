@@ -1,0 +1,11 @@
+Andrei,diagnosis1,muscles,Paul,2025/02/10
+Mihai,new diagnosis,bones,Paul,2025/02/10
+Andreea,random diagnosis,bones,,2025/02/10
+Ioana,allergy,bones,Paul,2025/02/09
+Ion,idk man,nutrition,,2025/12/13
+Valeriu,diagnosis6,bones,Sergiu,2024/12/10
+David,diagnosis7,nutrition,Emi,2025/04/10
+Oana,diagnosis8,nutrition,Emi,2025/04/11
+Adrian,allergy,nutrition,Pal,2025/07/08
+Raul,idk,muscles,,2025/07/10
+Marian,some diagnosis idk,muscles,,2025/08/09

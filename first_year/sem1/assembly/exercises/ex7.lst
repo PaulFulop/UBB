@@ -1,0 +1,60 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit, printf, scanf               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  import printf msvcrt.dll
+    11                                  import scanf msvcrt.dll
+    12                                  
+    13                                  ; our data is declared here (the variables needed by our program)
+    14                                  segment data use32 class=data
+    15 00000000 FFFFFFFF                    num dd -1
+    16 00000004 256400                      format db "%d", 0
+    17 00000007 52656164206E756D62-         text1 db "Read numbers below:", 10, 13, 0    
+    17 00000010 6572732062656C6F77-
+    17 00000019 3A0A0D00           
+    18 0000001D 546865206D696E696D-         text2 db "The minimum number is: %d", 0    
+    18 00000026 756D206E756D626572-
+    18 0000002F 2069733A20256400   
+    19                                  
+    20                                  ; our code starts here
+    21                                  segment code use32 class=code
+    22                                      start:
+    23 00000000 68[07000000]                    push dword text1
+    24 00000005 FF15[00000000]                  call [printf]
+    25 0000000B 83C404                          add esp, 4
+    26                                          
+    27 0000000E 31DB                            xor ebx, ebx ;storing the minimum value here
+    28 00000010 83EB01                          sub ebx, 1
+    29                                          
+    30                                          read_numbers:
+    31 00000013 68[00000000]                        push dword num
+    32 00000018 68[04000000]                        push dword format
+    33 0000001D FF15[00000000]                      call [scanf]
+    34 00000023 83C408                              add esp, 4 * 2
+    35                                              
+    36 00000026 A1[00000000]                        mov eax, [num]
+    37 0000002B 83F800                              cmp eax, 0
+    38 0000002E 740A                                je final
+    39                                              
+    40 00000030 39C3                                cmp ebx, eax
+    41 00000032 7F02                                jg update_min
+    42 00000034 EBDD                           jmp read_numbers
+    43                                          
+    44                                          update_min:
+    45 00000036 89C3                                mov ebx, eax
+    46 00000038 EBD9                                jmp read_numbers
+    47                                              
+    48                                          final:
+    49 0000003A 53                                  push dword ebx
+    50 0000003B 68[1D000000]                        push dword text2
+    51 00000040 FF15[00000000]                      call [printf]
+    52 00000046 83C408                              add esp, 4 * 2
+    53                                      
+    54                                          ; exit(0)
+    55 00000049 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    56 0000004B FF15[00000000]                  call    [exit]       ; call exit to terminate the program

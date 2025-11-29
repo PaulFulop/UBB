@@ -1,0 +1,11 @@
+1, Teodor Mihali, 80, 12, 20
+2, Teodor Mihali, 10, 15, 20
+3, Dorbantilor, 30, 22, -2
+4, Salciilor, 20, 4, 15
+5, Octavian Goga, 9, 1, 2
+6, Dorobantilor, 5, 2, 50
+7, Octavian Goga, 1, 1, 7
+8, Dorobantilor, 10, 3, 70
+9, Imparatu Traian, 4, 1, 7
+10, Independentei, 5, 7, 24
+11, Dorobantilor, 10, 3, 15

@@ -1,0 +1,90 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit, fopen, fread, fclose, printf              ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  import fopen msvcrt.dll
+    11                                  import fread msvcrt.dll
+    12                                  import fclose msvcrt.dll
+    13                                  import printf msvcrt.dll
+    14                                  
+    15                                  ; our data is declared here (the variables needed by our program)
+    16                                  segment data use32 class=data
+    17 00000000 66696C65312E747874-         file_name db "file1.txt", 0
+    17 00000009 00                 
+    18 0000000A 7200                        access_mode db "r", 0
+    19                                      
+    20 0000000C FF                          file_descriptor db -1
+    21                                      len equ 100
+    22 0000000D 00<rept>                    text times (len + 1) db 0
+    23 00000072 546865206E756D6265-         result_text db "The number of even digits is: %d", 0
+    23 0000007B 72206F66206576656E-
+    23 00000084 206469676974732069-
+    23 0000008D 733A20256400       
+    24                                  
+    25                                  ; our code starts here
+    26                                  segment code use32 class=code
+    27                                      start:
+    28                                      ;A text file is given. Read the content of the file, count the number of odd digits and display the result on the screen.
+    29                                      ;The name of text file is defined in the data segment.
+    30 00000000 BA00000000                      mov edx, 0
+    31 00000005 68[0A000000]                    push dword access_mode
+    32 0000000A 68[00000000]                    push dword file_name
+    33 0000000F FF15[00000000]                  call [fopen]
+    34 00000015 83C408                          add esp, 4 * 2
+    35                                          
+    36 00000018 A3[0C000000]                    mov [file_descriptor], eax
+    37                                          ; check if fopen() has successfully created the file (EAX != 0)
+    38 0000001D 83F800                          cmp eax, 0
+    39 00000020 7446                            je final2
+    40                                  
+    41                                          ; read the text from file using fread()
+    42                                          ; after the fread() call, EAX will contain the number of chars we've read 
+    43                                          ; eax = fread(text, 1, len, file_descriptor)
+    44 00000022 FF35[0C000000]                  push dword [file_descriptor]
+    45 00000028 6A64                            push dword len
+    46 0000002A 6A01                            push dword 1
+    47 0000002C 68[0D000000]                    push dword text        
+    48 00000031 FF15[00000000]                  call [fread]
+    49 00000037 83C410                          add esp, 4*4
+    50                                          
+    51 0000003A BE[0D000000]                    mov esi, text 
+    52 0000003F 89C1                            mov ecx, eax
+    53 00000041 31D2                            xor edx, edx
+    54                                          
+    55                                          check_digits:
+    56 00000043 AC                                  lodsb
+    57 00000044 3C30                                cmp al, '0'
+    58 00000046 720F                                jb not_digit
+    59 00000048 3C39                                cmp al, '9'                     
+    60 0000004A 770B                                ja not_digit
+    61                                  
+    62                                              ; Check if digit is even
+    63 0000004C 2C30                                sub al, '0'              
+    64 0000004E 2401                                and al, 1                        
+    65 00000050 7405                                jz not_digit                    
+    66 00000052 42                                  inc edx
+    67 00000053 E2EE                            loop check_digits
+    68 00000055 EB02                            jmp final1
+    69                                              
+    70                                          not_digit:
+    71 00000057 E2EA                                loop check_digits
+    72                                          
+    73                                          final1:
+    74 00000059 52                                  push dword edx
+    75 0000005A 68[72000000]                        push dword result_text
+    76 0000005F FF15[00000000]                      call [printf]
+    77 00000065 83C408                              add esp, 4 * 2
+    78                                          
+    79                                          final2:
+    80 00000068 FF35[0C000000]                  push dword [file_descriptor]
+    81 0000006E FF15[00000000]                  call [fclose]
+    82 00000074 83C404                          add esp, 4
+    83                                      
+    84                                          ; exit(0)
+    85 00000077 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    86 00000079 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

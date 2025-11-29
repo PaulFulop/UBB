@@ -1,0 +1,3 @@
+Paul;sp1,sp3,sp5,sp8
+Sergiu;sp2,sp4,sp6
+Emi;sp1,sp2,sp3,sp4,sp10

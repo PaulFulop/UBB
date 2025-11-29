@@ -1,0 +1,9 @@
+1,question2,Emi
+8,what is 1 + 1,Paul
+6,math exercises,Paul
+7,comp sci,Emi
+2,question3,Sergiu
+3,question4,Emi
+4,question5,Paul
+0,question1,Paul
+5,i dnt know this,Paul

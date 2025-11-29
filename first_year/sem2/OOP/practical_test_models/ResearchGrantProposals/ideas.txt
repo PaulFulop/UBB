@@ -1,0 +1,7 @@
+title1,desc1,accepted,Paul,1
+title2,desc2,accepted,Emi,1
+title3,desc3,proposed,Paul,3
+title4,desc4,accepted,Sergiu,2
+title5,desc5,proposed,Emi,2
+title6,desc6,proposed,Paul,3
+title7,desc7,proposed,Paul,1

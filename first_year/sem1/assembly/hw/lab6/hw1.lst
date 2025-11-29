@@ -1,0 +1,61 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13 00000000 0519377F                    s db 5, 25, 55, 127
+    14                                      lens equ $ - s 
+    15 00000004 00<rept>                    d times lens db 0
+    16                                  
+    17                                  ; our code starts here
+    18                                  segment code use32 class=code
+    19                                      start:
+    20                                          ; A byte string s is given. Build the byte string d such that every byte d[i] is equal to the count of ones in the corresponding byte s[i] of s.
+    21                                          ;s: 5, 25, 55, 127
+    22                                          ;s in bniary: 101, 11001, 110111, 1111111
+    23                                          ;d: 2, 3, 5, 7
+    24                                          
+    25 00000000 FC                              cld ;clear direction flag
+    26 00000001 B904000000                      mov ecx, lens 
+    27 00000006 BE[00000000]                    mov esi, s 
+    28 0000000B BF[04000000]                    mov edi, d
+    29 00000010 30DB                            xor bl, bl ;counter
+    30 00000012 E316                            jecxz End
+    31                                          
+    32                                          Repeat:
+    33 00000014 AC                                  lodsb ;al = [esi], inc esi 
+    34 00000015 EB00                                jmp count_ones 
+    35                                          
+    36                                          count_ones:
+    37 00000017 A801                                test al, 1 ;verify last bit 
+    38 00000019 7402                                jz skip
+    39 0000001B FEC3                                inc bl  
+    40                                          
+    41                                          skip:
+    42 0000001D D0E8                               shr al, 1
+    43 0000001F 75F6                               jnz count_ones 
+    44 00000021 EB00                               jmp add_count 
+    45                                          
+    46                                          add_count:
+    47 00000023 88D8                                mov al, bl
+    48 00000025 30DB                                xor bl, bl
+    49 00000027 AA                                  stosb ;[edi] = al, inc edi
+    50 00000028 E2EA                                loop Repeat 
+    51                                          
+    52                                          End:
+    53                                          
+    54                                          ;mov al, [d]
+    55                                          ;mov bl, [d + 1]
+    56                                          ;mov cl, [d + 2]
+    57                                          ;mov dl, [d + 3]
+    58                                          
+    59                                          ; exit(0)
+    60 0000002A 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    61 0000002C FF15[00000000]                  call    [exit]       ; call exit to terminate the program

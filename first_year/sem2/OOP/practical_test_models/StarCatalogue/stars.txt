@@ -1,0 +1,8 @@
+sun,constellation1,200,300,5
+betelgeuse,constellation1,300,510,7
+star6,constellation1,245,421,4
+star7,constellation1,100,400,20
+star8,constellation2,200,300,200
+star3,constellation2,200,200,2
+star5,constellation3,629,124,7
+star4,constellation3,200,467,1

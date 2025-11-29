@@ -1,0 +1,10 @@
+desc1,Paul,25,20,true
+desc2,Sergiu,70,80,true
+desc3,Emi,230,132,true
+desc4,Emi,25,20,false
+desc5,Paul,69,82,true
+desc6,Sergiu,25,32,false
+desc10,Paul,60,78,false
+desc11,Paul,10,15,false
+desc12,Paul,10,20,false
+desc_wtv,Paul,17,34,true

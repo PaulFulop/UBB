@@ -1,0 +1,94 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit, printf               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  import printf msvcrt.dll
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13 00000000 256400                      format db "%d", 0
+    14 00000003 11111111FF41FF7F00-         sir1 dq 7FFF41FF11111111h, 7FFF41FFFF000000h
+    14 0000000C 0000FFFF41FF7F     
+    15                                      len equ ($ - sir1) / 8
+    16 00000013 00000000<rept>              sir2 times 100 dd 0
+    17                                  
+    18                                  ; our code starts here
+    19                                  segment code use32 class=code
+    20                                      start:
+    21 00000000 B902000000                      mov ecx, len
+    22 00000005 BE[03000000]                    mov esi, sir1
+    23 0000000A BF[13000000]                    mov edi, sir2
+    24                                          
+    25                                          find_nums:
+    26 0000000F 3E8B4604                            mov eax, [DS:ESI + 4]
+    27 00000013 3E668B5E04                          mov bx, [DS:ESI + 4]
+    28 00000018 3E668B5606                          mov dx, [DS:ESI + 6]
+    29                                              
+    30 0000001D 6639D3                              cmp bx, dx
+    31 00000020 7C07                                jl update_sir2
+    32 00000022 83C608                              add esi, 8
+    33 00000025 E2E8                            loop find_nums
+    34 00000027 EB06                            jmp skip
+    35                                          
+    36                                          update_sir2:
+    37 00000029 AB                                  stosd
+    38 0000002A 83C608                              add esi, 8
+    39 0000002D E2E0                                loop find_nums
+    40                                         
+    41                                         skip:
+    42                                         
+    43 0000002F 68[13000000]                   push dword sir2
+    44 00000034 E81A000000                     call vocale
+    45 00000039 83C404                         add esp, 4
+    46                                         
+    47 0000003C 53                             push ebx
+    48 0000003D 68[00000000]                   push dword format
+    49 00000042 FF15[00000000]                 call [printf]
+    50 00000048 83C408                         add esp, 8
+    51                                         
+    52                                         ; exit(0)
+    53 0000004B 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    54 0000004D FF15[00000000]                  call    [exit]       ; call exit to terminate the program
+    55                                          
+    56                                      vocale:
+    57 00000053 8B742404                        mov esi, [esp + 4]
+    58 00000057 31DB                            xor ebx, ebx
+    59 00000059 B902000000                      mov ecx, len
+    60                                          
+    61                                          count_nums:
+    62 0000005E AD                                  lodsd
+    63                                              
+    64 0000005F 80FC41                              cmp ah, 'A'
+    65 00000062 7431                                je count
+    66 00000064 80FC45                              cmp ah, 'E'
+    67 00000067 742C                                je count 
+    68 00000069 80FC49                              cmp ah, 'I'
+    69 0000006C 7427                                je count 
+    70 0000006E 80FC4F                              cmp ah, 'O'
+    71 00000071 7422                                je count 
+    72 00000073 80FC55                              cmp ah, 'U'
+    73 00000076 741D                                je count 
+    74                                              
+    75 00000078 80FC61                              cmp ah, 'a'
+    76 0000007B 7418                                je count
+    77 0000007D 80FC65                              cmp ah, 'e'
+    78 00000080 7413                                je count 
+    79 00000082 80FC69                              cmp ah, 'i'
+    80 00000085 740E                                je count 
+    81 00000087 80FC6F                              cmp ah, 'o'
+    82 0000008A 7409                                je count 
+    83 0000008C 80FC75                              cmp ah, 'u'
+    84 0000008F 7404                                je count
+    85 00000091 E2CB                            loop count_nums
+    86 00000093 EB03                            jmp final
+    87                                          
+    88                                          count:
+    89 00000095 43                                  inc ebx
+    90 00000096 E2C6                                loop count_nums
+    91                                          
+    92                                          final:
+    93 00000098 C3                                  ret

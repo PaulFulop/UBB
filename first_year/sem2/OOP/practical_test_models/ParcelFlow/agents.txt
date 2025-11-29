@@ -1,0 +1,3 @@
+Paul;str1,str3,str5;100;400;20
+Sergiu;str2,str4,str6;200;300;30
+Emi;str1,str5;500;126;15

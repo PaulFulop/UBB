@@ -1,0 +1,6 @@
+total 12
+-rw-r--r-- 1 paul paul   13 Apr  8 19:14 a.txt
+-rw-r--r-- 1 paul paul   19 Apr  8 23:14 b.txt
+-rw-r--r-- 1 paul paul    0 Apr  8 15:01 c.txt
+-rw-r--r-- 1 paul paul    0 Apr  8 23:32 dir_pb10.info
+drwxr-xr-x 2 paul paul 4096 Apr  8 19:15 dir_test

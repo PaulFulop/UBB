@@ -1,0 +1,8 @@
+r1,str1,1,22.5,30.5,true
+r2,str2,2,211.4,1.2,true
+r3,str3,2,2.6,1.2,true
+r4,str1,2,100,100,true
+r6,str2,5,300,120.5,true
+r9,str3,2,500,420,true
+r2,str2,10,500,50,true
+r10,str1,2,600,200,false

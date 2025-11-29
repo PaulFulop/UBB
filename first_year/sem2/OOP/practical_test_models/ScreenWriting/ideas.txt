@@ -1,0 +1,9 @@
+example,accepted,Paul,1
+desc5,proposed,Paul,1
+idk man,proposed,Sergiu,1
+desc2,proposed,Sergiu,2
+desc6,accepted,Emi,2
+whatever man,accepted,Paul,2
+example,proposed,Paul,2
+in the start they show landscapes,accepted,Sergiu,3
+desc4,proposed,Paul,3

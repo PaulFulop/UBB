@@ -1,0 +1,6 @@
+Digi Sport; 0A334455X; 75.00; false
+E-on; EED36677; 122.00; true
+Orange; X9900TTRR; 46.00; true
+Vodafone; 1234RR55; 23.00; false
+Tcomm; TRE3EERR; 10.00; true
+Vodafone; TR23EERG; 10.00; false

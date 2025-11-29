@@ -1,0 +1,96 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit, fopen, fclose, fprintf             ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  import fopen msvcrt.dll
+    11                                  import fclose msvcrt.dll
+    12                                  import fprintf msvcrt.dll
+    13                                  ; our data is declared here (the variables needed by our program)
+    14                                  segment data use32 class=data
+    15 00000000 616263646566676869-         text db "abcdefghi jklmn", 0
+    15 00000009 206A6B6C6D6E00     
+    16 00000010 00<rept>                    new_text times 100 db 0
+    17 00000074 7700                        access_mode db "w", 0
+    18 00000076 FFFFFFFF                    file_descriptor dd -1
+    19 0000007A 65785F31335F66696C-         file_name db "ex_13_file.txt", 0
+    19 00000083 652E74787400       
+    20 00000089 257300                      format db "%s", 0
+    21                                  
+    22                                  ; our code starts here
+    23                                  segment code use32 class=code
+    24                                      convert_to_str:
+    25 00000000 8B442404                        mov eax, [esp + 4]
+    26 00000004 83F809                          cmp eax, 9
+    27 00000007 7E18                            jle return
+    28                                          
+    29 00000009 FC                              cld
+    30 0000000A BB0A000000                      mov ebx, 10
+    31                                          convert:
+    32 0000000F 31D2                                xor edx, edx 
+    33 00000011 F7F3                                div ebx
+    34                                              
+    35 00000013 50                                  push eax
+    36 00000014 88D0                                mov al, dl
+    37 00000016 0430                                add al, "0"
+    38 00000018 AA                                  stosb
+    39 00000019 58                                  pop eax
+    40 0000001A 83F809                              cmp eax, 9
+    41 0000001D 7E02                                jle return
+    42 0000001F EBEE                            jmp convert
+    43                                          
+    44                                          return:
+    45 00000021 0430                                add al, "0"
+    46 00000023 AA                                  stosb
+    47 00000024 C3                                  ret
+    48                                      
+    49                                      start:
+    50 00000025 BE[00000000]                    mov esi, text
+    51 0000002A BF[10000000]                    mov edi, new_text
+    52                                          
+    53 0000002F FC                              cld
+    54                                          replace_letters:
+    55 00000030 AC                                  lodsb
+    56 00000031 3C00                                cmp al, 0
+    57 00000033 741C                                je final
+    58 00000035 89F3                                mov ebx, esi
+    59 00000037 4B                                  dec ebx
+    60 00000038 81EB[00000000]                      sub ebx, text
+    61 0000003E F7C301000000                        test ebx, 1
+    62 00000044 7403                                jz replace
+    63 00000046 AA                                  stosb
+    64 00000047 EBE7                            jmp replace_letters
+    65                                          
+    66                                          
+    67                                          replace:
+    68 00000049 53                                  push ebx
+    69 0000004A E8B1FFFFFF                          call convert_to_str
+    70 0000004F EBDF                            jmp replace_letters
+    71                                          
+    72                                          final:
+    73 00000051 68[74000000]                    push dword access_mode
+    74 00000056 68[7A000000]                    push dword file_name
+    75 0000005B FF15[00000000]                  call [fopen]
+    76 00000061 83C408                          add esp, 4 * 2
+    77                                          
+    78 00000064 A3[76000000]                    mov [file_descriptor], eax
+    79 00000069 83F800                          cmp eax, 0
+    80 0000006C 7428                            je skip
+    81                                          
+    82 0000006E 68[10000000]                    push dword new_text
+    83 00000073 68[89000000]                    push dword format
+    84 00000078 FF35[76000000]                  push dword [file_descriptor]
+    85 0000007E FF15[00000000]                  call [fprintf]
+    86 00000084 83C40C                          add esp, 4 * 3
+    87                                          
+    88 00000087 FF35[76000000]                  push dword [file_descriptor]
+    89 0000008D FF15[00000000]                  call [fclose]
+    90 00000093 83C404                          add esp, 4
+    91                                          skip:
+    92                                          ; exit(0)
+    93 00000096 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    94 00000098 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

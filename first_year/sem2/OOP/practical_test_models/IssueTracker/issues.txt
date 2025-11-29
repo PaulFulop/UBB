@@ -1,0 +1,6 @@
+about clicks,open,Emi,
+desc1,open,Paul,Sergiu
+desc3,open,Emi,Paul
+desc6,open,Emi,Sergiu
+desc2,closed,Emi,Sergiu
+desc5,closed,Sergiu,Paul
