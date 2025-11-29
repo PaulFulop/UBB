@@ -1,0 +1,14 @@
+pizza3;Italian;45;salammi,cilantro,pineapple
+pizza;Italian;120;cilantro,bacon,ingredient3
+pizza4;Italian;130;broccoli,tomatoes,chicken,ing2
+random1;Mexican;10;idk
+pizza2;Mexican;120;ing1,ing2,ing3
+recipe5;Mexican;140;some_ingredient
+burito2;Mexican;300;ing1,ing2,ing3,ing4
+mamaliga;Romanian;35;ing1
+new_recipe;Romanian;65;ing1,ing2,ing3
+recipe4;Romanian;70;ingredient1,spinach
+sarmale;Romanian;80;ingredient1,ingredient2,ingredient3
+burito;Romanian;90;tortilla,tomatoes,chicken,ingredient1
+random;Romanian;100;ing1,ing2
+sarmale2;Romanian;200;whatever

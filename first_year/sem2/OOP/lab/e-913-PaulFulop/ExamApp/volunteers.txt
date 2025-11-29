@@ -1,0 +1,7 @@
+bob,bob@gmail.com,lives work dog,dep1,IT work sport
+adi,adi@gmail.com,lives work sport,dep1,IT work sport
+bob,bob@gmail.com,plant whatever,dep2,Working on saving animals
+paul,paul@gmail.com,work lives plants sport
+sergiu,sergiu@gmail.com,IT work sport
+david,d@gmail.com,IT plants,dep1,IT work sport
+flavius,fl@gmail.com,idk idk idk,dep3,Planting trees and saving lives

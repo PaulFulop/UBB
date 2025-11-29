@@ -1,0 +1,457 @@
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+(int v;(v = 4;(while (v > 0) do ((print(v);v = v - 1));print(v))))
+
+SYMBOL TABLE:
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+int v
+(v = 4;(while (v > 0) do ((print(v);v = v - 1));print(v)))
+
+SYMBOL TABLE:
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+(v = 4;(while (v > 0) do ((print(v);v = v - 1));print(v)))
+
+SYMBOL TABLE:
+v --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+v = 4
+(while (v > 0) do ((print(v);v = v - 1));print(v))
+
+SYMBOL TABLE:
+v --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+(while (v > 0) do ((print(v);v = v - 1));print(v))
+
+SYMBOL TABLE:
+v --> 4
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+while (v > 0) do ((print(v);v = v - 1))
+print(v)
+
+SYMBOL TABLE:
+v --> 4
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+(print(v);v = v - 1)
+while (v > 0) do ((print(v);v = v - 1))
+print(v)
+
+SYMBOL TABLE:
+v --> 4
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+print(v)
+v = v - 1
+while (v > 0) do ((print(v);v = v - 1))
+print(v)
+
+SYMBOL TABLE:
+v --> 4
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+v = v - 1
+while (v > 0) do ((print(v);v = v - 1))
+print(v)
+
+SYMBOL TABLE:
+v --> 4
+
+OUT:
+4
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+while (v > 0) do ((print(v);v = v - 1))
+print(v)
+
+SYMBOL TABLE:
+v --> 3
+
+OUT:
+4
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+(print(v);v = v - 1)
+while (v > 0) do ((print(v);v = v - 1))
+print(v)
+
+SYMBOL TABLE:
+v --> 3
+
+OUT:
+4
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+print(v)
+v = v - 1
+while (v > 0) do ((print(v);v = v - 1))
+print(v)
+
+SYMBOL TABLE:
+v --> 3
+
+OUT:
+4
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+v = v - 1
+while (v > 0) do ((print(v);v = v - 1))
+print(v)
+
+SYMBOL TABLE:
+v --> 3
+
+OUT:
+4
+3
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+while (v > 0) do ((print(v);v = v - 1))
+print(v)
+
+SYMBOL TABLE:
+v --> 2
+
+OUT:
+4
+3
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+(print(v);v = v - 1)
+while (v > 0) do ((print(v);v = v - 1))
+print(v)
+
+SYMBOL TABLE:
+v --> 2
+
+OUT:
+4
+3
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+print(v)
+v = v - 1
+while (v > 0) do ((print(v);v = v - 1))
+print(v)
+
+SYMBOL TABLE:
+v --> 2
+
+OUT:
+4
+3
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+v = v - 1
+while (v > 0) do ((print(v);v = v - 1))
+print(v)
+
+SYMBOL TABLE:
+v --> 2
+
+OUT:
+4
+3
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+while (v > 0) do ((print(v);v = v - 1))
+print(v)
+
+SYMBOL TABLE:
+v --> 1
+
+OUT:
+4
+3
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+(print(v);v = v - 1)
+while (v > 0) do ((print(v);v = v - 1))
+print(v)
+
+SYMBOL TABLE:
+v --> 1
+
+OUT:
+4
+3
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+print(v)
+v = v - 1
+while (v > 0) do ((print(v);v = v - 1))
+print(v)
+
+SYMBOL TABLE:
+v --> 1
+
+OUT:
+4
+3
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+v = v - 1
+while (v > 0) do ((print(v);v = v - 1))
+print(v)
+
+SYMBOL TABLE:
+v --> 1
+
+OUT:
+4
+3
+2
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+while (v > 0) do ((print(v);v = v - 1))
+print(v)
+
+SYMBOL TABLE:
+v --> 0
+
+OUT:
+4
+3
+2
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+print(v)
+
+SYMBOL TABLE:
+v --> 0
+
+OUT:
+4
+3
+2
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 0
+EXECUTION STACK:
+
+SYMBOL TABLE:
+v --> 0
+
+OUT:
+4
+3
+2
+1
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+

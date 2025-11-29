@@ -1,0 +1,32 @@
+[
+    {
+        "day": 15,
+        "money": 927,
+        "type": "internet"
+    },
+    {
+        "day": 30,
+        "money": 872,
+        "type": "others"
+    },
+    {
+        "day": 30,
+        "money": 994,
+        "type": "clothing"
+    },
+    {
+        "day": 4,
+        "money": 774,
+        "type": "internet"
+    },
+    {
+        "day": 16,
+        "money": 900,
+        "type": "housekeeping"
+    },
+    {
+        "day": 9,
+        "money": 741,
+        "type": "clothing"
+    }
+]

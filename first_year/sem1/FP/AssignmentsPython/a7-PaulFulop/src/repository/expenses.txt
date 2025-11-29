@@ -1,0 +1,5 @@
+day 8, amount 1000, type clothing.
+day 21, amount 842, type transport.
+day 8, amount 601, type housekeeping.
+day 5, amount 960, type others.
+day 9, amount 660, type internet.
