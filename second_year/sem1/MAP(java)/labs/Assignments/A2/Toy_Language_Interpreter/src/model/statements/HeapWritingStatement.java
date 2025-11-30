@@ -32,6 +32,6 @@ public record HeapWritingStatement(String name, Expression expression) implement
 
 
         heapTable.update(address, expressionValue);
-        return state;
+        return null;
     }
 }

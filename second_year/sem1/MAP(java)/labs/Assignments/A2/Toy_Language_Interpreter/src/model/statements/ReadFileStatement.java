@@ -38,7 +38,7 @@ public record ReadFileStatement(Expression expression, String variableName) impl
             throw new StatementException(e.getMessage());
         }
 
-        return state;
+        return null;
     }
 
     @Override

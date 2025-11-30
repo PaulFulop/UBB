@@ -27,7 +27,7 @@ public record HeapAllocationStatement(String name, Expression expression) implem
         int addressLocation = heapTable.add(expressionValue);
         symTable.update(name, new RefValue(addressLocation, innerReferenceType));
 
-        return state;
+        return null;
     }
 
     @Override

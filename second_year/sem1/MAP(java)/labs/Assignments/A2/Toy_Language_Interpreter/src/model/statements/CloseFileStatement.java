@@ -31,7 +31,7 @@ public record CloseFileStatement(Expression expression) implements StatementInte
         }
 
 
-        return state;
+        return null;
     }
 
     @Override

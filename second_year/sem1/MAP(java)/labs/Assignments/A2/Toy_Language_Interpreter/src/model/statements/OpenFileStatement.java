@@ -31,7 +31,7 @@ public record OpenFileStatement(Expression expression) implements StatementInter
             throw new StatementException(e.getMessage());
         }
 
-        return state;
+        return null;
     }
 
     @Override

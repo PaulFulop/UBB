@@ -10,7 +10,7 @@ public record PrintStatement(Expression expression) implements StatementInterfac
         var out = state.out();
         out.add(expression.evaluate(state.symTable(), state.heapTable()));
 
-        return state;
+        return null;
     }
 
     @Override

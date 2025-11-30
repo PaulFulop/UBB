@@ -9,7 +9,7 @@ public record CompoundStatement(StatementInterface first, StatementInterface sec
         var exeStack = state.exeStack();
         exeStack.push(second);
         exeStack.push(first);
-        return state;
+        return null;
     }
 
     @Override

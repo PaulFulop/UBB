@@ -15,7 +15,7 @@ public record VariableDeclarationStatement(String name, Type type) implements St
     public ProgramState execute(ProgramState state) {
         var symTable = state.symTable();
         symTable.add(name, type.getDefaultValue());
-        return state;
+        return null;
     }
 
     @Override

@@ -18,11 +18,11 @@ public record WhileStatement(Expression expression, StatementInterface statement
             throw new StatementException("The expression is not a boolean");
 
         if (!((BoolValue) evalExpression).val())
-            return state;
+            return null;
 
         state.exeStack().push(this);
         state.exeStack().push(statement);
-        return state;
+        return null;
     }
 
     @Override

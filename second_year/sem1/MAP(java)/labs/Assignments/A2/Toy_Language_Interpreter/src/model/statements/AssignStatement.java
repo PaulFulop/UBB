@@ -21,7 +21,7 @@ public record AssignStatement(String name, Expression expression) implements Sta
             throw new StatementException("declared type of variable " + name +
                     " and type of the assigned expression do not match");
 
-        return state;
+        return null;
     }
 
     @Override

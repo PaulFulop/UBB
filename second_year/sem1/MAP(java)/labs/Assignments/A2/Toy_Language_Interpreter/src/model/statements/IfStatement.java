@@ -19,7 +19,7 @@ public record IfStatement(Expression expression, StatementInterface thenS, State
                 exeStack.push(elseS);
         } else throw new StatementException("Condition is not boolean");
 
-        return state;
+        return null;
     }
 
     @Override
