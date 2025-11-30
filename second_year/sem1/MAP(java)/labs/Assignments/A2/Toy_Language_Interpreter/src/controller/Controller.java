@@ -6,6 +6,9 @@ import model.states.*;
 import model.statements.StatementInterface;
 import repo.Repository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 public record Controller(Repository repo, GarbageCollector garbageCollector) {
     public void addNewProgram(StatementInterface program) {
@@ -28,5 +31,12 @@ public record Controller(Repository repo, GarbageCollector garbageCollector) {
             repo.logProgramStateExecution(programState);
             garbageCollector.run(programState.symTable(), programState.heapTable());
         }
+    }
+
+    List<ProgramState> removeCompletedPrograms(List<ProgramState> programStates){
+
+        return programStates.stream().
+                filter(e -> e.isNotCompleted())
+                .collect(Collectors.toList());
     }
 }
