@@ -16,6 +16,7 @@ public class MapSymbolTable implements SymbolTableInterface {
     public MapSymbolTable() {
         this.map = new HashMap<>();
     }
+    public MapSymbolTable(Map<String, Value> map) {this.map = map;}
 
     @Override
     public Map<String, Value> getMap() {

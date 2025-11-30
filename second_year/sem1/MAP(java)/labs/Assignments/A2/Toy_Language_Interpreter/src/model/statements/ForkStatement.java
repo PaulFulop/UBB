@@ -1,12 +1,25 @@
 package model.statements;
 
 import exceptions.StatementException;
-import model.states.ProgramState;
+import model.states.*;
 
-public class ForkStatement implements StatementInterface {
+import javax.print.attribute.standard.Copies;
+
+public record ForkStatement(StatementInterface statement) implements StatementInterface {
 
     @Override
     public ProgramState execute(ProgramState state) throws StatementException {
-        return null;
+        var executionStack = new LinkedListExecutionStack();
+        executionStack.push(statement);
+
+        var thread = new ProgramState(
+                state.programId() + 1,
+                executionStack,
+                new MapSymbolTable(state.symTable().getMap()), // -> a copy of it, not reference
+                state.out(),
+                state.fileTable(),
+                state.heapTable());
+
+        return state;
     }
 }
