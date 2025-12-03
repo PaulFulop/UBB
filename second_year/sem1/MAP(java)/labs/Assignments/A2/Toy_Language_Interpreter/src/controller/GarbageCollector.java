@@ -21,13 +21,16 @@ public class GarbageCollector {
     // Same as above, but compute a UNION of the values for all
     // symbol values
 
-    public void run(SymbolTableInterface symTable, HeapInterface heapTable) {
-        var symTableAddresses = getAddressesFromSymbolTable(symTable);
-
-        // add all the addresses from symbol table here + all the reachable ones from each address
+    public void run(List<SymbolTableInterface> allSymbolTables, HeapInterface heapTable) {
         Set<Integer> addressesToKeep = new HashSet<>();
-        for(var address : symTableAddresses) {
-            addressesToKeep.addAll(getReachableAddressChain(symTable, heapTable, address));
+
+        for(var symbolTable : allSymbolTables){
+            var symTableAddresses = getAddressesFromSymbolTable(symbolTable);
+
+            // add all the addresses from symbol table here + all the reachable ones from each address
+            for(var address : symTableAddresses) {
+                addressesToKeep.addAll(getReachableAddressChain(symbolTable, heapTable, address));
+            }
         }
 
         // look which addresses are on the heap but don't appear in addressesToKeep

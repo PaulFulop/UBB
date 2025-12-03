@@ -27,12 +27,12 @@ public class ArrayListRepository implements Repository {
     }
 
     @Override
-    public List<ProgramState> getPrgList() {
+    public List<ProgramState> getProgramStates() {
         return programStates;
     }
 
     @Override
-    public void setPrgList(List<ProgramState> programStates) {
+    public void setProgramStates(List<ProgramState> programStates) {
         this.programStates.clear();
         this.programStates.addAll(programStates);
     }
@@ -44,7 +44,7 @@ public class ArrayListRepository implements Repository {
             // buffered writer -> good for performance if we re using a lot of write() functions
             // file writer -> low level but we can write into a file
             // append = true => new text will be appended to the end of the file not the beginning
-            //nesting theese => improved performance overall
+            //nesting these => improved performance overall
 
             var logFile = new PrintWriter(new BufferedWriter(new FileWriter(logFilePath, true)));
             logFile.println(programState.toString());

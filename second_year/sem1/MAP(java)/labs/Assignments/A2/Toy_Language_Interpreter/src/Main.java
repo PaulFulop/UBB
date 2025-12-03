@@ -21,6 +21,12 @@ import java.util.Scanner;
 
 void main() {
 
+    // TODO make the whole interpreter thread-safe
+    // TODO conservativeGarbageCollector -> i'll see about this.
+    // When you prepare the arguments of the conservativeGarbageCollector call you must take into
+    //account the fact that now there is one HEAP shared by multiple PrgStates and multiple
+    //SymbolTables(one for each PrgState).
+
     // int v; v = 2; Print(v)
     StatementInterface ex1 = new CompoundStatement(
             new VariableDeclarationStatement("v", IntType.INSTANCE),
@@ -346,6 +352,64 @@ void main() {
                     )
             );
 
+    //int v; Ref int a; v=10;new(a,22);
+    //fork(wH(a,30);v=32;print(v);print(rH(a)));
+    //print(v);print(rH(a))
+    StatementInterface ex12 =
+            new CompoundStatement(
+                    new VariableDeclarationStatement("v", IntType.INSTANCE),
+                    new CompoundStatement(
+                            new VariableDeclarationStatement(
+                                    "a",
+                                    new RefType(IntType.INSTANCE)
+                            ),
+                            new CompoundStatement(
+                                    new AssignStatement(
+                                            "v",
+                                            new ValueExpression(new IntValue(10))
+                                    ),
+                                    new CompoundStatement(
+                                            new HeapAllocationStatement(
+                                                    "a",
+                                                    new ValueExpression(new IntValue(22))
+                                            ),
+                                            new CompoundStatement(
+                                                    new ForkStatement(
+                                                            new CompoundStatement(
+                                                                    new HeapWritingStatement(
+                                                                            "a",
+                                                                            new ValueExpression(new IntValue(30))
+                                                                    ),
+                                                                    new CompoundStatement(
+                                                                            new AssignStatement(
+                                                                                    "v",
+                                                                                    new ValueExpression(new IntValue(32))
+                                                                            ),
+                                                                            new CompoundStatement(
+                                                                                    new PrintStatement(new VariableExpression("v")),
+                                                                                    new PrintStatement(
+                                                                                            new HeapReadingExpression(
+                                                                                                    new VariableExpression("a")
+                                                                                            )
+                                                                                    )
+                                                                            )
+                                                                    )
+                                                            )
+                                                    ),
+                                                    new CompoundStatement(
+                                                            new PrintStatement(new VariableExpression("v")),
+                                                            new PrintStatement(
+                                                                    new HeapReadingExpression(
+                                                                            new VariableExpression("a")
+                                                                    )
+                                                            )
+                                                    )
+                                            )
+                                    )
+                            )
+                    )
+            );
+
 
     Repository repository1 = new ArrayListRepository("src/logs/log1.txt");
     Controller controller1 = new Controller(repository1, new GarbageCollector());
@@ -396,6 +460,11 @@ void main() {
     Controller controller11 = new Controller(repository11, new GarbageCollector());
     controller11.addNewProgram(ex11);
 
+
+    Repository repository12 = new ArrayListRepository("src/logs/log12.txt");
+    Controller controller12 = new Controller(repository12, new GarbageCollector());
+    controller12.addNewProgram(ex12);
+
     TextMenu textMenu = new TextMenu();
     textMenu.addCommand(new ExitCommand("0", "exit"));
     textMenu.addCommand(new RunProgramCommand("1", ex1.toString(), controller1));
@@ -409,6 +478,7 @@ void main() {
     textMenu.addCommand(new RunProgramCommand("9", ex9.toString(), controller9));
     textMenu.addCommand(new RunProgramCommand("10", ex10.toString(), controller10));
     textMenu.addCommand(new RunProgramCommand("11", ex11.toString(), controller11));
+    textMenu.addCommand(new RunProgramCommand("12", ex12.toString(), controller12));
     textMenu.show();
 
 }

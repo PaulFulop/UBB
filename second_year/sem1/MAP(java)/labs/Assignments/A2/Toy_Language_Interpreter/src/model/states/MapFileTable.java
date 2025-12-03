@@ -9,13 +9,14 @@ import model.values.Value;
 import java.io.BufferedReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public class MapFileTable implements FileTableInterface {
     private final Map<StringValue, BufferedReader> map;
 
     public MapFileTable() {
-        this.map = new HashMap<>();
+        this.map = new ConcurrentHashMap<>();
     }
 
     @Override

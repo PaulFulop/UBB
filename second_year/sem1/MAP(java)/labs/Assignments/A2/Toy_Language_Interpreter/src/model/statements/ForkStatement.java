@@ -12,14 +12,16 @@ public record ForkStatement(StatementInterface statement) implements StatementIn
         var executionStack = new LinkedListExecutionStack();
         executionStack.push(statement);
 
-        var thread = new ProgramState(
-                state.programId() + 1,
+        return new ProgramState(
                 executionStack,
                 new MapSymbolTable(state.symTable().getMap()), // -> a copy of it, not reference
                 state.out(),
                 state.fileTable(),
                 state.heapTable());
+    }
 
-        return state;
+    @Override
+    public String toString() {
+        return "fork( " + statement.toString() + " )";
     }
 }

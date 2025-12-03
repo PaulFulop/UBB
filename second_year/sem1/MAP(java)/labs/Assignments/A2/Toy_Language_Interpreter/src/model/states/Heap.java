@@ -8,13 +8,14 @@ import model.values.Value;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Heap implements HeapInterface {
     private final Map<IntValue, Value> map;
     private int freeLocation;
 
     public Heap() {
-        this.map = new HashMap<>();
+        this.map = new ConcurrentHashMap<>();
         this.freeLocation = 1;
     }
 

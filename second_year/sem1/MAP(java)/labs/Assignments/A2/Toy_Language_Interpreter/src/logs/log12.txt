@@ -1,0 +1,391 @@
+
+ PROGRAM ID: 11
+EXECUTION STACK:
+int v
+(RefType(int) a;(v = 10;(new (a,22);(fork( (HeapWritingStatement[name=a, expression=30];(v = 32;(print(v);print(a)))) );(print(v);print(a))))))
+
+SYMBOL TABLE:
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 11
+EXECUTION STACK:
+(RefType(int) a;(v = 10;(new (a,22);(fork( (HeapWritingStatement[name=a, expression=30];(v = 32;(print(v);print(a)))) );(print(v);print(a))))))
+
+SYMBOL TABLE:
+v --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 11
+EXECUTION STACK:
+RefType(int) a
+(v = 10;(new (a,22);(fork( (HeapWritingStatement[name=a, expression=30];(v = 32;(print(v);print(a)))) );(print(v);print(a)))))
+
+SYMBOL TABLE:
+v --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 11
+EXECUTION STACK:
+(v = 10;(new (a,22);(fork( (HeapWritingStatement[name=a, expression=30];(v = 32;(print(v);print(a)))) );(print(v);print(a)))))
+
+SYMBOL TABLE:
+a --> RefValue(0, int)
+v --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 11
+EXECUTION STACK:
+v = 10
+(new (a,22);(fork( (HeapWritingStatement[name=a, expression=30];(v = 32;(print(v);print(a)))) );(print(v);print(a))))
+
+SYMBOL TABLE:
+a --> RefValue(0, int)
+v --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 11
+EXECUTION STACK:
+(new (a,22);(fork( (HeapWritingStatement[name=a, expression=30];(v = 32;(print(v);print(a)))) );(print(v);print(a))))
+
+SYMBOL TABLE:
+a --> RefValue(0, int)
+v --> 10
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 11
+EXECUTION STACK:
+new (a,22)
+(fork( (HeapWritingStatement[name=a, expression=30];(v = 32;(print(v);print(a)))) );(print(v);print(a)))
+
+SYMBOL TABLE:
+a --> RefValue(0, int)
+v --> 10
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 11
+EXECUTION STACK:
+(fork( (HeapWritingStatement[name=a, expression=30];(v = 32;(print(v);print(a)))) );(print(v);print(a)))
+
+SYMBOL TABLE:
+a --> RefValue(1, int)
+v --> 10
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+1 --> 22
+
+
+
+
+ PROGRAM ID: 11
+EXECUTION STACK:
+fork( (HeapWritingStatement[name=a, expression=30];(v = 32;(print(v);print(a)))) )
+(print(v);print(a))
+
+SYMBOL TABLE:
+a --> RefValue(1, int)
+v --> 10
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+1 --> 22
+
+
+
+
+ PROGRAM ID: 11
+EXECUTION STACK:
+(print(v);print(a))
+
+SYMBOL TABLE:
+a --> RefValue(1, int)
+v --> 10
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+1 --> 22
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(HeapWritingStatement[name=a, expression=30];(v = 32;(print(v);print(a))))
+
+SYMBOL TABLE:
+a --> RefValue(1, int)
+v --> 10
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+1 --> 22
+
+
+
+
+ PROGRAM ID: 11
+EXECUTION STACK:
+print(v)
+print(a)
+
+SYMBOL TABLE:
+a --> RefValue(1, int)
+v --> 10
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+1 --> 22
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+HeapWritingStatement[name=a, expression=30]
+(v = 32;(print(v);print(a)))
+
+SYMBOL TABLE:
+a --> RefValue(1, int)
+v --> 10
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+1 --> 22
+
+
+
+
+ PROGRAM ID: 11
+EXECUTION STACK:
+print(a)
+
+SYMBOL TABLE:
+a --> RefValue(1, int)
+v --> 10
+
+OUT:
+10
+
+FILE TABLE
+
+HEAP TABLE:
+1 --> 30
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(v = 32;(print(v);print(a)))
+
+SYMBOL TABLE:
+a --> RefValue(1, int)
+v --> 10
+
+OUT:
+10
+
+FILE TABLE
+
+HEAP TABLE:
+1 --> 30
+
+
+
+
+ PROGRAM ID: 11
+EXECUTION STACK:
+
+SYMBOL TABLE:
+a --> RefValue(1, int)
+v --> 10
+
+OUT:
+10
+30
+
+FILE TABLE
+
+HEAP TABLE:
+1 --> 30
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+v = 32
+(print(v);print(a))
+
+SYMBOL TABLE:
+a --> RefValue(1, int)
+v --> 10
+
+OUT:
+10
+30
+
+FILE TABLE
+
+HEAP TABLE:
+1 --> 30
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(print(v);print(a))
+
+SYMBOL TABLE:
+a --> RefValue(1, int)
+v --> 32
+
+OUT:
+10
+30
+
+FILE TABLE
+
+HEAP TABLE:
+1 --> 30
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+print(v)
+print(a)
+
+SYMBOL TABLE:
+a --> RefValue(1, int)
+v --> 32
+
+OUT:
+10
+30
+
+FILE TABLE
+
+HEAP TABLE:
+1 --> 30
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+print(a)
+
+SYMBOL TABLE:
+a --> RefValue(1, int)
+v --> 32
+
+OUT:
+10
+30
+32
+
+FILE TABLE
+
+HEAP TABLE:
+1 --> 30
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+
+SYMBOL TABLE:
+a --> RefValue(1, int)
+v --> 32
+
+OUT:
+10
+30
+32
+30
+
+FILE TABLE
+
+HEAP TABLE:
+1 --> 30
+
+
+

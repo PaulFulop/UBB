@@ -7,12 +7,13 @@ import model.values.Value;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ArrayListOut implements OutInterface {
     private final List<Value> list;
 
     public ArrayListOut() {
-        list = new LinkedList<Value>();
+        list = new CopyOnWriteArrayList<>();
     }
 
     @Override

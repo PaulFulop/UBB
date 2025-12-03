@@ -7,15 +7,28 @@ import model.statements.StatementInterface;
 import repo.Repository;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 
-public record Controller(Repository repo, GarbageCollector garbageCollector) {
+public final class Controller {
+    private final Repository repo;
+    private final GarbageCollector garbageCollector;
+    private ExecutorService executor;
+
+    public Controller(Repository repo, GarbageCollector garbageCollector) {
+        this.repo = repo;
+        this.garbageCollector = garbageCollector;
+    }
+
     public void addNewProgram(StatementInterface program) {
         var executionStack = new LinkedListExecutionStack();
         executionStack.push(program);
         repo.addProgramState(new ProgramState(
-                0,
                 executionStack,
                 new MapSymbolTable(),
                 new ArrayListOut(),
@@ -23,20 +36,92 @@ public record Controller(Repository repo, GarbageCollector garbageCollector) {
                 new Heap()));
     }
 
-    public void executeMainProgram() throws ProgramException {
-        var programState = repo.getPrgList().getFirst();
-        repo.logProgramStateExecution(programState);
-        while (programState.isNotCompleted()) {
-            programState.executeOneStep();
-            repo.logProgramStateExecution(programState);
-            garbageCollector.run(programState.symTable(), programState.heapTable());
-        }
+    public void executeOneStepForAllPrograms(List<ProgramState> programStates) throws InterruptedException, ProgramException {
+        // log the execution of a program and also for it's threads
+        //programStates.forEach(repo::logProgramStateExecution);
+
+        //RUN concurrently one step for each of the existing PrgStates
+        //-----------------------------------------------------------------------
+
+        //prepare the list of callables
+        List<Callable<ProgramState>> callList = programStates.stream()
+                .map((ProgramState p) -> (Callable<ProgramState>) (p::executeOneStep))
+                .collect(Collectors.toList());
+
+        //start the execution of the callables
+        //it returns the list of new created PrgStates (namely threads)
+        List<ProgramState> newProgramStatesList = executor.invokeAll(callList).stream()
+                .map(future -> {
+                    try {
+                        return future.get();
+                    } catch (Exception e) {
+                        throw new ProgramException(e.getMessage());
+                    }
+                }).filter(p -> p != null)
+                .toList();
+
+        //add the new created threads to the list of existing threads
+        programStates.addAll(newProgramStatesList);
+
+        //after the execution, print the Program State List into the log file
+        programStates.forEach(repo::logProgramStateExecution);
+
+        //Save the current programs in the repository
+        repo.setProgramStates(programStates);
+
     }
 
-    List<ProgramState> removeCompletedPrograms(List<ProgramState> programStates){
+    public void executeMainProgram() throws ProgramException, InterruptedException {
+        executor = Executors.newFixedThreadPool(2);
+
+        List<ProgramState> programStates = removeCompletedPrograms(repo.getProgramStates());
+        while (!programStates.isEmpty()) {
+            var allSymbolTables = programStates.stream()
+                    .map(ProgramState::symTable)
+                    .toList();
+
+            garbageCollector.run(allSymbolTables, programStates.getFirst().heapTable());
+            executeOneStepForAllPrograms(programStates);
+            programStates = removeCompletedPrograms(repo.getProgramStates());
+        }
+
+        executor.shutdownNow();
+        //HERE the repository still contains at least one Completed Prg
+        // and its List<PrgState> is not empty. Note that oneStepForAllPrg calls the method
+        //setPrgList of repository in order to change the repository
+
+        // update the repository state
+        repo.setProgramStates(programStates);
+    }
+
+    List<ProgramState> removeCompletedPrograms(List<ProgramState> programStates) {
 
         return programStates.stream().
-                filter(e -> e.isNotCompleted())
+                filter(ProgramState::isNotCompleted)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj == null || obj.getClass() != this.getClass()) return false;
+        var that = (Controller) obj;
+        return Objects.equals(this.repo, that.repo) &&
+                Objects.equals(this.garbageCollector, that.garbageCollector) &&
+                Objects.equals(this.executor, that.executor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(repo, garbageCollector, executor);
+    }
+
+    @Override
+    public String toString() {
+        return "Controller[" +
+                "repo=" + repo + ", " +
+                "garbageCollector=" + garbageCollector + ", " +
+                "executor=" + executor + ']';
+    }
+
 }
