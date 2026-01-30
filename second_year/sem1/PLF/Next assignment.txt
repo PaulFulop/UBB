@@ -1,5 +1,39 @@
-from P3 -> problem 13
+from L3 -> problem 11
 
-The list a1, ..., an is given and it consists of distinct integers. Write a predicate to determine all subsets 
-with aspect of "mountain" (a set has a "mountain" aspect if the elements increase to a certain point 
-and then decrease).
+Write a function to determine the depth of a list.
+
+The depth of a nested list is the maximum number of times a list is nested inside other lists,
+including the outermost set of square brackets.
+
+ex: [1 2 [3 4 [5 6 7 8 [9 10] 11] 12 13] 14] depth is 4.
+
+MAIN IDEA:
+
+depth of the list = max depth inside the list + 1 -> recursion idea
+how to find max depth -> have a max_depth variable and a current_depth variable
+initial max depth: 0 
+current max depth: initial value doesnt really matter (likely 0), but it will be = to depth(current_elem) if current_elem is a list
+
+i could actually even remove current max depth and just call the function so:
+
+max_depth = max(max_depth, depth(current_elem))
+
+recursion works this way: max_depth of the list that has a max-depth of 0 (no more lists inside) will return 1 => parent list 
+will update their max_depth to 1 -> ultimately returning max_depth + 1 which is 2 and so on =>
+
+MAIN FORMULA: max_depth = max(max_depth, depth(current_list))
+return max_depth + 1 when we iterate all elements
+
+
+MATHEMATICAL MODEL:
+
+depth(max_depth, l1...ln) = 
+    = max_depth + 1, if n = 0
+    = depth(max(max_depth, depth(0, l1)), l2...ln), if l1 is a list
+    = depth(max_depth, l2...ln), otherwise
+
+(FOR THE max FUNCTION):
+max(max_elem, l1...ln) = 
+    = max_elem, if n = 0
+    = max(l1, l2...ln), if max_elem < l1
+    = max(max_elem, l2...ln), otherwise

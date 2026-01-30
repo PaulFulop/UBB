@@ -1,4 +1,4 @@
--- TestRunds -> test run id, test id, run date, duration (T3)
+-- TestRuns -> test run id, test id, run date, duration (T3)
 
 --T1 insert a run date etc
 AS

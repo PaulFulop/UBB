@@ -1,8 +1,11 @@
 package model.statements;
 
+import exceptions.TypecheckException;
+import model.states.MyMap;
 import model.states.ProgramState;
 import model.expressions.Expression;
 import exceptions.MyException;
+import model.types.Type;
 
 public record PrintStatement(Expression expression) implements StatementInterface {
 
@@ -11,6 +14,12 @@ public record PrintStatement(Expression expression) implements StatementInterfac
         out.add(expression.evaluate(state.symTable(), state.heapTable()));
 
         return null;
+    }
+
+    @Override
+    public MyMap<String, Type> typecheck(MyMap<String, Type> typeTable) throws TypecheckException {
+        expression.typecheck(typeTable);
+        return typeTable;
     }
 
     @Override

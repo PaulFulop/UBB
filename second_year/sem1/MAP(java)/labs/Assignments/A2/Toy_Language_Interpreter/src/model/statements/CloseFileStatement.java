@@ -1,9 +1,12 @@
 package model.statements;
 
 import exceptions.StatementException;
+import exceptions.TypecheckException;
 import model.expressions.Expression;
+import model.states.MyMap;
 import model.states.ProgramState;
 import model.types.StringType;
+import model.types.Type;
 import model.values.StringValue;
 
 import java.io.IOException;
@@ -29,9 +32,17 @@ public record CloseFileStatement(Expression expression) implements StatementInte
         catch(IOException e){
             throw new StatementException(e.getMessage());
         }
-
-
         return null;
+    }
+
+    @Override
+    public MyMap<String, Type> typecheck(MyMap<String, Type> typeTable) throws TypecheckException {
+        Type typeExpression = expression.typecheck(typeTable);
+
+        if (typeExpression instanceof StringType)
+            return typeTable;
+
+        throw new TypecheckException("CloseFileStatement: error closing file, type of expression was not correct");
     }
 
     @Override

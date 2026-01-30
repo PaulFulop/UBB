@@ -3,17 +3,21 @@ package model.states;
 
 import exceptions.ProgramException;
 import model.statements.StatementInterface;
+import model.values.StringValue;
+import model.values.Value;
+
+import java.io.BufferedReader;
 
 public final class ProgramState {
     private static int globalIdCounter = 0;
     private final int programId;
-    private final ExecutionStackInterface exeStack;
-    private final SymbolTableInterface symTable;
-    private final OutInterface out;
-    private final FileTableInterface fileTable;
-    private final Heap heapTable;
+    private final MyStack<StatementInterface> exeStack;
+    private final MyMap<String, Value> symTable;
+    private final MyList<Value> out;
+    private final MyMap<StringValue, BufferedReader> fileTable;
+    private final MyHeap heapTable;
 
-    public ProgramState(ExecutionStackInterface exeStack, SymbolTableInterface symTable, OutInterface out, FileTableInterface fileTable, Heap heapTable) {
+    public ProgramState(MyStack<StatementInterface> exeStack, MyMap<String, Value> symTable, MyList<Value> out, MyMap<StringValue, BufferedReader> fileTable, MyHeap heapTable) {
         this.programId = generateId();
         this.exeStack = exeStack;
         this.symTable = symTable;
@@ -42,33 +46,35 @@ public final class ProgramState {
     }
 
     public ProgramState executeOneStep() throws ProgramException {
-        ExecutionStackInterface executionStack = this.exeStack();
+        MyStack<StatementInterface> executionStack = this.exeStack();
         if (executionStack.isEmpty()) throw new ProgramException("The execution stack of the program is empty");
 
         StatementInterface nextStatement = executionStack.pop();
         return nextStatement.execute(this);
     }
 
-    public ExecutionStackInterface exeStack() {
+    public int getProgramId(){
+        return programId;
+    }
+
+    public MyStack<StatementInterface> exeStack() {
         return exeStack;
     }
 
-    public SymbolTableInterface symTable() {
+    public MyMap<String, Value> symTable() {
         return symTable;
     }
 
-    public OutInterface out() {
+    public MyList<Value> out() {
         return out;
     }
 
-    public FileTableInterface fileTable() {
+    public MyMap<StringValue, BufferedReader> fileTable() {
         return fileTable;
     }
 
-    public Heap heapTable() {
+    public MyHeap heapTable() {
         return heapTable;
     }
-
-
 }
 

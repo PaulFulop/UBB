@@ -1,9 +1,11 @@
 package controller;
 
-import model.states.HeapInterface;
-import model.states.SymbolTableInterface;
+import model.states.MyHeap;
+import model.states.MyMap;
 import model.values.IntValue;
 import model.values.RefValue;
+import model.values.Value;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -21,7 +23,7 @@ public class GarbageCollector {
     // Same as above, but compute a UNION of the values for all
     // symbol values
 
-    public void run(List<SymbolTableInterface> allSymbolTables, HeapInterface heapTable) {
+    public void run(List<MyMap<String, Value>>allSymbolTables, MyHeap heapTable) {
         Set<Integer> addressesToKeep = new HashSet<>();
 
         for(var symbolTable : allSymbolTables){
@@ -37,19 +39,19 @@ public class GarbageCollector {
         var heapAddresses = new HashSet<>(heapTable.getMap().keySet());
         for(var address : heapAddresses){
             if (!addressesToKeep.contains(address.val())) {
-                heapTable.remove(address.val());
+                heapTable.remove(address);
             }
         }
     }
 
-    private List<Integer> getAddressesFromSymbolTable(SymbolTableInterface symTable) {
+    private List<Integer> getAddressesFromSymbolTable(MyMap<String, Value> symTable) {
         return symTable.getMap().values().stream()
                 .filter(v -> v instanceof RefValue)
                 .map(v -> {RefValue v1 = (RefValue) v; return v1.getAddress();})
                 .collect(Collectors.toList());
     }
 
-    private Set<Integer> getReachableAddressChain(SymbolTableInterface symTable, HeapInterface heapTable, int address) {
+    private Set<Integer> getReachableAddressChain(MyMap<String, Value> symTable, MyHeap heapTable, int address) {
         if (address == 0) return new HashSet<>(); // null address (maybe throw exception here)
 
         Set<Integer> visited = new HashSet<>();
@@ -65,7 +67,7 @@ public class GarbageCollector {
     }
 
     //check whether the address points to another reference value or not
-    private Boolean isAddressToRef(HeapInterface heapTable, int address) {
+    private Boolean isAddressToRef(MyHeap heapTable, int address) {
         var value = heapTable.getMap().get(new IntValue(address));
         return value instanceof RefValue;
     }

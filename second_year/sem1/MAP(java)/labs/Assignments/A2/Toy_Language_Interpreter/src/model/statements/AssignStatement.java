@@ -1,6 +1,8 @@
 package model.statements;
 
 import exceptions.StatementException;
+import exceptions.TypecheckException;
+import model.states.MyMap;
 import model.states.ProgramState;
 import model.expressions.Expression;
 import exceptions.MyException;
@@ -22,6 +24,16 @@ public record AssignStatement(String name, Expression expression) implements Sta
                     " and type of the assigned expression do not match");
 
         return null;
+    }
+
+    @Override
+    public MyMap<String, Type> typecheck(MyMap<String, Type> typeTable) throws TypecheckException {
+        Type typeVariable = typeTable.lookup(name);
+        Type typeExpression = expression.typecheck(typeTable);
+        if (typeVariable.equals(typeExpression))
+            return typeTable;
+        else
+            throw new TypecheckException("Assignment: right hand side and left hand side have different types ");
     }
 
     @Override

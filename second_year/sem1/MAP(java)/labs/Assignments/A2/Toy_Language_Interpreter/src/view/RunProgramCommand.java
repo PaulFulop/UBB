@@ -1,10 +1,10 @@
 package view;
 
-import controller.Controller;
+import controller.ProgramService;
 
 public class RunProgramCommand extends Command {
-    private final Controller controller;
-    public RunProgramCommand(String key, String description, Controller controller) {
+    private final ProgramService controller;
+    public RunProgramCommand(String key, String description, ProgramService controller) {
         super(key, description);
         this.controller = controller;
     }

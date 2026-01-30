@@ -1,10 +1,7 @@
-import controller.Controller;
+import controller.ProgramService;
 import controller.GarbageCollector;
-import exceptions.MyException;
 import model.expressions.*;
 import model.statements.*;
-import model.states.Heap;
-import model.states.ProgramState;
 import model.types.BoolType;
 import model.types.IntType;
 import model.types.RefType;
@@ -17,15 +14,8 @@ import repo.Repository;
 import view.ExitCommand;
 import view.RunProgramCommand;
 import view.TextMenu;
-import java.util.Scanner;
 
 void main() {
-
-    // TODO make the whole interpreter thread-safe
-    // TODO conservativeGarbageCollector -> i'll see about this.
-    // When you prepare the arguments of the conservativeGarbageCollector call you must take into
-    //account the fact that now there is one HEAP shared by multiple PrgStates and multiple
-    //SymbolTables(one for each PrgState).
 
     // int v; v = 2; Print(v)
     StatementInterface ex1 = new CompoundStatement(
@@ -412,73 +402,73 @@ void main() {
 
 
     Repository repository1 = new ArrayListRepository("src/logs/log1.txt");
-    Controller controller1 = new Controller(repository1, new GarbageCollector());
-    controller1.addNewProgram(ex1);
+    ProgramService programServ1 = new ProgramService(repository1);
+    programServ1.addNewProgram(ex1);
 
     Repository repository2 = new ArrayListRepository("src/logs/log2.txt");
-    Controller controller2 = new Controller(repository2, new GarbageCollector());
-    controller2.addNewProgram(ex2);
+    ProgramService programServ2 = new ProgramService(repository2);
+    programServ2.addNewProgram(ex2);
 
 
     Repository repository3 = new ArrayListRepository("src/logs/log3.txt");
-    Controller controller3 = new Controller(repository3, new GarbageCollector());
-    controller3.addNewProgram(ex3);
+    ProgramService programServ3 = new ProgramService(repository3);
+    programServ3.addNewProgram(ex3);
 
     Repository repository4 = new ArrayListRepository("src/logs/log4.txt");
-    Controller controller4 = new Controller(repository4, new GarbageCollector());
-    controller4.addNewProgram(ex4);
+    ProgramService programServ4 = new ProgramService(repository4);
+    programServ4.addNewProgram(ex4);
 
     Repository repository5 = new ArrayListRepository("src/logs/log5.txt");
-    Controller controller5 = new Controller(repository5, new GarbageCollector());
-    controller5.addNewProgram(ex5);
+    ProgramService programServ5 = new ProgramService(repository5);
+    programServ5.addNewProgram(ex5);
 
     Repository repository6 = new ArrayListRepository("src/logs/log6.txt");
-    Controller controller6 = new Controller(repository6, new GarbageCollector());
-    controller6.addNewProgram(ex6);
+    ProgramService programServ6 = new ProgramService(repository6);
+    programServ6.addNewProgram(ex6);
 
 
     Repository repository7 = new ArrayListRepository("src/logs/log7.txt");
-    Controller controller7 = new Controller(repository7,new GarbageCollector());
-    controller7.addNewProgram(ex7);
+    ProgramService programServ7 = new ProgramService(repository7);
+    programServ7.addNewProgram(ex7);
 
 
     Repository repository8 = new ArrayListRepository("src/logs/log8.txt");
-    Controller controller8 = new Controller(repository8, new GarbageCollector());
-    controller8.addNewProgram(ex8);
+    ProgramService programServ8 = new ProgramService(repository8);
+    programServ8.addNewProgram(ex8);
 
     Repository repository9 = new ArrayListRepository("src/logs/log9.txt");
-    Controller controller9 = new Controller(repository9, new GarbageCollector());
-    controller9.addNewProgram(ex9);
+    ProgramService programServ9 = new ProgramService(repository9);
+    programServ9.addNewProgram(ex9);
 
 
     Repository repository10 = new ArrayListRepository("src/logs/log10.txt");
-    Controller controller10 = new Controller(repository10, new GarbageCollector());
-    controller10.addNewProgram(ex10);
+    ProgramService programServ10 = new ProgramService(repository10);
+    programServ10.addNewProgram(ex10);
 
 
     Repository repository11 = new ArrayListRepository("src/logs/log11.txt");
-    Controller controller11 = new Controller(repository11, new GarbageCollector());
-    controller11.addNewProgram(ex11);
+    ProgramService programServ11 = new ProgramService(repository11);
+    programServ11.addNewProgram(ex11);
 
 
     Repository repository12 = new ArrayListRepository("src/logs/log12.txt");
-    Controller controller12 = new Controller(repository12, new GarbageCollector());
-    controller12.addNewProgram(ex12);
+    ProgramService programServ12 = new ProgramService(repository12);
+    programServ12.addNewProgram(ex12);
 
     TextMenu textMenu = new TextMenu();
     textMenu.addCommand(new ExitCommand("0", "exit"));
-    textMenu.addCommand(new RunProgramCommand("1", ex1.toString(), controller1));
-    textMenu.addCommand(new RunProgramCommand("2", ex2.toString(), controller2));
-    textMenu.addCommand(new RunProgramCommand("3", ex3.toString(), controller3));
-    textMenu.addCommand(new RunProgramCommand("4", ex4.toString(), controller4));
-    textMenu.addCommand(new RunProgramCommand("5", ex5.toString(), controller5));
-    textMenu.addCommand(new RunProgramCommand("6", ex6.toString(), controller6));
-    textMenu.addCommand(new RunProgramCommand("7", ex7.toString(), controller7));
-    textMenu.addCommand(new RunProgramCommand("8", ex8.toString(), controller8));
-    textMenu.addCommand(new RunProgramCommand("9", ex9.toString(), controller9));
-    textMenu.addCommand(new RunProgramCommand("10", ex10.toString(), controller10));
-    textMenu.addCommand(new RunProgramCommand("11", ex11.toString(), controller11));
-    textMenu.addCommand(new RunProgramCommand("12", ex12.toString(), controller12));
+    textMenu.addCommand(new RunProgramCommand("1", ex1.toString(), programServ1));
+    textMenu.addCommand(new RunProgramCommand("2", ex2.toString(), programServ2));
+    textMenu.addCommand(new RunProgramCommand("3", ex3.toString(), programServ3));
+    textMenu.addCommand(new RunProgramCommand("4", ex4.toString(), programServ4));
+    textMenu.addCommand(new RunProgramCommand("5", ex5.toString(), programServ5));
+    textMenu.addCommand(new RunProgramCommand("6", ex6.toString(), programServ6));
+    textMenu.addCommand(new RunProgramCommand("7", ex7.toString(), programServ7));
+    textMenu.addCommand(new RunProgramCommand("8", ex8.toString(), programServ8));
+    textMenu.addCommand(new RunProgramCommand("9", ex9.toString(), programServ9));
+    textMenu.addCommand(new RunProgramCommand("10", ex10.toString(), programServ10));
+    textMenu.addCommand(new RunProgramCommand("11", ex11.toString(), programServ11));
+    textMenu.addCommand(new RunProgramCommand("12", ex12.toString(), programServ12));
     textMenu.show();
 
 }

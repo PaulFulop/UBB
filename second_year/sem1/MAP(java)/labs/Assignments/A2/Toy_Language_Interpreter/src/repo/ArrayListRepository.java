@@ -19,8 +19,6 @@ public class ArrayListRepository implements Repository {
         this.logFilePath = logFilePath; //initialized by a string read from the keyboard using Scanner class.
     }
 
-
-
     @Override
     public void addProgramState(ProgramState program) {
         programStates.add(program);
@@ -52,5 +50,20 @@ public class ArrayListRepository implements Repository {
         } catch (IOException e) {
             throw new LogProgramStateException();
         }
+    }
+
+    @Override
+    public ProgramState getMainProgram() {
+        return programStates.getFirst();
+    }
+
+    @Override
+    public ProgramState getProgram(int id) {
+        return programStates.stream().filter(v -> v.getProgramId() == id).findFirst().orElseThrow();
+    }
+
+    @Override
+    public int getNumOfPrograms() {
+        return programStates.size();
     }
 }

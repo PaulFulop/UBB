@@ -1,14 +1,20 @@
 package model.expressions;
 
-import model.states.Heap;
-import model.states.HeapInterface;
-import model.states.SymbolTableInterface;
+import exceptions.TypecheckException;
+import model.states.MyHeap;
+import model.states.MyMap;
+import model.types.Type;
 import model.values.Value;
 
 public record ValueExpression(Value e) implements Expression {
 
-    public Value evaluate(SymbolTableInterface symTable, HeapInterface heapTable) {
+    public Value evaluate(MyMap<String, Value> symTable, MyHeap heapTable) {
         return e;
+    }
+
+    @Override
+    public Type typecheck(MyMap<String, Type> typeTable) throws TypecheckException {
+        return e.getType();
     }
 
     @Override

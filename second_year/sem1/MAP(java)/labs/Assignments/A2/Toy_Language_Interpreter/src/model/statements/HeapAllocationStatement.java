@@ -1,10 +1,13 @@
 package model.statements;
 
 import exceptions.StatementException;
+import exceptions.TypecheckException;
 import exceptions.ValueNotFoundException;
 import model.expressions.Expression;
+import model.states.MyMap;
 import model.states.ProgramState;
 import model.types.RefType;
+import model.types.Type;
 import model.values.RefValue;
 
 public record HeapAllocationStatement(String name, Expression expression) implements StatementInterface {
@@ -28,6 +31,16 @@ public record HeapAllocationStatement(String name, Expression expression) implem
         symTable.update(name, new RefValue(addressLocation, innerReferenceType));
 
         return null;
+    }
+
+    @Override
+    public MyMap<String, Type> typecheck(MyMap<String, Type> typeTable) throws TypecheckException {
+        Type typeVariable = typeTable.lookup(name);
+        Type typeExpression = expression.typecheck(typeTable);
+        if (typeVariable.equals(new RefType(typeExpression)))
+            return typeTable;
+        else
+            throw new TypecheckException("HeapAllocationStatement: right hand side and left hand side have different types ");
     }
 
     @Override

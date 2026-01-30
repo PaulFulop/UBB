@@ -2,15 +2,14 @@ package model.statements;
 
 import exceptions.ExpressionEvalException;
 import exceptions.StatementException;
+import exceptions.TypecheckException;
 import model.expressions.Expression;
-import model.states.Heap;
+import model.states.MyMap;
 import model.states.ProgramState;
-import model.states.SymbolTableInterface;
 import model.types.RefType;
+import model.types.Type;
+import model.values.IntValue;
 import model.values.RefValue;
-import model.values.Value;
-
-import java.sql.Statement;
 
 public record HeapWritingStatement(String name, Expression expression) implements StatementInterface {
     @Override
@@ -22,7 +21,7 @@ public record HeapWritingStatement(String name, Expression expression) implement
         if(!(tableValue.getType() instanceof RefType)) throw new ExpressionEvalException("The type of the value inside the symbol table is not a reference type.");
 
         int address = ((RefValue)tableValue).address();
-        if (!heapTable.isDefined(address)) throw new ExpressionEvalException("The address of the value inside the heap table is not defined.");
+        if (!heapTable.isDefined(new IntValue(address))) throw new ExpressionEvalException("The address of the value inside the heap table is not defined.");
 
         var expressionValue = expression.evaluate(symTable, heapTable);
 
@@ -31,7 +30,17 @@ public record HeapWritingStatement(String name, Expression expression) implement
         }
 
 
-        heapTable.update(address, expressionValue);
+        heapTable.update(new IntValue(address), expressionValue);
         return null;
+    }
+
+    @Override
+    public MyMap<String, Type> typecheck(MyMap<String, Type> typeTable) throws TypecheckException {
+        Type typeVariable = typeTable.lookup(name);
+        Type typeExpression = expression.typecheck(typeTable);
+        if (typeVariable.equals(new RefType(typeExpression)))
+            return typeTable;
+        else
+            throw new TypecheckException("HeapWritingStatement: right hand side and left hand side have different types ");
     }
 }
