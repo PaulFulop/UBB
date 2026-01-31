@@ -12,13 +12,21 @@ import repos.MemoryRepository;
 import view.View;
 
 void main() {
-    var repo = new MemoryRepository();
-    AddEntities(repo);
-    var controller = new Controller(repo);
+//    var repo = new MemoryRepository();
+//    AddEntities(repo);
+//    var controller = new Controller(repo);
+//
+//
+//    var view = new View(controller);
+//    view.StartMenu();
 
-
-    var view = new View(controller);
-    view.StartMenu();
+    List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
+    int sum = numbers.stream()
+            .filter(e -> e % 5 == 0 || e % 2 == 0)
+            .map(e -> {if (e % 5 == 0) return "AAAAA"; else return "BBB";})
+            .map(e -> e.length())
+            .reduce(0, Integer::sum);
+    IO.println(sum);
 }
 
 private static void AddEntities(MemoryRepository repo) {
