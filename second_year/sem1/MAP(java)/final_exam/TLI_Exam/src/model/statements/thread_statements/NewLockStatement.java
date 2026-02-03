@@ -34,4 +34,9 @@ public record NewLockStatement(String variableName) implements StatementInterfac
 
         return typeTable;
     }
+
+    @Override
+    public String toString(){
+        return "newLock(" +  variableName + ")";
+    }
 }

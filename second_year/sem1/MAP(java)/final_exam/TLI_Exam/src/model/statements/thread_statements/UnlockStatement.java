@@ -42,4 +42,9 @@ public record UnlockStatement(String variableName) implements StatementInterface
 
         return typeTable;
     }
+
+    @Override
+    public String toString(){
+        return "unlock(" +  variableName + ")";
+    }
 }

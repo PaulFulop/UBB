@@ -45,4 +45,9 @@ public record LockStatement(String variableName) implements StatementInterface {
 
         return typeTable;
     }
+
+    @Override
+    public String toString(){
+        return "lock(" +  variableName + ")";
+    }
 }
