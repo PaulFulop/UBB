@@ -2,8 +2,9 @@ package model.expressions;
 
 import exceptions.ExpressionEvalException;
 import exceptions.TypecheckException;
-import model.states.MyHeap;
-import model.states.MyMap;
+import model.states.map.tables.HeapTable;
+import model.states.map.tables.SymbolTable;
+import model.states.map.tables.TypeTable;
 import model.types.BoolType;
 import model.types.IntType;
 import model.types.Type;
@@ -12,7 +13,7 @@ import model.values.IntValue;
 import model.values.Value;
 
 public record RelationalExpression(String op, Expression e1, Expression e2) implements Expression {
-    public Value evaluate(MyMap<String, Value> symTable, MyHeap heapTable) throws ExpressionEvalException {
+    public Value evaluate(SymbolTable symTable, HeapTable heapTable) throws ExpressionEvalException {
         Value v1, v2;
         v1 = e1.evaluate(symTable, heapTable);
         v2 = e2.evaluate(symTable, heapTable);
@@ -35,7 +36,7 @@ public record RelationalExpression(String op, Expression e1, Expression e2) impl
     }
 
     @Override
-    public Type typecheck(MyMap<String, Type> typeTable) throws TypecheckException {
+    public Type typecheck(TypeTable typeTable) throws TypecheckException {
         Type type1, type2;
         type1=e1.typecheck(typeTable);
         type2=e2.typecheck(typeTable);

@@ -2178,3 +2178,3309 @@ HEAP TABLE:
 
 
 
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(int v;(int x;(int y;(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v))))))))))
+
+SYMBOL TABLE:
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+int v
+(int x;(int y;(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))))))
+
+SYMBOL TABLE:
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+int v
+(int x;(int y;(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))))))
+
+SYMBOL TABLE:
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(int x;(int y;(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))))))
+
+SYMBOL TABLE:
+v --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(int x;(int y;(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))))))
+
+SYMBOL TABLE:
+v --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+int x
+(int y;(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v))))))))
+
+SYMBOL TABLE:
+v --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+int x
+(int y;(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v))))))))
+
+SYMBOL TABLE:
+v --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(int y;(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v))))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(int y;(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v))))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+int y
+(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+int y
+(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+v = 0
+(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+v = 0
+(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3)
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3)
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(fork( (print(v);v = v - 1) );v = v + 1)
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(fork( (print(v);v = v - 1) );v = v + 1)
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+fork( (print(v);v = v - 1) )
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+fork( (print(v);v = v - 1) )
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 13
+EXECUTION STACK:
+(print(v);v = v - 1)
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 13
+EXECUTION STACK:
+(print(v);v = v - 1)
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 13
+EXECUTION STACK:
+print(v)
+v = v - 1
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 13
+EXECUTION STACK:
+print(v)
+v = v - 1
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(fork( (print(v);v = v - 1) );v = v + 1)
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 13
+EXECUTION STACK:
+v = v - 1
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(fork( (print(v);v = v - 1) );v = v + 1)
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 13
+EXECUTION STACK:
+v = v - 1
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+fork( (print(v);v = v - 1) )
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 13
+EXECUTION STACK:
+
+SYMBOL TABLE:
+v --> -1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+fork( (print(v);v = v - 1) )
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 14
+EXECUTION STACK:
+(print(v);v = v - 1)
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 14
+EXECUTION STACK:
+(print(v);v = v - 1)
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 14
+EXECUTION STACK:
+print(v)
+v = v - 1
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 14
+EXECUTION STACK:
+print(v)
+v = v - 1
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(fork( (print(v);v = v - 1) );v = v + 1)
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 14
+EXECUTION STACK:
+v = v - 1
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(fork( (print(v);v = v - 1) );v = v + 1)
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 14
+EXECUTION STACK:
+v = v - 1
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+fork( (print(v);v = v - 1) )
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 14
+EXECUTION STACK:
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+fork( (print(v);v = v - 1) )
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 15
+EXECUTION STACK:
+(print(v);v = v - 1)
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 15
+EXECUTION STACK:
+(print(v);v = v - 1)
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 3
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 15
+EXECUTION STACK:
+print(v)
+v = v - 1
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 3
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 15
+EXECUTION STACK:
+print(v)
+v = v - 1
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 3
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 15
+EXECUTION STACK:
+v = v - 1
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 3
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 15
+EXECUTION STACK:
+v = v - 1
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+x = 1
+(NOP;(y = 3;(NOP;print(10 * v))))
+
+SYMBOL TABLE:
+v --> 3
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 15
+EXECUTION STACK:
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+x = 1
+(NOP;(y = 3;(NOP;print(10 * v))))
+
+SYMBOL TABLE:
+v --> 3
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(NOP;(y = 3;(NOP;print(10 * v))))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(NOP;(y = 3;(NOP;print(10 * v))))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+NOP
+(y = 3;(NOP;print(10 * v)))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+NOP
+(y = 3;(NOP;print(10 * v)))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(y = 3;(NOP;print(10 * v)))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(y = 3;(NOP;print(10 * v)))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+y = 3
+(NOP;print(10 * v))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+y = 3
+(NOP;print(10 * v))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(NOP;print(10 * v))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 3
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(NOP;print(10 * v))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 3
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+NOP
+print(10 * v)
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 3
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+NOP
+print(10 * v)
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 3
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+print(10 * v)
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 3
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+print(10 * v)
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 3
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 3
+
+OUT:
+0
+1
+2
+30
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(int v;(int x;(int y;(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v))))))))))
+
+SYMBOL TABLE:
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+int v
+(int x;(int y;(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))))))
+
+SYMBOL TABLE:
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+int v
+(int x;(int y;(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))))))
+
+SYMBOL TABLE:
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(int x;(int y;(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))))))
+
+SYMBOL TABLE:
+v --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(int x;(int y;(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))))))
+
+SYMBOL TABLE:
+v --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+int x
+(int y;(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v))))))))
+
+SYMBOL TABLE:
+v --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+int x
+(int y;(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v))))))))
+
+SYMBOL TABLE:
+v --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(int y;(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v))))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(int y;(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v))))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+int y
+(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+int y
+(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(v = 0;(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+v = 0
+(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+v = 0
+(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3);(x = 1;(NOP;(y = 3;(NOP;print(10 * v))))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3)
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+repeat ((fork( (print(v);v = v - 1) );v = v + 1)) until (v == 3)
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(fork( (print(v);v = v - 1) );v = v + 1)
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(fork( (print(v);v = v - 1) );v = v + 1)
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+fork( (print(v);v = v - 1) )
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+fork( (print(v);v = v - 1) )
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 13
+EXECUTION STACK:
+(print(v);v = v - 1)
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 13
+EXECUTION STACK:
+(print(v);v = v - 1)
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 13
+EXECUTION STACK:
+print(v)
+v = v - 1
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 13
+EXECUTION STACK:
+print(v)
+v = v - 1
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(fork( (print(v);v = v - 1) );v = v + 1)
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 13
+EXECUTION STACK:
+v = v - 1
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(fork( (print(v);v = v - 1) );v = v + 1)
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 13
+EXECUTION STACK:
+v = v - 1
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+fork( (print(v);v = v - 1) )
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 13
+EXECUTION STACK:
+
+SYMBOL TABLE:
+v --> -1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+fork( (print(v);v = v - 1) )
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 14
+EXECUTION STACK:
+(print(v);v = v - 1)
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 14
+EXECUTION STACK:
+(print(v);v = v - 1)
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 14
+EXECUTION STACK:
+print(v)
+v = v - 1
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 14
+EXECUTION STACK:
+print(v)
+v = v - 1
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(fork( (print(v);v = v - 1) );v = v + 1)
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 14
+EXECUTION STACK:
+v = v - 1
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(fork( (print(v);v = v - 1) );v = v + 1)
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 14
+EXECUTION STACK:
+v = v - 1
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+fork( (print(v);v = v - 1) )
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 14
+EXECUTION STACK:
+
+SYMBOL TABLE:
+v --> 0
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+fork( (print(v);v = v - 1) )
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 15
+EXECUTION STACK:
+(print(v);v = v - 1)
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+v = v + 1
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 15
+EXECUTION STACK:
+(print(v);v = v - 1)
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 3
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 15
+EXECUTION STACK:
+print(v)
+v = v - 1
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+while (not (v == 3)) do ((fork( (print(v);v = v - 1) );v = v + 1))
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 3
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 15
+EXECUTION STACK:
+print(v)
+v = v - 1
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 3
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 15
+EXECUTION STACK:
+v = v - 1
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(x = 1;(NOP;(y = 3;(NOP;print(10 * v)))))
+
+SYMBOL TABLE:
+v --> 3
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 15
+EXECUTION STACK:
+v = v - 1
+
+SYMBOL TABLE:
+v --> 2
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+x = 1
+(NOP;(y = 3;(NOP;print(10 * v))))
+
+SYMBOL TABLE:
+v --> 3
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 15
+EXECUTION STACK:
+
+SYMBOL TABLE:
+v --> 1
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+x = 1
+(NOP;(y = 3;(NOP;print(10 * v))))
+
+SYMBOL TABLE:
+v --> 3
+x --> 0
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(NOP;(y = 3;(NOP;print(10 * v))))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(NOP;(y = 3;(NOP;print(10 * v))))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+NOP
+(y = 3;(NOP;print(10 * v)))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+NOP
+(y = 3;(NOP;print(10 * v)))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(y = 3;(NOP;print(10 * v)))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(y = 3;(NOP;print(10 * v)))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+y = 3
+(NOP;print(10 * v))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+y = 3
+(NOP;print(10 * v))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 0
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(NOP;print(10 * v))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 3
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+(NOP;print(10 * v))
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 3
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+NOP
+print(10 * v)
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 3
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+NOP
+print(10 * v)
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 3
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+print(10 * v)
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 3
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+print(10 * v)
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 3
+
+OUT:
+0
+1
+2
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+
+
+ PROGRAM ID: 12
+EXECUTION STACK:
+
+SYMBOL TABLE:
+v --> 3
+x --> 1
+y --> 3
+
+OUT:
+0
+1
+2
+30
+
+FILE TABLE
+
+HEAP TABLE:
+
+
+

@@ -1,7 +1,14 @@
 import controller.ProgramService;
-import controller.GarbageCollector;
 import model.expressions.*;
 import model.statements.*;
+import model.statements.basic_statements.*;
+import model.statements.file_statements.CloseFileStatement;
+import model.statements.file_statements.OpenFileStatement;
+import model.statements.file_statements.ReadFileStatement;
+import model.statements.heap_statements.HeapAllocationStatement;
+import model.statements.heap_statements.HeapWritingStatement;
+import model.statements.loop_statements.WhileStatement;
+import model.statements.thread_statements.ForkStatement;
 import model.types.BoolType;
 import model.types.IntType;
 import model.types.RefType;

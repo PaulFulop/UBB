@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="653.0" prefWidth="1136.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.javafx_controller.MainController">
+<AnchorPane prefHeight="851.0" prefWidth="1136.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.javafx_controller.MainController">
    <children>
       <TextField fx:id="PrgStatesTextField" alignment="CENTER" disable="true" layoutX="458.0" layoutY="369.0" prefHeight="166.0" prefWidth="168.0">
          <font>
@@ -21,7 +21,7 @@
           <TableColumn fx:id="HeapValueCol" prefWidth="90.0" text="Value" />
         </columns>
       </TableView>
-      <ListView fx:id="OutListView" layoutX="66.0" layoutY="367.0" prefHeight="234.0" prefWidth="168.0" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="66.0" AnchorPane.topAnchor="367.0" />
+      <ListView fx:id="OutListView" layoutX="66.0" layoutY="367.0" prefHeight="234.0" prefWidth="168.0" />
       <ListView fx:id="ProgramIDsListView" layoutX="264.0" layoutY="367.0" onMouseClicked="#onProgramIDListViewClicked" prefHeight="234.0" prefWidth="168.0" />
       <TableView fx:id="SymTableView" layoutX="253.0" layoutY="79.0" prefHeight="234.0" prefWidth="168.0">
         <columns>
@@ -75,5 +75,51 @@
             <TableColumn fx:id="FiletableBufCol" prefWidth="99.0" text="Buffered Reader" />
          </columns>
       </TableView>
+      <TableView fx:id="BarrierTableView" layoutX="66.0" layoutY="640.0" prefHeight="191.0" prefWidth="300.0">
+        <columns>
+          <TableColumn fx:id="BarrierTableIndex" prefWidth="75.0" text="Index" />
+          <TableColumn fx:id="BarrierTableValue" prefWidth="75.0" text="Value" />
+            <TableColumn fx:id="BarrierTableList" prefWidth="149.0" text="List of values" />
+        </columns>
+      </TableView>
+      <Label alignment="TOP_CENTER" layoutX="134.0" layoutY="611.0" opacity="0.56" prefHeight="17.0" prefWidth="200.0" text="Barrier Table" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TableView fx:id="LockTableView" layoutX="395.0" layoutY="640.0" prefHeight="191.0" prefWidth="150.0">
+        <columns>
+          <TableColumn fx:id="LockTableLocation" prefWidth="75.0" text="Location" />
+          <TableColumn fx:id="LockTableValue" prefWidth="75.0" text="Value" />
+        </columns>
+      </TableView>
+      <Label alignment="TOP_CENTER" layoutX="361.0" layoutY="611.0" opacity="0.56" prefHeight="17.0" prefWidth="200.0" text="Lock Table" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TableView fx:id="LatchTableView" layoutX="568.0" layoutY="640.0" prefHeight="191.0" prefWidth="150.0">
+        <columns>
+          <TableColumn fx:id="LatchLocationTableColumn" prefWidth="75.0" text="Location" />
+          <TableColumn fx:id="LatchValueTableColumn" prefWidth="75.0" text="Value" />
+        </columns>
+      </TableView>
+      <Label alignment="TOP_CENTER" layoutX="536.0" layoutY="611.0" opacity="0.56" prefHeight="17.0" prefWidth="200.0" text="Latch Table" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TableView fx:id="SemTableView" layoutX="767.0" layoutY="640.0" prefHeight="191.0" prefWidth="300.0">
+         <columns>
+            <TableColumn fx:id="SemTableIndex" prefWidth="75.0" text="Index" />
+            <TableColumn fx:id="SemTableValue" prefWidth="75.0" text="Value" />
+            <TableColumn fx:id="SemTableList" prefWidth="149.0" text="List of values" />
+         </columns>
+      </TableView>
+      <Label alignment="TOP_CENTER" layoutX="799.0" layoutY="611.0" opacity="0.56" prefHeight="17.0" prefWidth="200.0" text="Semaphore Table" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

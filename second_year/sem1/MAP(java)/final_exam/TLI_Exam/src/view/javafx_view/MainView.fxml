@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="653.0" prefWidth="1136.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.javafx_controller.MainController">
+<AnchorPane prefHeight="641.0" prefWidth="1136.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.javafx_controller.MainController">
    <children>
       <TextField fx:id="PrgStatesTextField" alignment="CENTER" disable="true" layoutX="458.0" layoutY="369.0" prefHeight="166.0" prefWidth="168.0">
          <font>
@@ -21,7 +21,7 @@
           <TableColumn fx:id="HeapValueCol" prefWidth="90.0" text="Value" />
         </columns>
       </TableView>
-      <ListView fx:id="OutListView" layoutX="66.0" layoutY="367.0" prefHeight="234.0" prefWidth="168.0" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="66.0" AnchorPane.topAnchor="367.0" />
+      <ListView fx:id="OutListView" layoutX="66.0" layoutY="367.0" prefHeight="234.0" prefWidth="168.0" />
       <ListView fx:id="ProgramIDsListView" layoutX="264.0" layoutY="367.0" onMouseClicked="#onProgramIDListViewClicked" prefHeight="234.0" prefWidth="168.0" />
       <TableView fx:id="SymTableView" layoutX="253.0" layoutY="79.0" prefHeight="234.0" prefWidth="168.0">
         <columns>
@@ -29,7 +29,7 @@
           <TableColumn fx:id="SymtableValueCol" prefWidth="91.0" text="Value" />
         </columns>
       </TableView>
-      <ListView fx:id="ExeStackListView" layoutX="651.0" layoutY="79.0" prefHeight="522.0" prefWidth="432.0" />
+      <ListView fx:id="ExeStackListView" layoutX="651.0" layoutY="79.0" prefHeight="234.0" prefWidth="432.0" />
       <Button fx:id="OneStepButton" layoutX="458.0" layoutY="548.0" mnemonicParsing="false" onAction="#clickOneStep" prefHeight="53.0" prefWidth="168.0" text="Run one step">
          <font>
             <Font size="20.0" />
@@ -75,5 +75,16 @@
             <TableColumn fx:id="FiletableBufCol" prefWidth="99.0" text="Buffered Reader" />
          </columns>
       </TableView>
+      <TableView fx:id="LockTableView" layoutX="643.0" layoutY="369.0" prefHeight="234.0" prefWidth="179.0">
+        <columns>
+          <TableColumn fx:id="LockTableLocation" prefWidth="92.0" text="Location" />
+          <TableColumn fx:id="LockTableValue" prefWidth="82.0" text="Value" />
+        </columns>
+      </TableView>
+      <Label alignment="TOP_CENTER" layoutX="633.0" layoutY="337.0" opacity="0.56" prefHeight="17.0" prefWidth="200.0" text="Lock Table" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

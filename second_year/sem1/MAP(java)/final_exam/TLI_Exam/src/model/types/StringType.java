@@ -20,4 +20,9 @@ public class StringType implements Type {
     public Value getDefaultValue() {
         return new StringValue("nil");
     }
+
+    @Override
+    public Type copy() {
+        return StringType.INSTANCE;
+    }
 }

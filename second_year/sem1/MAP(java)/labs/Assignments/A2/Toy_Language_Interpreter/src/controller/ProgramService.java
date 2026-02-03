@@ -4,7 +4,9 @@ import exceptions.ProgramException;
 import exceptions.TypecheckException;
 import model.states.*;
 import model.statements.StatementInterface;
-import model.types.Type;
+import model.states.list.OutList;
+import model.states.map.tables.*;
+import model.states.stack.ExecutionStack;
 import repo.Repository;
 
 import java.util.List;
@@ -41,21 +43,28 @@ public final class ProgramService {
     public void addNewProgram(StatementInterface program) {
         try{
             // typechecking before being able to even run the program / execute thread after fork
-            MyMap<String, Type> initialTypeTable = new MyMap<>();
+            TypeTable initialTypeTable = new TypeTable();
             program.typecheck(initialTypeTable);
 
-            var executionStack = new MyStack<StatementInterface>();
+            var executionStack = new ExecutionStack();
             executionStack.push(program);
             repo.addProgramState(new ProgramState(
                     executionStack,
-                    new MyMap<>(),
-                    new MyList<>(),
-                    new MyMap<>(),
-                    new MyHeap()));
+                    new SymbolTable(),
+                    new OutList(),
+                    new FileTable(),
+                    new HeapTable(),
+                    new BarrierTable(),
+                    new LockTable(),
+                    new LatchTable(),
+                    new SemaphoreTable()));
         }
         catch (TypecheckException e){
             IO.print(e.getMessage());
             System.exit(1);
+        }
+        catch (Exception e){
+            IO.print("Some other problem occured!\n(" + e.getMessage() + ')');
         }
     }
 

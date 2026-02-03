@@ -51,6 +51,15 @@ public class MainController {
     @FXML
     private TableColumn<Map.Entry<String, String>, String> SymtableValueCol;
 
+    @FXML
+    private TableView<Map.Entry<String, String>> LockTableView;
+
+    @FXML
+    private TableColumn<Map.Entry<String, String>, String> LockTableLocation;
+
+    @FXML
+    private TableColumn<Map.Entry<String, String>, String> LockTableValue;
+
     private List<ProgramService> programServiceList;
     private ProgramService mainProgramService;
     private List<ProgramState> programStates;
@@ -78,6 +87,12 @@ public class MainController {
                 new SimpleStringProperty(cellData.getValue().getKey()));
 
         SymtableValueCol.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getValue()));
+
+        LockTableLocation.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getKey()));
+
+        LockTableValue.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getValue()));
     }
 
@@ -176,6 +191,20 @@ public class MainController {
         OutListView.getItems().addAll(output.getElements().stream().map(Object::toString).toList());
     }
 
+    public void populateLockTableView(){
+        LockTableView.getItems().clear();
+        var lockTable = mainProgramService.getRepo().getMainProgram().lockTable();
+
+        LockTableView.getItems().addAll(
+                lockTable.getMap().entrySet().stream()
+                        .map(entry -> Map.entry(
+                                entry.getKey().toString(),
+                                entry.getValue().toString()
+                        ))
+                        .toList()
+        );
+    }
+
     // similar to executeMainProgram() but for the gui
     public void clickOneStep() throws ProgramException, InterruptedException {
         try{
@@ -206,6 +235,7 @@ public class MainController {
             populateHeapTableView();
             populateExeStackListView(programId);
             populateSymTableView(programId);
+            populateLockTableView();
         }
         catch (Exception e){
             IO.print("Unexpected error:\n" + e.getMessage());
@@ -219,5 +249,6 @@ public class MainController {
         ProgramIDsListView.getItems().clear();
         SymTableView.getItems().clear();
         PrgStatesTextField.clear();
+        LockTableView.getItems().clear();
     }
 }

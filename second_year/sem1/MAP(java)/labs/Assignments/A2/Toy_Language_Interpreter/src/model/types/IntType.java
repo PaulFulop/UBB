@@ -20,5 +20,10 @@ public class IntType implements Type {
     public Value getDefaultValue() {
         return new IntValue(0);
     }
+
+    @Override
+    public Type copy() {
+        return IntType.INSTANCE;
+    }
 }
 

@@ -3,27 +3,33 @@ package model.states;
 
 import exceptions.ProgramException;
 import model.statements.StatementInterface;
-import model.values.StringValue;
-import model.values.Value;
-
-import java.io.BufferedReader;
+import model.states.list.OutList;
+import model.states.map.tables.FileTable;
+import model.states.map.tables.HeapTable;
+import model.states.map.tables.LockTable;
+import model.states.map.tables.SymbolTable;
+import model.states.stack.ExecutionStack;
 
 public final class ProgramState {
     private static int globalIdCounter = 0;
     private final int programId;
-    private final MyStack<StatementInterface> exeStack;
-    private final MyMap<String, Value> symTable;
-    private final MyList<Value> out;
-    private final MyMap<StringValue, BufferedReader> fileTable;
-    private final MyHeap heapTable;
+    private final ExecutionStack exeStack;
+    private final SymbolTable symTable;
+    private final OutList out;
+    private final FileTable fileTable;
+    private final HeapTable heapTable;
+    private final LockTable lockTable;
 
-    public ProgramState(MyStack<StatementInterface> exeStack, MyMap<String, Value> symTable, MyList<Value> out, MyMap<StringValue, BufferedReader> fileTable, MyHeap heapTable) {
+    public ProgramState(ExecutionStack exeStack, SymbolTable symTable,
+                        OutList out, FileTable fileTable,
+                        HeapTable heapTable, LockTable lockTable) {
         this.programId = generateId();
         this.exeStack = exeStack;
         this.symTable = symTable;
         this.out = out;
         this.fileTable = fileTable;
         this.heapTable = heapTable;
+        this.lockTable = lockTable;
     }
 
     private static synchronized int generateId() {
@@ -32,13 +38,15 @@ public final class ProgramState {
 
     @Override
     public String toString() {
-        return "\n PROGRAM ID: " + programId +
+        return  "----------------------------------------------------------" +
+                "\n PROGRAM ID: " + programId +
                 "\nEXECUTION STACK:\n" + exeStack.toString() +
                 "\nSYMBOL TABLE:\n" + symTable.toString() +
                 "\nOUT:\n" + out.toString() +
                 "\nFILE TABLE\n" + fileTable.toString() +
                 "\nHEAP TABLE:\n" + heapTable.toString() +
-                "\n\n";
+                "\nLOCK TABLE\n" +  lockTable.toString() +
+                "----------------------------------------------------------\n\n";
     }
 
     public boolean isNotCompleted() {
@@ -46,7 +54,7 @@ public final class ProgramState {
     }
 
     public ProgramState executeOneStep() throws ProgramException {
-        MyStack<StatementInterface> executionStack = this.exeStack();
+        ExecutionStack executionStack = this.exeStack();
         if (executionStack.isEmpty()) throw new ProgramException("The execution stack of the program is empty");
 
         StatementInterface nextStatement = executionStack.pop();
@@ -56,25 +64,21 @@ public final class ProgramState {
     public int getProgramId(){
         return programId;
     }
-
-    public MyStack<StatementInterface> exeStack() {
+    public ExecutionStack exeStack() {
         return exeStack;
     }
-
-    public MyMap<String, Value> symTable() {
+    public SymbolTable symTable() {
         return symTable;
     }
-
-    public MyList<Value> out() {
+    public OutList out() {
         return out;
     }
-
-    public MyMap<StringValue, BufferedReader> fileTable() {
+    public FileTable fileTable() {
         return fileTable;
     }
-
-    public MyHeap heapTable() {
+    public HeapTable heapTable() {
         return heapTable;
     }
+    public LockTable lockTable() {return lockTable;}
 }
 

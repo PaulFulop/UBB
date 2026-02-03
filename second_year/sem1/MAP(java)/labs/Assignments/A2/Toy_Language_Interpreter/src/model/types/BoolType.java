@@ -20,5 +20,10 @@ public class BoolType implements Type {
     public Value getDefaultValue() {
         return new BoolValue(false);
     }
+
+    @Override
+    public Type copy() {
+        return BoolType.INSTANCE;
+    }
 }
 

@@ -1,9 +1,7 @@
 package model.types;
-import com.sun.jdi.BooleanType;
 import model.values.Value;
 import model.values.RefValue;
 
-import java.util.Objects;
 
 public record RefType(Type inner) implements Type {
     public boolean equals(Object another) {
@@ -22,6 +20,11 @@ public record RefType(Type inner) implements Type {
     @Override
     public Value getDefaultValue() {
         return new RefValue(0, inner);
+    }
+
+    @Override
+    public Type copy() {
+        return new RefType(inner.copy());
     }
 
 }
