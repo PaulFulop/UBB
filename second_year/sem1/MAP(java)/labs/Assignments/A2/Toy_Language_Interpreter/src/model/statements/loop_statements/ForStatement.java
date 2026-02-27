@@ -43,12 +43,15 @@ public record ForStatement(String variableName, Expression expression1, Expressi
         Type typeExpression1 = expression1.typecheck(typeTable);
         Type typeExpression2 = expression2.typecheck(typeTable);
 
-        //PROBLEM in expressions because it's an assign statement on v that depends on v but we typecheck
+        //PROBLEM in expression3 because it's an assign statement on v that depends on v but we typecheck
         // before we run the program, and we don't have x
         // and if we also use v inside the for loop then we ll get an error again from below =>
         // I have to add this manually since typechecking happens before I run
         // the program and actually create the variable.
-        typeTable.add(variableName, IntType.INSTANCE);
+        typeTable.add(variableName, IntType.INSTANCE); // for a TLI I will always consider that the value
+                                                        // that im iterating over is an integer
+                                                        // (actually for all the loop implementations in general I guess,
+                                                        // because my relational expression only accepts Int values for now)
 
         Type typeExpression3 = expression3.typecheck(typeTable);
         if (!(typeExpression1 instanceof IntType) || !(typeExpression2 instanceof IntType || !(typeExpression3 instanceof IntType)) ) {
