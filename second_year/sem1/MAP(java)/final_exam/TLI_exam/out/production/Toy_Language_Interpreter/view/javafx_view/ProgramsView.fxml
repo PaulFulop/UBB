@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="584.0" prefWidth="863.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.javafx_controller.ProgramsController">
+   <children>
+      <ListView id="ProgramsListView" fx:id="AllProgramsListView" layoutX="11.0" layoutY="37.0" onMouseClicked="#onMouseClicked" prefHeight="543.0" prefWidth="841.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="37.0" />
+      <Label alignment="CENTER" layoutX="227.0" layoutY="10.0" prefHeight="23.0" prefWidth="410.0" text="LIST OF PROGRAMS" AnchorPane.leftAnchor="227.0" AnchorPane.rightAnchor="226.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
