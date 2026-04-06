@@ -28,74 +28,130 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.dgvCustomer = new System.Windows.Forms.DataGridView();
-            this.dgvReviews = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvReviews)).BeginInit();
+            this.dgvParentTable = new System.Windows.Forms.DataGridView();
+            this.dgvChildTable = new System.Windows.Forms.DataGridView();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.lblParentTable = new System.Windows.Forms.Label();
+            this.lblChildTable = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvParentTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvChildTable)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // dgvParentTable
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(25, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 24);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Customers";
+            this.dgvParentTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvParentTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvParentTable.GridColor = System.Drawing.Color.Silver;
+            this.dgvParentTable.Location = new System.Drawing.Point(29, 68);
+            this.dgvParentTable.Name = "dgvParentTable";
+            this.dgvParentTable.Size = new System.Drawing.Size(667, 495);
+            this.dgvParentTable.TabIndex = 2;
             // 
-            // dgvCustomer
+            // dgvChildTable
             // 
-            this.dgvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCustomer.Location = new System.Drawing.Point(29, 68);
-            this.dgvCustomer.Name = "dgvCustomer";
-            this.dgvCustomer.Size = new System.Drawing.Size(364, 468);
-            this.dgvCustomer.TabIndex = 2;
+            this.dgvChildTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvChildTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvChildTable.GridColor = System.Drawing.Color.Silver;
+            this.dgvChildTable.Location = new System.Drawing.Point(702, 68);
+            this.dgvChildTable.Name = "dgvChildTable";
+            this.dgvChildTable.Size = new System.Drawing.Size(523, 456);
+            this.dgvChildTable.TabIndex = 4;
             // 
-            // dgvReviews
+            // btnPrevious
             // 
-            this.dgvReviews.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReviews.Location = new System.Drawing.Point(435, 68);
-            this.dgvReviews.Name = "dgvReviews";
-            this.dgvReviews.Size = new System.Drawing.Size(364, 468);
-            this.dgvReviews.TabIndex = 4;
+            this.btnPrevious.BackColor = System.Drawing.Color.DimGray;
+            this.btnPrevious.FlatAppearance.BorderSize = 0;
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrevious.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnPrevious.Location = new System.Drawing.Point(702, 530);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(100, 33);
+            this.btnPrevious.TabIndex = 5;
+            this.btnPrevious.Text = "Previous";
+            this.btnPrevious.UseVisualStyleBackColor = false;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
-            // label2
+            // btnNext
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(431, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 24);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Reviews";
+            this.btnNext.BackColor = System.Drawing.Color.DimGray;
+            this.btnNext.FlatAppearance.BorderSize = 0;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnNext.Location = new System.Drawing.Point(808, 530);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(104, 33);
+            this.btnNext.TabIndex = 6;
+            this.btnNext.Text = "Next";
+            this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.DimGray;
+            this.btnSave.FlatAppearance.BorderSize = 0;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnSave.Location = new System.Drawing.Point(918, 530);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(307, 33);
+            this.btnSave.TabIndex = 25;
+            this.btnSave.Text = "Save Changes";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // lblParentTable
+            // 
+            this.lblParentTable.AutoSize = true;
+            this.lblParentTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblParentTable.Location = new System.Drawing.Point(29, 28);
+            this.lblParentTable.Name = "lblParentTable";
+            this.lblParentTable.Size = new System.Drawing.Size(70, 25);
+            this.lblParentTable.TabIndex = 26;
+            this.lblParentTable.Text = "label1";
+            // 
+            // lblChildTable
+            // 
+            this.lblChildTable.AutoSize = true;
+            this.lblChildTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChildTable.Location = new System.Drawing.Point(697, 28);
+            this.lblChildTable.Name = "lblChildTable";
+            this.lblChildTable.Size = new System.Drawing.Size(70, 25);
+            this.lblChildTable.TabIndex = 27;
+            this.lblChildTable.Text = "label1";
             // 
             // CalistenicsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1032, 577);
-            this.Controls.Add(this.dgvReviews);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.dgvCustomer);
-            this.Controls.Add(this.label1);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ClientSize = new System.Drawing.Size(1237, 575);
+            this.Controls.Add(this.lblChildTable);
+            this.Controls.Add(this.lblParentTable);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.btnPrevious);
+            this.Controls.Add(this.dgvChildTable);
+            this.Controls.Add(this.dgvParentTable);
             this.Name = "CalistenicsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cali Manager";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvReviews)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvParentTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvChildTable)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dgvCustomer;
-        private System.Windows.Forms.DataGridView dgvReviews;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridView dgvParentTable;
+        private System.Windows.Forms.DataGridView dgvChildTable;
+        private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Label lblParentTable;
+        private System.Windows.Forms.Label lblChildTable;
     }
 }
 

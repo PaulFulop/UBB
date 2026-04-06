@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List Application</title>
+    <link rel="stylesheet" href="A4.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>My To-Do List</h1>
+
+      <div class="input-section">
+        <input
+          type="text"
+          id="todoInput"
+          placeholder="Add a new task..."
+          autocomplete="off"
+        />
+        <button id="addBtn">Add</button>
+      </div>
+
+      <ul id="todoList"></ul>
+      <div id="emptyState" class="empty-state">No tasks</div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script>
+      const STORAGE_KEY = "todoList";
+      let todos = [];
+      let draggedItem = null;
+      let editingIndex = null;
+
+      $(document).ready(function () {
+        loadTodosFromStorage();
+        renderTodos();
+        attachAddHandlers();
+      });
+
+      function loadTodosFromStorage() {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          try {
+            todos = JSON.parse(stored);
+          } catch (e) {
+            console.error("Error loading todos from storage:", e);
+            todos = [];
+          }
+        }
+      }
+
+      function saveTodosToStorage() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+      }
+
+      function renderTodos() {
+        const $list = $("#todoList");
+        const $emptyState = $("#emptyState");
+
+        $list.empty();
+
+        if (todos.length === 0) {
+          $emptyState.show();
+          return;
+        }
+
+        $emptyState.hide();
+
+        todos.forEach((todo, index) => {
+          const $item = $(
+            '<li class="todo-item" draggable="true" data-index="' +
+              index +
+              '">' +
+              '<span class="todo-text">' +
+              escapeHtml(todo) +
+              "</span>" +
+              '<button class="delete-btn">Delete</button>' +
+              '<button class="edit-btn">Edit</button>' +
+              "</li>",
+          );
+
+          $list.append($item);
+        });
+
+        attachDragAndDropHandlers();
+        attachDeleteHandlers();
+        attachEditHandlers();
+      }
+
+      function attachEditHandlers() {
+        $(".edit-btn").click(function () {
+          const $item = $(this).closest(".todo-item");
+          const index = $item.data("index");
+          const $input = $("#todoInput");
+
+          editingIndex = index;
+          $input.val(todos[index]);
+          $input.focus();
+        });
+      }
+
+      function attachAddHandlers() {
+        $("#addBtn").on("click", function () {
+          addTodo();
+        });
+      }
+
+      function addTodo() {
+        const $input = $("#todoInput");
+
+        const text = $input.val().trim();
+
+        if (text === "") {
+          $input.focus();
+          return;
+        }
+
+        if (editingIndex === null) {
+          todos.push(text);
+        } else {
+          todos[editingIndex] = text;
+          editingIndex = null;
+        }
+
+        saveTodosToStorage();
+        renderTodos();
+
+        $input.val("");
+        $input.focus();
+      }
+
+      function attachDeleteHandlers() {
+        $(".delete-btn").click(function () {
+          const $item = $(this).closest(".todo-item");
+          const index = $item.data("index");
+
+          todos.splice(index, 1);
+          saveTodosToStorage();
+          renderTodos();
+        });
+      }
+
+      function attachDragAndDropHandlers() {
+        const $list = $("#todoList");
+
+        $list.off("dragstart", ".todo-item");
+        $list.off("dragend", ".todo-item");
+        $list.off("dragover", ".todo-item");
+        $list.off("dragleave", ".todo-item");
+        $list.off("drop", ".todo-item");
+
+        $list.on("dragstart", ".todo-item", function (e) {
+          draggedItem = this;
+          $(this).addClass("dragging");
+          e.originalEvent.dataTransfer.effectAllowed = "move";
+          e.originalEvent.dataTransfer.setData("text/plain", "");
+        });
+
+        $list.on("dragend", ".todo-item", function () {
+          $(".todo-item").removeClass("dragging drag-over");
+          draggedItem = null;
+        });
+
+        $list.on("dragover", ".todo-item", function (e) {
+          e.preventDefault();
+          if (this !== draggedItem) {
+            $(this).addClass("drag-over");
+          }
+        });
+
+        $list.on("dragleave", ".todo-item", function () {
+          $(this).removeClass("drag-over");
+        });
+
+        $list.on("drop", ".todo-item", function (e) {
+          e.preventDefault();
+
+          if (this !== draggedItem) {
+            const draggedIndex = $(draggedItem).data("index");
+            const targetIndex = $(this).data("index");
+
+            const draggedTodo = todos[draggedIndex];
+            todos.splice(draggedIndex, 1);
+            const adjustedIndex =
+              draggedIndex < targetIndex ? targetIndex - 1 : targetIndex;
+            todos.splice(adjustedIndex, 0, draggedTodo);
+
+            saveTodosToStorage();
+            renderTodos();
+          }
+        });
+      }
+
+      function escapeHtml(text) {
+        const map = {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;",
+        };
+        return text.replace(/[&<>"']/g, function (m) {
+          return map[m];
+        });
+      }
+    </script>
+  </body>
+</html>

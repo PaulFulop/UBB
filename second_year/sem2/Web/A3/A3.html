@@ -1,0 +1,74 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A3 assignment</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="combo_wrap">
+        <label>Choose a Romanian county</label>
+        <br />
+        <select
+          class="combobox"
+          id="county-select"
+          onchange="updateCityOptions()"
+        >
+          <!-- <option value="cluj">Cluj</option>
+          <option value="bihor">Bihor</option>
+          <option value="sibiu">Sibiu</option>
+          <option value="timis">Timis</option>
+          <option value="iasi">Iasi</option> -->
+        </select>
+      </div>
+
+      <div class="combo_wrap">
+        <label>Cities in selected county</label>
+        <br />
+        <select class="combobox" id="city-select"></select>
+      </div>
+    </div>
+
+    <script>
+      const countries = ["cluj", "bihor", "sibiu", "timis", "iasi"];
+      const countyToCities = {
+        cluj: ["Cluj-Napoca", "Turda", "Dej", "Campia Turzii"],
+        bihor: ["Oradea", "Salonta", "Marghita", "Beius"],
+        sibiu: ["Sibiu", "Medias", "Cisnadie", "Agnita"],
+        timis: ["Timisoara", "Lugoj", "Sannicolau Mare", "Deta"],
+        iasi: ["Iasi", "Pascani", "Targu Frumos", "Harlau"],
+      };
+
+      const countySelect = document.getElementById("county-select");
+      const citySelect = document.getElementById("city-select");
+
+      function updateCityOptions() {
+        const selectedCounty = countySelect.value;
+        const cities = countyToCities[selectedCounty];
+
+        citySelect.innerHTML = "";
+
+        cities.forEach((city) => {
+          const option = document.createElement("option");
+          option.textContent = city;
+          citySelect.append(option);
+        });
+      }
+
+      function loadCountries() {
+        countries.forEach((country) => {
+          const option = document.createElement("option");
+          option.textContent = country;
+          countySelect.append(option);
+        });
+      }
+
+      loadCountries();
+      updateCityOptions();
+    </script>
+  </body>
+</html>

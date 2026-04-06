@@ -1,0 +1,97 @@
+We have 6 trait axes:
+
+A (Abstraction) - do they enjoy working with mathematical concepts, models, and theory?
+V (Visibility) — does the person care about what things look like? High V → frontend, UX. Low V → backend, data.
+I (Interaction) — do they prefer working with people or machines/systems? High I → PM, support. Low I → DevOps, data.
+D (Depth) — do they love digging into how things work under the hood? High D → backend, DevOps, data.
+C (Creativity) — do they prefer open-ended problems or well-defined tasks? High C → frontend, UX, PM.
+P (Pace) — do they like juggling many things at once or taking one problem deep? Used as a tiebreaker mostly.
+
+Each individual question is answered on a 1–5 scale (e.g. "Strongly disagree → Strongly agree"), and then we average those answers to get the trait score.
+Each trait's final score (1–5) is the average of the answers to its 4 questions.
+
+Score per role:
+
+Frontend Developer: V*2 + C*2 + P
+Backend Developer: D*2 + (5−V)*2 + P
+UI/UX Designer: V*3 + C*2 + I
+DevOps Engineer: D*2 + P*2 + (5−I)
+Project Manager: I*3 + C + (5−D)
+Data Analyst: D*2 + A*2 + (5−I)
+Cybersecurity Specialist: D*3 + (6−I) + (6−P)
+AI/ML Engineer: D*3 + C + A*2
+
+The personality test result shall be stored in the user profile and prominently displayed on the profile page formatted as "PERSONALITY TEST RESULT: [Role]" (e.g., "PERSONALITY TEST RESULT: BACKEND DEVELOPER").
+The top 3 roles will be displayed there.
+
+
+
+(5 or 6 - X) -> way of rewarding a low trait (lower trait X means bigger number)
+
+EX: If I = 1 it means the user hates working with people => in Cybersecurity I'll have 6-1 = 5 (high bonus)
+essentially it's saying "the less you like interacting with people, the better you fit cybersecurity."
+
+
+EX:
+
+Frontend: 4*2 + 4*2 + 3 = 8 + 8 + 3 = 19
+Backend: 3*2 + (6−4)*2 + 3 = 6 + 4 + 3 = 13
+UI/UX: 4*3 + 4*2 + 2 = 12 + 8 + 2 = 22
+DevOps: 3*2 + 3*2 + (6−2) = 6 + 6 + 4 = 16
+IT Project Mgr: 2*3 + 4 + (6−3) = 6 + 4 + 3 = 13
+Data Analyst: 3*2 + (6−2) + (6−4) = 6 + 4 + 2 = 12
+Cybersecurity: 3*3 + (6−2) + (6−3) = 9 + 4 + 3 = 16
+IT Support: 2*2 + 3*2 + (6−3) = 4 + 6 + 3 = 13
+
+MAX is UI/UX with 22 => would be the best choice 
+other good choices => Data Analyst (12), Backend (13), IT Project Mgr( 13)
+
+TODO find 24 questions -> 4 for each trait
+
+V — Visibility (do you care about how things look?)
+
+1.I notice design details in apps and websites that most people would overlook.
+2.I believe a seamless, high-quality user interface is just as critical to a project's success as the underlying code.
+3.I believe that a project isn't truly 'finished' until the visual polish matches the technical quality.
+4.I find myself drawn to tools and interfaces that are clean and well-designed.
+
+
+I — Interaction (do you prefer people or systems?)
+
+5.I enjoy collaborating with others more than working through problems on my own.
+6.I feel energized after meetings or group discussions rather than drained.
+7.I would rather manage relationships and expectations than debug a technical issue.
+8.I prefer roles where communication is a big part of the daily work.
+
+
+D — Depth (do you love understanding how things work under the hood?)
+
+9.When something breaks, I want to understand exactly why — not just fix the surface issue.
+10.I enjoy reading documentation or technical material to fully understand a system.
+11.I find it satisfying to deeply master one topic rather than know a little about many.
+12.I get curious about what's happening "behind the scenes" in the tools and systems I use.
+
+
+C — Creativity (do you prefer open-ended problems or well-defined tasks?)
+
+13.I thrive when given a problem with no clear solution rather than a checklist to follow.
+14.I enjoy coming up with new ideas more than executing someone else's plan.
+15.I prefer work that leaves room for experimentation over work with strict rules and procedures.
+16.I am most productive when tackling new problems rather than refining existing processes.
+
+
+P — Pace (do you prefer multitasking or single deep focus?)
+
+17.I work best when I have several different tasks to switch between throughout the day.
+18.I enjoy fast-paced environments where priorities shift and I have to adapt quickly.
+19.I prefer having many smaller responsibilities over owning one large long-term problem.
+20.I feel productive when I can check off multiple different things in a single day.
+
+
+A — Abstraction (do you enjoy mathematical and theoretical thinking?)
+
+21.I enjoy working with mathematical concepts, formulas, or statistical models.
+22.I find theoretical or abstract problems more interesting than purely practical ones.
+23.I am comfortable working with data, probabilities, and logical frameworks.
+24.I prefer to understand the logic and first principles of a system rather than just knowing how to operate it.
+
