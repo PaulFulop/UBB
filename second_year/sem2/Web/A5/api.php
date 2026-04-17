@@ -52,14 +52,14 @@ try {
             $stmt = $db->prepare('SELECT id, author, name, type, recipe, created_at, updated_at FROM recipes WHERE type = ? ORDER BY id DESC');
             $stmt->bind_param('s', $type);
             $stmt->execute();
-            $result = $stmt->get_result();
+            $recipes = stmt_fetch_all_assoc($stmt);
         } else {
             $result = $db->query('SELECT id, author, name, type, recipe, created_at, updated_at FROM recipes ORDER BY id DESC');
-        }
+            $recipes = [];
 
-        $recipes = [];
-        while ($row = $result->fetch_assoc()) {
-            $recipes[] = $row;
+            while ($row = $result->fetch_assoc()) {
+                $recipes[] = $row;
+            }
         }
 
         send_json(200, ['recipes' => $recipes]);
@@ -96,7 +96,14 @@ try {
         $stmt->execute();
 
         if ($stmt->affected_rows === 0) {
-            send_json(404, ['error' => 'Recipe not found']);
+            $check = $db->prepare('SELECT id FROM recipes WHERE id = ?');
+            $check->bind_param('i', $id);
+            $check->execute();
+            $existing = stmt_fetch_one_assoc($check);
+
+            if ($existing === null) {
+                send_json(404, ['error' => 'Recipe not found']);
+            }
         }
 
         send_json(200, ['message' => 'Recipe updated']);

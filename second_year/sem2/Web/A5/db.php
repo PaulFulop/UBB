@@ -61,6 +61,52 @@ function normalize_recipe_input(array $source): array
     ];
 }
 
+function stmt_fetch_all_assoc(mysqli_stmt $stmt): array
+{
+    $metadata = $stmt->result_metadata();
+    if ($metadata === false) {
+        return [];
+    }
+
+    $fieldNames = [];
+    $row = [];
+    $bindValues = [];
+
+    while ($field = $metadata->fetch_field()) {
+        $fieldNames[] = $field->name;
+        $row[$field->name] = null;
+        $bindValues[] = &$row[$field->name];
+    }
+
+    if ($fieldNames === []) {
+        $metadata->free();
+        return [];
+    }
+
+    call_user_func_array([$stmt, 'bind_result'], $bindValues);
+
+    $rows = [];
+    while ($stmt->fetch()) {
+        $currentRow = [];
+        foreach ($fieldNames as $fieldName) {
+            $currentRow[$fieldName] = $row[$fieldName];
+        }
+
+        $rows[] = $currentRow;
+    }
+
+    $stmt->free_result();
+    $metadata->free();
+
+    return $rows;
+}
+
+function stmt_fetch_one_assoc(mysqli_stmt $stmt): ?array
+{
+    $rows = stmt_fetch_all_assoc($stmt);
+    return $rows[0] ?? null;
+}
+
 function esc(string $value): string
 {
     return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');

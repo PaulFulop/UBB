@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Manager - Edit</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <h1>Edit Recipe</h1>
+        <p>Update recipe details with data loaded from the backend.</p>
+      </header>
+
+      <nav class="top-nav">
+        <a href="index.html">Home</a>
+        <a href="browse.html">Browse</a>
+        <a href="manage.html">Manage</a>
+      </nav>
+
+      <section class="panel">
+        <p id="edit-message" class="message"></p>
+
+        <div id="edit-form-shell" class="hidden">
+          <form id="recipe-edit-form">
+            <label for="name">Recipe name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              minlength="2"
+              maxlength="120"
+              required
+            />
+
+            <label for="author">Author</label>
+            <input
+              id="author"
+              name="author"
+              type="text"
+              minlength="2"
+              maxlength="100"
+              required
+            />
+
+            <label for="type">Type</label>
+            <input
+              id="type"
+              name="type"
+              type="text"
+              pattern="[A-Za-z ]{3,40}"
+              required
+            />
+
+            <label for="recipe">Actual recipe</label>
+            <textarea
+              id="recipe"
+              name="recipe"
+              rows="7"
+              minlength="10"
+              maxlength="4000"
+              required
+            ></textarea>
+
+            <div class="form-actions">
+              <button type="submit">Update recipe</button>
+              <a class="button-link ghost" href="manage.html">Cancel</a>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

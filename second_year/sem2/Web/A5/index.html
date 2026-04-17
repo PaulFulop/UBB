@@ -3,10 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recipe Manager Redirect</title>
-    <meta http-equiv="refresh" content="0; url=index.php" />
+    <title>Recipe Manager - Home</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <p>Redirecting to <a href="index.php">index.php</a>...</p>
+    <main class="app-shell">
+      <header class="hero">
+        <h1>Recipe Manager</h1>
+        <p>Static HTML front-end with PHP backend endpoints.</p>
+      </header>
+
+      <section class="panel nav-grid">
+        <a class="nav-card" href="browse.html">
+          <h2>Browse Recipes</h2>
+          <p>Filter by type with asynchronous AJAX loading.</p>
+        </a>
+
+        <a class="nav-card" href="add.html">
+          <h2>Add Recipe</h2>
+          <p>Create a new recipe with client and server validation.</p>
+        </a>
+
+        <a class="nav-card" href="manage.html">
+          <h2>Manage Recipes</h2>
+          <p>Edit or delete recipes without typing IDs manually.</p>
+        </a>
+
+        <a class="nav-card" href="edit.html">
+          <h2>Edit Page</h2>
+          <p>Dedicated edit interface reached from manage list.</p>
+        </a>
+
+        <a class="nav-card" href="api.php?action=list&type=all">
+          <h2>API Preview</h2>
+          <p>JSON endpoint for recipes list (debug/testing).</p>
+        </a>
+      </section>
+    </main>
   </body>
 </html>
