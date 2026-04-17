@@ -1,0 +1,21 @@
+<div class="app-frame">
+  <header class="app-hero">
+    <div class="hero-copy">
+      <h1>Recipe Manager</h1>
+      <p>Browse, add, edit, and remove recipes.</p>
+    </div>
+
+    <nav class="top-nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+        >Home</a
+      >
+      <a routerLink="/browse" routerLinkActive="active">Browse</a>
+      <a routerLink="/add" routerLinkActive="active">Add</a>
+      <a routerLink="/manage" routerLinkActive="active">Manage</a>
+    </nav>
+  </header>
+
+  <main class="page-frame">
+    <router-outlet></router-outlet>
+  </main>
+</div>
