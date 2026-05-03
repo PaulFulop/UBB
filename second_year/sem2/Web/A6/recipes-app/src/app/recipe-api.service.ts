@@ -16,7 +16,7 @@ interface ActionResponse {
   message: string;
 }
 
-const BACKEND_URL = '/backend/api.php';
+const BACKEND_URL = '/recipes_app/api.php';
 
 @Injectable({ providedIn: 'root' })
 export class RecipeApiService {

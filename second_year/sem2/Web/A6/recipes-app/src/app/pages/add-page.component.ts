@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { RecipeApiService, formatHttpError } from '../recipe-api.service';
 
@@ -19,7 +20,7 @@ import { RecipeApiService, formatHttpError } from '../recipe-api.service';
         </div>
       </div>
 
-      <p class="message" [class.error]="isError()">{{ message() }}</p>
+      <p class="message" [class.error]="isError()">{{ message }}</p>
 
       <form [formGroup]="form" (ngSubmit)="submit()">
         <div class="split-layout">
@@ -57,8 +58,9 @@ import { RecipeApiService, formatHttpError } from '../recipe-api.service';
 export class AddPageComponent {
   private readonly api = inject(RecipeApiService);
   private readonly fb = inject(FormBuilder);
+  private readonly router = new Router();
 
-  readonly message = signal('Fill the form and submit to create a recipe.');
+  message = 'Fill the form and submit to create a recipe.';
   readonly isError = signal(false);
 
   readonly form = this.fb.nonNullable.group({
@@ -71,20 +73,19 @@ export class AddPageComponent {
   async submit(): Promise<void> {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      this.message.set(this.getValidationMessage());
+      this.message = this.getValidationMessage();
       this.isError.set(true);
       return;
     }
 
     try {
-      this.message.set('Saving recipe...');
+      this.message = 'Saving recipe...';
       this.isError.set(false);
-
       await firstValueFrom(this.api.createRecipe(this.form.getRawValue()));
-      this.message.set('Recipe created!');
+      this.message = 'Recipe created!';
       this.resetForm();
     } catch (error) {
-      this.message.set(formatHttpError(error));
+      this.message = formatHttpError(error);
       this.isError.set(true);
     }
   }

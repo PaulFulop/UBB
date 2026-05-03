@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
+    <display-name>Battleships Game</display-name>
+
+    <!-- ======================== -->
+    <!--   SESSION FILTER         -->
+    <!-- Protects all pages       -->
+    <!-- ======================== -->
+    <filter>
+        <filter-name>SessionFilter</filter-name>
+        <filter-class>com.battleships.filter.SessionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- ======================== -->
+    <!--   SERVLETS               -->
+    <!-- ======================== -->
+
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.battleships.servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.battleships.servlet.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.battleships.servlet.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LobbyServlet</servlet-name>
+        <servlet-class>com.battleships.servlet.LobbyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LobbyServlet</servlet-name>
+        <url-pattern>/lobby</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PlaceShipsServlet</servlet-name>
+        <servlet-class>com.battleships.servlet.PlaceShipsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PlaceShipsServlet</servlet-name>
+        <url-pattern>/place-ships</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GameServlet</servlet-name>
+        <servlet-class>com.battleships.servlet.GameServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GameServlet</servlet-name>
+        <url-pattern>/game</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ShotServlet</servlet-name>
+        <servlet-class>com.battleships.servlet.ShotServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShotServlet</servlet-name>
+        <url-pattern>/shoot</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ForfeitServlet</servlet-name>
+        <servlet-class>com.battleships.servlet.ForfeitServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ForfeitServlet</servlet-name>
+        <url-pattern>/forfeit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LobbyPollServlet</servlet-name>
+        <servlet-class>com.battleships.servlet.LobbyPollServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LobbyPollServlet</servlet-name>
+        <url-pattern>/lobby-poll</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PollServlet</servlet-name>
+        <servlet-class>com.battleships.servlet.PollServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PollServlet</servlet-name>
+        <url-pattern>/poll</url-pattern>
+    </servlet-mapping>
+
+    <!-- Default welcome page -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- Session timeout: 30 minutes -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+</web-app>

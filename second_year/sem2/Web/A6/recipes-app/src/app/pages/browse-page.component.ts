@@ -25,12 +25,10 @@ import { RecipeApiService, formatHttpError } from '../recipe-api.service';
       <div class="browse-controls">
         <div class="field-inline">
           <label for="type-filter">Recipe type</label>
-          <select id="type-filter" [formControl]="typeControl">
+          <select id="type-filter" [formControl]="typeControl" (change)="loadRecipes()">
             <option *ngFor="let type of types()" [value]="type">{{ type }}</option>
           </select>
         </div>
-
-        <button type="button" (click)="loadRecipes()">Load recipes</button>
       </div>
 
       <p class="previous-filter">
