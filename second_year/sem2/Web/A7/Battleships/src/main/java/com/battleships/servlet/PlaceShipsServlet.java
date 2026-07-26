@@ -10,12 +10,6 @@ import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * PlaceShipsServlet
- *
- * GET  /place-ships?gameId=X  → Show the ship placement grid
- * POST /place-ships            → Submit ship placements (2 ships)
- */
 public class PlaceShipsServlet extends HttpServlet {
 
     private final GameRepository gameRepository = new GameRepository();
@@ -36,20 +30,17 @@ public class PlaceShipsServlet extends HttpServlet {
             int gameId = Integer.parseInt(gameIdStr);
             Game game = gameRepository.findById(gameId);
 
-            // Security: make sure this player belongs to this game
             if (game == null || (game.getPlayer1Id() != userId &&
                     (game.getPlayer2Id() == null || game.getPlayer2Id() != userId))) {
                 resp.sendRedirect(req.getContextPath() + "/lobby");
                 return;
             }
 
-            // If game already PLAYING/FINISHED, redirect
             if ("PLAYING".equals(game.getStatus()) || "FINISHED".equals(game.getStatus())) {
                 resp.sendRedirect(req.getContextPath() + "/game?gameId=" + gameId);
                 return;
             }
 
-            // Load any ships already placed by this player
             List<Ship> myShips = shipRepository.getShipsForPlayer(gameId, userId);
 
             req.setAttribute("game",    game);
@@ -82,26 +73,21 @@ public class PlaceShipsServlet extends HttpServlet {
                 return;
             }
 
-            // Parse ship 1
             int s1Row  = Integer.parseInt(req.getParameter("ship1Row"));
             int s1Col  = Integer.parseInt(req.getParameter("ship1Col"));
             String s1O = req.getParameter("ship1Orientation");
 
-            // Parse ship 2
             int s2Row  = Integer.parseInt(req.getParameter("ship2Row"));
             int s2Col  = Integer.parseInt(req.getParameter("ship2Col"));
             String s2O = req.getParameter("ship2Orientation");
 
-            // Validate orientations
             if (!isValidOrientation(s1O) || !isValidOrientation(s2O)) {
                 setErrorAndForward(req, resp, gameId, "Invalid orientation.");
                 return;
             }
 
-            // Delete previously placed ships (allow re-placement before confirming)
             shipRepository.deleteShipsForPlayer(gameId, userId);
 
-            // Validate and save ship 1
             if (!shipRepository.isValidPlacement(gameId, userId, s1Row, s1Col,
                     GameConstants.SHIP_1_LENGTH, s1O)) {
                 setErrorAndForward(req, resp, gameId, "Ship 1 placement is out of bounds or overlaps.");
@@ -117,7 +103,6 @@ public class PlaceShipsServlet extends HttpServlet {
             ship1.setOrientation(s1O);
             shipRepository.saveShip(ship1);
 
-            // Validate and save ship 2
             if (!shipRepository.isValidPlacement(gameId, userId, s2Row, s2Col,
                     GameConstants.SHIP_2_LENGTH, s2O)) {
                 setErrorAndForward(req, resp, gameId, "Ship 2 placement is out of bounds or overlaps.");
@@ -133,10 +118,7 @@ public class PlaceShipsServlet extends HttpServlet {
             ship2.setOrientation(s2O);
             shipRepository.saveShip(ship2);
 
-            // Mark this player as ready
             gameRepository.setPlayerReady(gameId, userId);
-
-            // Redirect to game page (will show "waiting for opponent" if not both ready)
             resp.sendRedirect(req.getContextPath() + "/game?gameId=" + gameId);
 
         } catch (NumberFormatException e) {

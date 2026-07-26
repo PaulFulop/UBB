@@ -7,14 +7,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import java.io.IOException;
 
-/**
- * LobbyServlet handles waiting room / matchmaking.
- *
- * GET  /lobby           → show lobby page
- * POST /lobby action=create  → create a new game
- * POST /lobby action=join    → join an existing game
- * POST /lobby action=cancel  → cancel the player's own WAITING game
- */
 public class LobbyServlet extends HttpServlet {
 
     private final GameRepository gameRepository = new GameRepository();
@@ -25,7 +17,6 @@ public class LobbyServlet extends HttpServlet {
         int userId = (int) req.getSession().getAttribute("userId");
 
         try {
-            // Check if this player is already in an active game
             Game activeGame = gameRepository.findActiveGameForPlayer(userId);
 
             if (activeGame != null) {
@@ -36,15 +27,12 @@ public class LobbyServlet extends HttpServlet {
                     resp.sendRedirect(req.getContextPath() + "/game?gameId=" + activeGame.getId());
                     return;
                 } else {
-                    // WAITING — player1 is waiting. Show waiting state with cancel option.
                     req.setAttribute("myWaitingGame", activeGame);
                     req.getRequestDispatcher("/WEB-INF/views/lobby.jsp").forward(req, resp);
                     return;
                 }
             }
 
-            // Player has no active game — show the lobby.
-            // Check if someone else has an open game they can join.
             Game joinableGame = gameRepository.findWaitingGame(userId);
             req.setAttribute("joinableGame", joinableGame);
             req.getRequestDispatcher("/WEB-INF/views/lobby.jsp").forward(req, resp);
@@ -63,7 +51,6 @@ public class LobbyServlet extends HttpServlet {
 
         try {
             if ("cancel".equals(action)) {
-                // Cancel this player's own WAITING game
                 String gameIdStr = req.getParameter("gameId");
                 if (gameIdStr != null) {
                     int gameId = Integer.parseInt(gameIdStr);
@@ -73,7 +60,6 @@ public class LobbyServlet extends HttpServlet {
                 return;
             }
 
-            // For create/join, make sure the player isn't already in a game
             Game existingGame = gameRepository.findActiveGameForPlayer(userId);
             if (existingGame != null) {
                 resp.sendRedirect(req.getContextPath() + "/lobby");

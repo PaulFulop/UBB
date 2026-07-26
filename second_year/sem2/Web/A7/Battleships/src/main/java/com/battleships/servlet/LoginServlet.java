@@ -15,7 +15,6 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        // If already logged in, go to lobby
         HttpSession session = req.getSession(false);
         if (session != null && session.getAttribute("userId") != null) {
             resp.sendRedirect(req.getContextPath() + "/lobby");
@@ -30,7 +29,6 @@ public class LoginServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        // Validation
         if (username == null || username.trim().isEmpty()) {
             req.setAttribute("error", "Username is required.");
             req.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp);
@@ -51,10 +49,8 @@ public class LoginServlet extends HttpServlet {
                 return;
             }
 
-            // Cancel any stale WAITING games this user left behind from a previous session
             gameRepository.abandonWaitingGamesFor(user.getId());
 
-            // Create session
             HttpSession session = req.getSession(true);
             session.setAttribute("userId",   user.getId());
             session.setAttribute("username", user.getUsername());

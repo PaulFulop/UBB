@@ -12,6 +12,9 @@
       <a routerLink="/browse" routerLinkActive="active">Browse</a>
       <a routerLink="/add" routerLinkActive="active">Add</a>
       <a routerLink="/manage" routerLinkActive="active">Manage</a>
+      @if (auth.isAuthenticated) {
+        <button type="button" class="secondary" (click)="logout()">Logout</button>
+      }
     </nav>
   </header>
 

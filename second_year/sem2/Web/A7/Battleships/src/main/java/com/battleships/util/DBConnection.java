@@ -18,11 +18,7 @@ public class DBConnection {
             throw new RuntimeException("SQL Server JDBC Driver not found. Check pom.xml dependency.", e);
         }
     }
-
-    /**
-     * Returns a new connection to the database.
-     * Caller is responsible for closing it (use try-with-resources).
-     */
+    
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL);
     }

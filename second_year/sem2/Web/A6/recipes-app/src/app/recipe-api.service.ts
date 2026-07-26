@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
+import { environment } from '../environments/environment';
 import { Recipe, RecipeInput } from './recipe.model';
 
 interface TypesResponse {
@@ -16,32 +16,32 @@ interface ActionResponse {
   message: string;
 }
 
-const BACKEND_URL = '/recipes_app/api.php';
+const BACKEND_URL = environment.backendUrl;
 
 @Injectable({ providedIn: 'root' })
 export class RecipeApiService {
   private readonly http = inject(HttpClient);
 
   getTypes(): Observable<TypesResponse> {
-    return this.http.get<TypesResponse>(`${BACKEND_URL}?action=types`);
+    return this.http.get<TypesResponse>(`${BACKEND_URL}/recipes/types`);
   }
 
   listRecipes(type = 'all'): Observable<RecipesResponse> {
     return this.http.get<RecipesResponse>(
-      `${BACKEND_URL}?action=list&type=${encodeURIComponent(type)}`,
+      `${BACKEND_URL}/recipes?type=${encodeURIComponent(type)}`,
     );
   }
 
   createRecipe(payload: RecipeInput): Observable<ActionResponse & { id: number }> {
-    return this.http.post<ActionResponse & { id: number }>(`${BACKEND_URL}?action=create`, payload);
+    return this.http.post<ActionResponse & { id: number }>(`${BACKEND_URL}/recipes`, payload);
   }
 
   updateRecipe(id: number, payload: RecipeInput): Observable<ActionResponse> {
-    return this.http.put<ActionResponse>(`${BACKEND_URL}?action=update&id=${id}`, payload);
+    return this.http.put<ActionResponse>(`${BACKEND_URL}/recipes/${id}`, payload);
   }
 
   deleteRecipe(id: number): Observable<ActionResponse> {
-    return this.http.delete<ActionResponse>(`${BACKEND_URL}?action=delete&id=${id}`);
+    return this.http.delete<ActionResponse>(`${BACKEND_URL}/recipes/${id}`);
   }
 }
 

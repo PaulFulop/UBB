@@ -18,10 +18,6 @@ import { RecipeApiService, formatHttpError } from '../recipe-api.service';
           <h2 class="section-title">All recipes</h2>
           <p class="section-subtitle">Delete or edit recipes without typing the ids manually.</p>
         </div>
-
-        <div class="toolbar">
-          <button type="button" class="secondary" (click)="refreshRecipes()">Refresh</button>
-        </div>
       </div>
 
       <p class="message" [class.error]="isError()">{{ message() }}</p>

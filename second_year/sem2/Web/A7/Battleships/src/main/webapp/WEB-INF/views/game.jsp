@@ -18,7 +18,6 @@
 
 <div class="page-container">
 
-    <%-- ===================== WAITING FOR OPPONENT TO PLACE ===================== --%>
     <c:if test="${game.status == 'PLACING'}">
         <div class="game-status-banner waiting">
             <div class="spinner"></div>
@@ -37,7 +36,6 @@
         </script>
     </c:if>
 
-    <%-- ===================== GAME FINISHED ===================== --%>
     <c:if test="${game.status == 'FINISHED'}">
         <c:choose>
             <c:when test="${game.winnerId == sessionScope.userId}">
@@ -52,9 +50,10 @@
         </div>
     </c:if>
 
-    <%-- ===================== GAME IN PROGRESS / FINISHED BOARDS ===================== --%>
     <c:if test="${game.status == 'PLAYING' or game.status == 'FINISHED'}">
+        <div class="remaining-hits" id="remainingHits">
 
+        </div>
         <div class="turn-banner" id="turnBanner">
             <c:if test="${game.status == 'PLAYING'}">
                 <c:choose>
@@ -70,7 +69,6 @@
 
         <div id="shotMessage" class="shot-message hidden"></div>
 
-        <%-- Forfeit button — only shown while game is still active --%>
         <c:if test="${game.status == 'PLAYING'}">
             <div class="forfeit-bar">
                 <form method="post" action="${pageContext.request.contextPath}/forfeit"
@@ -82,8 +80,6 @@
         </c:if>
 
         <div class="game-boards">
-
-            <!-- MY GRID: my ships + where opponent has shot me -->
             <div class="board-section">
                 <h2>Your Fleet</h2>
                 <div class="grid-header-row">
@@ -105,7 +101,6 @@
                 </c:forEach>
             </div>
 
-            <!-- TARGET GRID: where I am shooting -->
             <div class="board-section">
                 <h2>Enemy Waters</h2>
                 <div class="grid-header-row">
@@ -138,13 +133,8 @@
     const MY_USER_ID = ${sessionScope.userId};
     let myTurn       = ${isMyTurn};
     let gameStatus   = '${game.status}';
-
-    // Count how many incoming shots were already rendered by the server on page load.
-    // The poll will send the full list — we skip everything up to this index
-    // and only apply shots beyond it.
     let knownIncomingCount = document.querySelectorAll('.my-cell.cell-HIT, .my-cell.cell-MISS').length;
 
-    // Disable clicking on cells already shot (rendered from DB on page load)
     document.querySelectorAll('.target-cell').forEach(cell => {
         if (cell.classList.contains('cell-HIT') ||
             cell.classList.contains('cell-MISS') ||
@@ -174,7 +164,6 @@
                     return;
                 }
 
-                // Apply any incoming shots the server has that we haven't painted yet
                 if (data.incomingShots) {
                     data.incomingShots.forEach(s => applyIncomingShot(s.row, s.col, s.result));
                 }
@@ -228,17 +217,21 @@
                     return;
                 }
 
-                // Paint the cell immediately — player sees result right away
                 if (cell) {
                     cell.classList.remove('cell-UNKNOWN');
                     cell.classList.add('cell-' + data.result);
-                    // cell.textContent = data.result === 'MISS' ? 'o' : 'X';
                     cell.title = data.result;
                     cell.onclick = null;
                     cell.style.cursor = 'default';
                 }
 
-                if (data.result === 'HIT')  showMessage('Hit!', 'success');
+                if (data.result === 'HIT') {
+                    showMessage('Hit!', 'success');
+                    showRemainingHits(data);
+                } else {
+                    showRemainingHits({});
+                }
+
                 if (data.result === 'SUNK') showMessage('You sunk a ship!', 'success');
                 if (data.result === 'MISS') showMessage('Miss. Opponent\'s turn.', 'info');
 
@@ -272,7 +265,6 @@
 
         cell.classList.remove('cell-SHIP', 'cell-EMPTY');
         cell.classList.add(result === 'MISS' ? 'cell-MISS' : 'cell-HIT');
-        // cell.textContent = result === 'MISS' ? 'o' : 'X';
         cell.title = result;
     }
 
@@ -295,11 +287,19 @@
         el._timer = setTimeout(() => el.className = 'shot-message hidden', 4000);
     }
 
+    function showRemainingHits(data){
+        const el = document.getElementById('remainingHits');
+
+        if (data.remainingHits) {
+            el.textContent = data.remainingHits;
+        } else {
+            el.textContent = '';
+        }
+    }
+
     if (gameStatus === 'PLAYING') {
         schedulePoll(0);
     }
 </script>
 </body>
 </html>
-
-<%--TODO remove all comments after understanding the project--%>

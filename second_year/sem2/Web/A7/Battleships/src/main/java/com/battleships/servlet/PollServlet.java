@@ -10,15 +10,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * PollServlet - called by the browser every few seconds via AJAX
- * to detect game state changes (opponent joined, opponent ready, opponent shot, game over).
- *
- * GET /poll?gameId=X
- * Returns JSON with current game status, whose turn it is,
- * and the opponent's most recent shot so the client can update
- * the "my grid" cells without a full page reload.
- */
 public class PollServlet extends HttpServlet {
 
     private final GameRepository gameRepository = new GameRepository();
@@ -57,8 +48,6 @@ public class PollServlet extends HttpServlet {
             json.put("player1Username", game.getPlayer1Username());
             json.put("player2Username", game.getPlayer2Username() != null ? game.getPlayer2Username() : JSONObject.NULL);
 
-            // Send ALL incoming shots so the client can apply any it hasn't seen yet.
-            // The client tracks how many it already knows about and only applies new ones.
             List<Shot> incomingShots = shotRepository.getShotsAgainstPlayer(gameId, userId);
             org.json.JSONArray shotsArray = new org.json.JSONArray();
             for (Shot s : incomingShots) {

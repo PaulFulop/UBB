@@ -302,9 +302,8 @@ button.danger,
   color: var(--danger);
 }
 
-.previous-filter {
-  margin: 10px 0 14px;
-  color: var(--muted);
+.message.pending {
+  color: var(--accent-deep);
 }
 
 .table-wrap {

@@ -1,0 +1,30 @@
+:root {
+  /* Paper & ink — warm, slightly aged white instead of stark white */
+  --color-paper: #fdfcf8;
+  --color-paper-alt: #f6f3ea;
+
+  --color-ink: #1c1b19;
+  --color-ink-soft: #4a4641;
+  --color-muted: #8a857c;
+
+  /* Old-money accents: oxblood red and aged brass/gold */
+  --color-accent: #7a1f1f;
+  --color-accent-soft: #9c3b3b;
+  --color-gold: #a9824a;
+
+  --color-rule: #d8d3c5;
+  --color-rule-strong: #1c1b19;
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-mono: 'Special Elite', 'Courier New', monospace;
+
+  /* Layout */
+  --container-width: 1120px;
+  --content-width: 760px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-base: 0.45s var(--ease-out);
+}

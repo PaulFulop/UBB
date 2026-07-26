@@ -20,9 +20,6 @@ public class ShotRepository {
         return s;
     }
 
-    /**
-     * Record a shot in the database.
-     */
     public void saveShot(Shot shot) throws SQLException {
         String sql = "INSERT INTO shots (game_id, shooter_player_id, target_row, target_col, result) " +
                 "VALUES (?, ?, ?, ?, ?)";
@@ -37,9 +34,6 @@ public class ShotRepository {
         }
     }
 
-    /**
-     * Get all shots fired BY a specific player in a game.
-     */
     public List<Shot> getShotsByPlayer(int gameId, int shooterPlayerId) throws SQLException {
         String sql = "SELECT * FROM shots WHERE game_id = ? AND shooter_player_id = ?";
         List<Shot> shots = new ArrayList<>();
@@ -54,10 +48,6 @@ public class ShotRepository {
         return shots;
     }
 
-    /**
-     * Get all shots fired AT a specific player in a game (i.e., by the other player targeting them).
-     * Used to show the opponent's attacks on your board.
-     */
     public List<Shot> getShotsAgainstPlayer(int gameId, int targetPlayerId) throws SQLException {
         // Shots fired by the other player
         String sql = "SELECT * FROM shots WHERE game_id = ? AND shooter_player_id <> ?";
@@ -73,9 +63,6 @@ public class ShotRepository {
         return shots;
     }
 
-    /**
-     * Check whether a cell has already been targeted by a shooter in this game.
-     */
     public boolean alreadyShot(int gameId, int shooterPlayerId, int row, int col) throws SQLException {
         String sql = "SELECT COUNT(*) FROM shots WHERE game_id = ? AND shooter_player_id = ? AND target_row = ? AND target_col = ?";
         try (Connection conn = DBConnection.getConnection();
@@ -90,13 +77,8 @@ public class ShotRepository {
         }
         return false;
     }
-
-    /**
-     * Count hits on a specific player's ships in a game.
-     * Used to detect if all their ships have been sunk (winning condition).
-     */
+    
     public int countHitsOnPlayer(int gameId, int targetPlayerId) throws SQLException {
-        // Hits fired at the target player = shots NOT by that player with result HIT or SUNK
         String sql = "SELECT COUNT(*) FROM shots WHERE game_id = ? AND shooter_player_id <> ? AND result IN ('HIT','SUNK')";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {

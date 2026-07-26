@@ -29,11 +29,6 @@ import { RouterLink } from '@angular/router';
           <h2>Manage Recipes</h2>
           <p>Review all recipes, delete entries, and jump to the edit screen.</p>
         </a>
-
-        <a class="nav-card" routerLink="/edit">
-          <h2>Edit Recipe</h2>
-          <p>Select a recipe and update its author, type, name, or body.</p>
-        </a>
       </div>
     </section>
   `,

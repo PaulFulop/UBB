@@ -7,7 +7,7 @@ public class Ship {
     private int id;
     private int gameId;
     private int ownerPlayerId;
-    private int shipIndex;       // 1 or 2
+    private int shipIndex; // 1 or 2
     private int startRow;
     private int startCol;
     private int length;
@@ -15,10 +15,7 @@ public class Ship {
 
     public Ship() {}
 
-    /**
-     * Returns all cells occupied by this ship as [row, col] pairs.
-     */
-    public List<int[]> getCells() {
+    public static List<int[]> setShipCells(int startRow, int startCol, int length, String orientation) {
         List<int[]> cells = new ArrayList<>();
         for (int i = 0; i < length; i++) {
             if ("HORIZONTAL".equals(orientation)) {
@@ -30,9 +27,10 @@ public class Ship {
         return cells;
     }
 
-    /**
-     * Checks whether a given cell is part of this ship.
-     */
+    public List<int[]> getCells() {
+        return setShipCells(startRow, startCol, length, orientation);
+    }
+
     public boolean occupies(int row, int col) {
         for (int[] cell : getCells()) {
             if (cell[0] == row && cell[1] == col) return true;

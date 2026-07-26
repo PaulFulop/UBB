@@ -1,0 +1,12 @@
+{
+  "theme": "obsidian",
+  "cssTheme": "Minimal",
+  "interfaceFontFamily": "JetBrains Mono",
+  "accentColor": "#b3b3b3",
+  "textFontFamily": "JetBrainsMonoNL Nerd Font,JetBrainsMono Nerd Font Propo",
+  "baseFontSizeAction": true,
+  "baseFontSize": 24,
+  "enabledCssSnippets": [
+    "styles"
+  ]
+}

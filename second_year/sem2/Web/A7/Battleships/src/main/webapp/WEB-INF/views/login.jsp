@@ -47,7 +47,6 @@
 </div>
 
 <script>
-    // Client-side validation before submit
     document.querySelector('form').addEventListener('submit', function(e) {
         let valid = true;
         const username = document.getElementById('username');

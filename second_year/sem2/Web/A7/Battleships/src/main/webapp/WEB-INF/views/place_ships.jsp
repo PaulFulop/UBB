@@ -25,7 +25,6 @@
     </c:if>
 
     <div class="placement-layout">
-        <!-- Instructions panel -->
         <div class="placement-sidebar">
             <div class="ship-panel">
                 <h3>Your Ships</h3>
@@ -65,7 +64,6 @@
                     <p>Click again on a placed ship to re-place it.</p>
                 </div>
 
-                <!-- Hidden form submitted when both ships are placed -->
                 <form method="post" action="${pageContext.request.contextPath}/place-ships" id="placeForm">
                     <input type="hidden" name="gameId" value="${game.id}">
                     <input type="hidden" name="ship1Row" id="ship1Row">
@@ -82,7 +80,6 @@
             </div>
         </div>
 
-        <!-- Grid -->
         <div class="grid-wrapper">
             <div class="grid-header-row">
                 <div class="corner-cell"></div>
@@ -111,12 +108,11 @@
     const SHIP2_LEN   = ${ship2Length};
     const COLS_LABELS = ['A','B','C','D','E','F','G','H'];
 
-    // Current placement state
     let ships = {
-        1: null,  // {row, col, orientation}
+        1: null,
         2: null
     };
-    let placingShip = 1; // which ship we're currently placing
+    let placingShip = 1;
 
     function getOrientation(shipNum) {
         return document.getElementById('ship' + shipNum + '-orientation').value;
@@ -130,7 +126,6 @@
         const orientation = getOrientation(placingShip);
         const len = getLength(placingShip);
 
-        // Validate bounds
         if (orientation === 'HORIZONTAL' && col + len > GRID_SIZE) {
             alert('Ship ' + placingShip + ' goes out of bounds horizontally. Choose a different cell.');
             return;
@@ -140,7 +135,7 @@
             return;
         }
 
-        // Check overlap with the OTHER ship
+
         const otherShipNum = placingShip === 1 ? 2 : 1;
         if (ships[otherShipNum]) {
             const newCells = getCells(row, col, len, orientation);
@@ -165,7 +160,6 @@
         renderGrid();
         updateStatus();
 
-        // Auto-switch to the other ship if it hasn't been placed yet
         if (placingShip === 1 && !ships[2]) placingShip = 2;
         else if (placingShip === 2 && !ships[1]) placingShip = 1;
     }
@@ -181,13 +175,13 @@
 
     function renderGrid() {
         const cells = document.querySelectorAll('.placement-cell');
-        // Clear all cells
+
         cells.forEach(cell => {
             cell.className = 'grid-cell placement-cell';
             cell.title = '';
         });
 
-        // Paint ships
+
         for (const shipNum of [1, 2]) {
             const s = ships[shipNum];
             if (!s) continue;
@@ -230,7 +224,6 @@
         document.getElementById('confirmBtn').disabled = !allPlaced;
     }
 
-    // Re-render when orientation changes
     document.getElementById('ship1-orientation').addEventListener('change', () => {
         ships[1] = null;  // reset ship 1 when orientation changes
         placingShip = 1;
@@ -260,7 +253,6 @@
         document.getElementById('placeForm').submit();
     }
 
-    // Clicking sidebar ship panels to switch active ship
     document.getElementById('ship1-panel').addEventListener('click', () => { placingShip = 1; highlightActive(); });
     document.getElementById('ship2-panel').addEventListener('click', () => { placingShip = 2; highlightActive(); });
 
@@ -269,7 +261,6 @@
         document.getElementById('ship2-panel').classList.toggle('active-ship', placingShip === 2);
     }
 
-    // Hover preview
     document.querySelectorAll('.placement-cell').forEach(cell => {
         cell.addEventListener('mouseenter', function() {
             const r = parseInt(this.dataset.row);

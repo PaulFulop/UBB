@@ -23,9 +23,6 @@
         <div class="alert alert-error">${error}</div>
     </c:if>
 
-    <%-- ======================================================= --%>
-    <%-- THIS PLAYER CREATED A GAME AND IS WAITING FOR OPPONENT  --%>
-    <%-- ======================================================= --%>
     <c:if test="${not empty myWaitingGame}">
         <div class="lobby-card waiting">
             <h2>Waiting for an opponent</h2>
@@ -44,7 +41,6 @@
         </div>
 
         <script>
-            // Poll until someone joins, then redirect to ship placement
             (function pollForJoin() {
                 fetch('${pageContext.request.contextPath}/poll?gameId=${myWaitingGame.id}')
                     .then(r => r.json())
@@ -62,13 +58,9 @@
         </script>
     </c:if>
 
-    <%-- ======================================================= --%>
-    <%-- PLAYER HAS NO ACTIVE GAME — show lobby options         --%>
-    <%-- ======================================================= --%>
     <c:if test="${empty myWaitingGame}">
         <div class="lobby-options">
 
-                <%-- Join card — shown when a game is available (initially from server render) --%>
             <div id="joinCard" class="lobby-card join-card <c:if test='${empty joinableGame}'>hidden</c:if>">
                 <h2>Game Available</h2>
                 <p>Player <strong id="joinPlayerName">${joinableGame.player1Username}</strong> is waiting for an opponent.</p>
@@ -79,7 +71,6 @@
                 </form>
             </div>
 
-                <%-- Create card --%>
             <div class="lobby-card create-card">
                 <h2>Create New Game</h2>
                 <p>Start a game and wait for another player to join.</p>
@@ -92,8 +83,6 @@
         </div>
 
         <script>
-            // Poll lobby every 3s to automatically show/hide the join card
-            // when another player creates or cancels a game.
             (function pollLobby() {
                 fetch('${pageContext.request.contextPath}/lobby-poll')
                     .then(r => r.json())

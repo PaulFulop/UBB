@@ -7,10 +7,6 @@ import com.battleships.util.PasswordUtil;
 import java.sql.*;
 
 public class UserRepository {
-
-    /**
-     * Register a new user. Returns the new user's ID, or -1 if username taken.
-     */
     public int register(String username, String password) throws SQLException {
         String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
         try (Connection conn = DBConnection.getConnection();
@@ -22,7 +18,6 @@ public class UserRepository {
                 if (rs.next()) return rs.getInt(1);
             }
         } catch (SQLException e) {
-            // Unique constraint violation (username taken)
             if (e.getErrorCode() == 2627 || e.getErrorCode() == 2601) {
                 return -1;
             }
@@ -31,9 +26,6 @@ public class UserRepository {
         return -1;
     }
 
-    /**
-     * Authenticate a user. Returns the User object if credentials match, null otherwise.
-     */
     public User login(String username, String password) throws SQLException {
         String sql = "SELECT id, username, password FROM users WHERE username = ?";
         try (Connection conn = DBConnection.getConnection();
@@ -48,23 +40,6 @@ public class UserRepository {
                         u.setUsername(rs.getString("username"));
                         return u;
                     }
-                }
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Find user by ID.
-     */
-    public User findById(int id) throws SQLException {
-        String sql = "SELECT id, username FROM users WHERE id = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, id);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return new User(rs.getInt("id"), rs.getString("username"));
                 }
             }
         }

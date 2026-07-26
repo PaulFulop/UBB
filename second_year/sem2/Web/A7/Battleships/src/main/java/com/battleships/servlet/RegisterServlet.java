@@ -22,7 +22,6 @@ public class RegisterServlet extends HttpServlet {
         String password = req.getParameter("password");
         String confirm  = req.getParameter("confirmPassword");
 
-        // Validation
         if (username == null || username.trim().length() < 3) {
             req.setAttribute("error", "Username must be at least 3 characters.");
             req.setAttribute("username", username);
@@ -50,7 +49,7 @@ public class RegisterServlet extends HttpServlet {
                 req.getRequestDispatcher("/WEB-INF/views/register.jsp").forward(req, resp);
                 return;
             }
-            // Success — redirect to login with a message
+
             resp.sendRedirect(req.getContextPath() + "/login?registered=1");
 
         } catch (Exception e) {

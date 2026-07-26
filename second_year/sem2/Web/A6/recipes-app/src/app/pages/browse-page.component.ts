@@ -31,10 +31,6 @@ import { RecipeApiService, formatHttpError } from '../recipe-api.service';
         </div>
       </div>
 
-      <p class="previous-filter">
-        Previous filter used: <strong>{{ previousFilter() }}</strong>
-      </p>
-
       <p class="message" [class.error]="isError()">{{ message() }}</p>
 
       <div class="table-wrap">

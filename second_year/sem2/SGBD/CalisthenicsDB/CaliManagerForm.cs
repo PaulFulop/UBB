@@ -23,7 +23,6 @@ namespace CalisthenicsDB
         private readonly BindingSource parentBindingSource = new BindingSource();
         private readonly BindingSource childBindingSource = new BindingSource();
 
-        // TODOdouble click / tab does not go directly into edit mode, fix this
         public CalistenicsForm()
         {
             ExeConfigurationFileMap configMap = new ExeConfigurationFileMap

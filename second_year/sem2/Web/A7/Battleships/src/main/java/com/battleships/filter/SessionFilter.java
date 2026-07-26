@@ -6,14 +6,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * SessionFilter: Every request goes through here.
- * If the user is not logged in, they are redirected to /login.
- * Public paths (login, register, static resources) are whitelisted.
- */
 public class SessionFilter implements Filter {
-
-    // These paths are accessible WITHOUT being logged in
     private static final List<String> PUBLIC_PATHS = Arrays.asList(
             "/login", "/register"
     );
@@ -27,7 +20,6 @@ public class SessionFilter implements Filter {
 
         String path = request.getServletPath();
 
-        // Allow public paths and static resources (CSS, JS, images)
         boolean isPublic = PUBLIC_PATHS.contains(path)
                 || path.startsWith("/css/")
                 || path.startsWith("/js/")
@@ -38,7 +30,6 @@ public class SessionFilter implements Filter {
             return;
         }
 
-        // Check session
         HttpSession session = request.getSession(false);
         boolean loggedIn = (session != null && session.getAttribute("userId") != null);
 

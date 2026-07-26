@@ -6,19 +6,9 @@ import jakarta.servlet.http.*;
 import org.json.JSONObject;
 import java.io.IOException;
 
-/**
- * LobbyPollServlet
- *
- * GET /lobby-poll
- *
- * Called by the lobby page every few seconds.
- * Returns JSON describing whether a joinable game exists.
- * This is what makes Player 2's screen update automatically
- * when Player 1 creates a game — without either player refreshing.
- */
 public class LobbyPollServlet extends HttpServlet {
 
-    private final GameRepository gameDAO = new GameRepository();
+    private final GameRepository gameRepository = new GameRepository();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -30,7 +20,7 @@ public class LobbyPollServlet extends HttpServlet {
         JSONObject json = new JSONObject();
 
         try {
-            Game joinable = gameDAO.findWaitingGame(userId);
+            Game joinable = gameRepository.findWaitingGame(userId);
             if (joinable != null) {
                 json.put("hasGame",    true);
                 json.put("gameId",     joinable.getId());

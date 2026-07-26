@@ -30,9 +30,6 @@ public class GameRepository {
         return g;
     }
 
-    /**
-     * Create a new game with player1. Returns the new game ID.
-     */
     public int createGame(int player1Id) throws SQLException {
         String sql = "INSERT INTO games (player1_id, status) VALUES (?, 'WAITING')";
         try (Connection conn = DBConnection.getConnection();
@@ -46,11 +43,6 @@ public class GameRepository {
         throw new SQLException("Failed to create game");
     }
 
-    /**
-     * Cancel a WAITING game created by this player.
-     * Only succeeds if the game is still in WAITING status (no opponent joined).
-     * Uses CANCELLED status instead of DELETE to preserve referential integrity.
-     */
     public void cancelGame(int gameId, int playerId) throws SQLException {
         String sql = "UPDATE games SET status = 'CANCELLED', updated_at = GETDATE() " +
                 "WHERE id = ? AND player1_id = ? AND status = 'WAITING'";
@@ -62,10 +54,6 @@ public class GameRepository {
         }
     }
 
-    /**
-     * Cancel all WAITING games created by this player.
-     * Called on login so stale waiting games don't persist across sessions.
-     */
     public void abandonWaitingGamesFor(int playerId) throws SQLException {
         String sql = "UPDATE games SET status = 'CANCELLED', updated_at = GETDATE() " +
                 "WHERE player1_id = ? AND status = 'WAITING'";
@@ -76,10 +64,6 @@ public class GameRepository {
         }
     }
 
-    /**
-     * Find the active (WAITING/PLACING/PLAYING) game for a given player.
-     * Returns null if no active game.
-     */
     public Game findActiveGameForPlayer(int playerId) throws SQLException {
         String sql = "SELECT g.*, u1.username as p1_username, u2.username as p2_username " +
                 "FROM games g " +
@@ -98,9 +82,6 @@ public class GameRepository {
         return null;
     }
 
-    /**
-     * Find a game by its ID.
-     */
     public Game findById(int gameId) throws SQLException {
         String sql = "SELECT g.*, u1.username as p1_username, u2.username as p2_username " +
                 "FROM games g " +
@@ -117,10 +98,6 @@ public class GameRepository {
         return null;
     }
 
-    /**
-     * Find an open game (status='WAITING') that was NOT created by this player.
-     * Returns null if none available.
-     */
     public Game findWaitingGame(int notPlayerId) throws SQLException {
         String sql = "SELECT g.*, u1.username as p1_username, u2.username as p2_username " +
                 "FROM games g " +
@@ -138,9 +115,6 @@ public class GameRepository {
         return null;
     }
 
-    /**
-     * Player 2 joins a game.
-     */
     public void joinGame(int gameId, int player2Id) throws SQLException {
         String sql = "UPDATE games SET player2_id = ?, status = 'PLACING', updated_at = GETDATE() WHERE id = ?";
         try (Connection conn = DBConnection.getConnection();
@@ -151,9 +125,6 @@ public class GameRepository {
         }
     }
 
-    /**
-     * Mark a player as ready (ships placed). If both ready, transition to PLAYING.
-     */
     public void setPlayerReady(int gameId, int playerId) throws SQLException {
         // First, get current game state
         Game game = findById(gameId);
@@ -167,7 +138,6 @@ public class GameRepository {
             ps.executeUpdate();
         }
 
-        // Re-fetch to check if both are ready
         game = findById(gameId);
         if (game != null && game.isPlayer1Ready() && game.isPlayer2Ready()) {
             // Start the game — player1 goes first
@@ -175,9 +145,6 @@ public class GameRepository {
         }
     }
 
-    /**
-     * Transition game to PLAYING status, set whose turn it is.
-     */
     public void startGame(int gameId, int firstPlayerId) throws SQLException {
         String sql = "UPDATE games SET status = 'PLAYING', current_turn_player_id = ?, updated_at = GETDATE() WHERE id = ?";
         try (Connection conn = DBConnection.getConnection();
@@ -188,9 +155,6 @@ public class GameRepository {
         }
     }
 
-    /**
-     * Switch whose turn it is.
-     */
     public void switchTurn(int gameId, int nextPlayerId) throws SQLException {
         String sql = "UPDATE games SET current_turn_player_id = ?, updated_at = GETDATE() WHERE id = ?";
         try (Connection conn = DBConnection.getConnection();
@@ -201,16 +165,7 @@ public class GameRepository {
         }
     }
 
-    /**
-     * Mark a game as finished with a winner.
-     */
-    /**
-     * Forfeit: the calling player loses immediately.
-     * Sets status to FINISHED and winner to the other player.
-     * Only works if the game is currently PLAYING.
-     */
     public void forfeitGame(int gameId, int losingPlayerId) throws SQLException {
-        // We need to know the other player's ID to set them as winner
         Game game = findById(gameId);
         if (game == null || !"PLAYING".equals(game.getStatus())) return;
 
@@ -221,9 +176,7 @@ public class GameRepository {
         finishGame(gameId, winnerId);
     }
 
-    /**
-     * Mark a game as finished with a winner.
-     */
+
     public void finishGame(int gameId, int winnerId) throws SQLException {
         String sql = "UPDATE games SET status = 'FINISHED', winner_id = ?, updated_at = GETDATE() WHERE id = ?";
         try (Connection conn = DBConnection.getConnection();

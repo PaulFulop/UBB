@@ -98,6 +98,7 @@ export class AddPageComponent {
       recipe: '',
     });
     this.isError.set(false);
+    this.router.navigateByUrl('/browse');
   }
 
   private getValidationMessage(): string {
